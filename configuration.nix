@@ -2,20 +2,12 @@
 
 let
   # change this
-  nixversion = "25.05";
-  hostname= "nxvm";
-  targetUserName = "apham";
-  targetUserEmail = "apham@localhost";
-  keyboardLayout = "fr";
-  keyboardModel = "pc105"; # for macbook use "macbook79"
-  wildcardDomain = "houze.dns.army";
-  enableKubernetes = true;
-  automaticlogin = true;
-  disableTurboBoost = true; # disable turbo boost for laptops and minipcs that run intel
+  vars = import ./vars.nix;
+  
   # end of change this
-
+  
   home-manager = builtins.fetchTarball (
-    "https://github.com/nix-community/home-manager/archive/release-${nixversion}.tar.gz"
+    "https://github.com/nix-community/home-manager/archive/release-${vars.nixversion}.tar.gz"
   );
 
   dotfilesgit = builtins.fetchGit {
@@ -135,9 +127,9 @@ in
   # fastboot
   boot.loader.timeout = 1;
 
-  system.stateVersion = nixversion;
+  system.stateVersion = vars.nixversion;
 
-  networking.hostName = hostname;
+  networking.hostName = vars.hostname;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.networkmanager.dns = "dnsmasq";
 
@@ -146,16 +138,16 @@ in
   i18n.defaultLocale = "en_GB.UTF-8";
   console = {
     font = "LatArCyrHeb-16";
-    keyMap = keyboardLayout;
+    keyMap = vars.keyboardLayout;
   };
 
   users.groups = { 
-    ${targetUserName} = { };
+    ${vars.targetUserName} = { };
   };
 
   # 
   users.users = {
-    ${targetUserName} = {
+    ${vars.targetUserName} = {
       isNormalUser = true;
       extraGroups = [ 
         "wheel"
@@ -171,18 +163,18 @@ in
   };
 
   environment.loginShellInit = ''
-    export TARGET_USER=${targetUserName}
-    export KEYBOARD_LAYOUT=${keyboardLayout}
-    export KEYBOARD_MODEL=${keyboardModel}
+    export TARGET_USER=${vars.targetUserName}
+    export KEYBOARD_LAYOUT=${vars.keyboardLayout}
+    export KEYBOARD_MODEL=${vars.keyboardModel}
     export PRODUCT_NAME=$(cat /sys/devices/virtual/dmi/id/product_name)
   '';
 
-  home-manager.users.${targetUserName} = {
-    home.stateVersion = nixversion;
+  home-manager.users.${vars.targetUserName} = {
+    home.stateVersion = vars.nixversion;
     programs.git = {
       enable = true;
-      userName = targetUserName;
-      userEmail = targetUserEmail;
+      userName = vars.targetUserName;
+      userEmail = vars.targetUserEmail;
     };
 
     programs.bash = { 
@@ -269,8 +261,8 @@ in
   ##################################################
   # passwordless sudo for users in wheel group
   ##################################################
-  services.getty.autologinOnce = automaticlogin;
-  services.getty.autologinUser = targetUserName;
+  services.getty.autologinOnce = vars.automaticlogin;
+  services.getty.autologinUser = vars.targetUserName;
 
   services.envfs.enable = true;
 
@@ -283,7 +275,7 @@ in
   # disableturbo
   ##################################################
   systemd.services.disable-intel-turboboost = {
-    enable = disableTurboBoost;
+    enable = vars.disableTurboBoost;
     description = "disable-intel-turboboost";
     wantedBy = [ "sysinit.target" ];
     serviceConfig = {
@@ -461,10 +453,10 @@ in
     postman
 
     # emulation
-    emulationstation-de
-    retroarch-full
-    pcsx2
-    dolphin-emu
+    # emulationstation-de
+    # retroarch-full
+    unstable.pcsx2
+    # dolphin-emu
     cemu
   ];
   
@@ -503,7 +495,7 @@ in
     path = [ "/run/current-system/sw" ];
     serviceConfig = {
       Type = "oneshot";
-      User = targetUserName;
+      User = vars.targetUserName;
       ExecStart = "/run/current-system/sw/bin/firstboot-dockerbuildx";
       RemainAfterExit = true;
     };
@@ -513,11 +505,11 @@ in
   # kubernetes
   ##################################################
   services.k3s = {
-    enable = enableKubernetes;
+    enable = vars.enableKubernetes;
     extraFlags = [ 
       "--disable=traefik" 
       "--disable=servicelb"
-      "--tls-san=${wildcardDomain}"
+      "--tls-san=${vars.wildcardDomain}"
       "--write-kubeconfig-mode=644"
     ];
   };
@@ -545,8 +537,8 @@ in
   };
   services.xserver = {
     enable = true;
-    xkb.layout = keyboardLayout;
-    xkb.model = keyboardModel;
+    xkb.layout = vars.keyboardLayout;
+    xkb.model = vars.keyboardModel;
 
     displayManager.startx.enable = true;
   };
