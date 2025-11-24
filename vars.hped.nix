@@ -9,5 +9,6 @@
   enableKubernetes = true;
   automaticlogin = true;
   disableTurboBoost = false; # disable turbo boost for laptops and minipcs that run intel
+  enablePicom = true;
   # end of change this
 }
