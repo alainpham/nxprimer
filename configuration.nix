@@ -4,11 +4,17 @@ let
   # change this
   vars = import ./vars.nix;
   
+  # versions
+  nixVersion = "25.05";
+  esdeVersion = "3.4.0";
+  esdeVersionId = "246875981";
+  retroachVersion = "1.21.0";
+
   # end of change this
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 
   home-manager = builtins.fetchTarball (
-    "https://github.com/nix-community/home-manager/archive/release-${vars.nixversion}.tar.gz"
+    "https://github.com/nix-community/home-manager/archive/release-${nixVersion}.tar.gz"
   );
 
   dotfilesgit = builtins.fetchGit {
@@ -57,6 +63,8 @@ let
   # should not be set manually, but detect if running in vm
   isVm = lib.elem "virtio_console" config.boot.initrd.kernelModules;
 
+
+  # custom packages
   scripts = pkgs.stdenv.mkDerivation {
       pname = "scripts";
       version = "master";
@@ -114,6 +122,12 @@ let
         cp -r $src/public/logos/* "$out/share/icons/hicolor/scalable/logos"
       '';
     };
+
+
+    # retroarch = pkgs.stdenv.mkDerivation {
+    #   pname
+    # }
+
 in
 {
   imports =
@@ -128,7 +142,7 @@ in
   # fastboot
   boot.loader.timeout = 1;
 
-  system.stateVersion = vars.nixversion;
+  system.stateVersion = nixVersion;
 
   networking.hostName = vars.hostname;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -171,7 +185,7 @@ in
   '';
 
   home-manager.users.${vars.targetUserName} = {
-    home.stateVersion = vars.nixversion;
+    home.stateVersion = nixVersion;
     programs.git = {
       enable = true;
       userName = vars.targetUserName;
@@ -327,6 +341,7 @@ in
     btop
     zip
     unzip
+    p7zip
     virt-what
     wireguard-tools
     jq
@@ -433,7 +448,8 @@ in
     xdotool
 
     vscode
-
+    
+    moonlight-qt
 
     # virtualization todo
 
@@ -455,9 +471,9 @@ in
 
     # emulation
     # emulationstation-de
-    # retroarch-full
+    retroarch-full
     unstable.pcsx2
-    # dolphin-emu
+    dolphin-emu
     cemu
   ];
   
@@ -517,7 +533,6 @@ in
   # Disable k3s from starting at boot; we'll manage it manually
   systemd.services.k3s.wantedBy = lib.mkForce [ ];
   
-  # GUI applications
 
   ##################################################
   # gui
@@ -638,6 +653,10 @@ in
     enable = true;
     enableVirtualCamera = true;
   };
-
+  # app images setup
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 }
 
