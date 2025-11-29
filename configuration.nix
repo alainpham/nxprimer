@@ -8,6 +8,7 @@ let
   nixVersion = "25.05";
   esdeVersion = "3.4.0";
   esdeVersionId = "246875981";
+  esdeSha256 = "4cb66cfc923099711cfa0eddd83db64744a6294e02e3ffd19ee867f77a88ec7e";
   retroachVersion = "1.21.0";
 
   # end of change this
@@ -59,6 +60,7 @@ let
     ref = "master";
     rev = "1423f027d4af5d6aaa6e7b096626810bc36a6231";
   };
+
 
   # should not be set manually, but detect if running in vm
   isVm = lib.elem "virtio_console" config.boot.initrd.kernelModules;
@@ -124,9 +126,17 @@ let
     };
 
 
-    # retroarch = pkgs.stdenv.mkDerivation {
-    #   pname
-    # }
+    emustation = pkgs.appimageTools.wrapType2 {
+      pname = "estation";
+      version = esdeVersion;
+
+      src = builtins.fetchurl {
+        url = "https://gitlab.com/es-de/emulationstation-de/-/package_files/${esdeVersionId}/download";
+        sha256 = esdeSha256;
+        name = "estation.AppImage";
+      };
+
+    };
 
 in
 {
@@ -458,7 +468,18 @@ in
     appicons
 
 
-    # advanced desktop apps
+    # workstation desktop apps
+    handbrake
+    libdvdcss
+    gimp3
+    rawtherapee
+    krita
+    mypaint
+    inkscape
+    blender
+    easytag
+    audacity
+    
     kdePackages.kdenlive
     onlyoffice-desktopeditors
     mlv-app
@@ -468,9 +489,11 @@ in
     localsend
     avidemux
     postman
+    dbeaver-bin
 
     # emulation
     # emulationstation-de
+    emustation
     retroarch-full
     unstable.pcsx2
     dolphin-emu
@@ -653,6 +676,7 @@ in
     enable = true;
     enableVirtualCamera = true;
   };
+
   # app images setup
   programs.appimage = {
     enable = true;
