@@ -6,10 +6,6 @@ let
   
   # versions
   nixVersion = "25.05";
-  esdeVersion = "3.4.0";
-  esdeVersionId = "246875981";
-  esdeSha256 = "4cb66cfc923099711cfa0eddd83db64744a6294e02e3ffd19ee867f77a88ec7e";
-  retroachVersion = "1.21.0";
 
   # end of change this
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
@@ -115,28 +111,102 @@ let
       '';
     };
 
-    appicons = pkgs.stdenv.mkDerivation {
-      pname = "appicons";
-      version = "master";
-      src = appiconsgit;
-      installPhase = ''
-        mkdir -p $out/share/icons/hicolor/scalable/logos
-        cp -r $src/public/logos/* "$out/share/icons/hicolor/scalable/logos"
-      '';
+  appicons = pkgs.stdenv.mkDerivation {
+    pname = "appicons";
+    version = "master";
+    src = appiconsgit;
+    installPhase = ''
+      mkdir -p $out/share/icons/hicolor/scalable/logos
+      cp -r $src/public/logos/* "$out/share/icons/hicolor/scalable/logos"
+    '';
+  };
+
+
+  emustation = pkgs.appimageTools.wrapType2 {
+    pname = "estation";
+    version = "3.4.0";
+
+    src = builtins.fetchurl {
+      url = "https://gitlab.com/es-de/emulationstation-de/-/package_files/246875981/download";
+      sha256 = "4cb66cfc923099711cfa0eddd83db64744a6294e02e3ffd19ee867f77a88ec7e";
+      name = "estation.AppImage";
+    };
+  };
+
+
+  retroarchversion = "1.21.0";
+
+  retroarchpkg = pkgs.stdenv.mkDerivation {
+    pname = "retroarchpkg";
+    version = retroarchversion;
+
+    src = builtins.fetchurl {
+      url = "https://buildbot.libretro.com/stable/${retroarchversion}/linux/x86_64/RetroArch.7z";
+      sha256 = "294ea29d50adf281806dabae14f1a12b879c925ea5be15bc4de1068874d5236a";
     };
 
+    buildInputs = [ pkgs.p7zip ];
 
-    emustation = pkgs.appimageTools.wrapType2 {
-      pname = "estation";
-      version = esdeVersion;
+    unpackPhase = ''
+      7z x $src 
+    '';
 
-      src = builtins.fetchurl {
-        url = "https://gitlab.com/es-de/emulationstation-de/-/package_files/${esdeVersionId}/download";
-        sha256 = esdeSha256;
-        name = "estation.AppImage";
-      };
+    installPhase = ''
+      mkdir -p $out/share/appdata/retroarch
+      mkdir -p $out/bin
+      cp RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage $out/RetroArch.AppImage
+      cp -r RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/* $out/share/appdata/retroarch/
 
+      cat > $out/share/appdata/retroarch/ra-force.cfg <<EOF
+        assets_directory = "$out/share/appdata/retroarch/assets"
+        libretro_directory = "$out/share/appdata/retroarch/cores"
+        libretro_info_path = "$out/share/appdata/retroarch/cores"
+        content_database_path = "$out/share/appdata/retroarch/rdb"
+        audio_filter_dir = "$out/share/appdata/retroarch/filters/audio"
+        video_filter_dir = "$out/share/appdata/retroarch/filters/video"
+        osk_overlay_directory = "$out/share/appdata/retroarch/overlays/keyboards"
+        overlay_directory = "$out/share/appdata/retroarch/overlays"
+        video_shader_dir = "$out/share/appdata/retroarch/shaders"
+      EOF
+    '';
+  };
+
+  retroarchcorespkg = pkgs.stdenv.mkDerivation {
+    pname = "retroarchcorespkg";
+    version = retroarchversion;
+
+    src = builtins.fetchurl {
+      url = "https://buildbot.libretro.com/stable/${retroarchversion}/linux/x86_64/RetroArch_cores.7z";
+      sha256 = "cbf7c866f77259e6cc61243d2fcf4668471a0a7bf9be00649b84556b7bc22c57";
     };
+
+    buildInputs = [ pkgs.p7zip ];
+
+    unpackPhase = ''
+      7z x $src 
+    '';
+
+    installPhase = ''
+      mkdir -p $out/share/appdata/retroarch
+      cp -r RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/* $out/share/appdata/retroarch/    
+    '';
+  };
+
+  retroarchappimage = pkgs.appimageTools.wrapType2 {
+    pname = "retroarch";
+    version = retroarchversion;
+    src = "${retroarchpkg}/RetroArch.AppImage";
+    buildInputs = [ pkgs.makeBinaryWrapper ];
+
+    extraInstallCommands = ''
+      mv $out/bin/retroarch $out/bin/retroarch.original
+      cat > $out/bin/retroarch << 'EOF'
+      #!/bin/bash
+      $out/bin/retroarch.original --appendconfig ${retroarchpkg}/share/appdata/retroarch/ra-force.cfg "$@"
+      EOF
+      chmod 755 $out/bin/retroarch
+    '';
+  };
 
 in
 {
@@ -303,9 +373,10 @@ in
     enable = vars.disableTurboBoost;
     description = "disable-intel-turboboost";
     wantedBy = [ "sysinit.target" ];
+    path = [ "/run/current-system/sw" ];
     serviceConfig = {
-      ExecStart = "/run/current-system/sw/bin/turboboost no";
-      ExecStop = "/run/current-system/sw/bin/turboboost yes";
+      ExecStart = "${scripts}/bin/turboboost no";
+      ExecStop = "${scripts}/bin/turboboost yes";
       RemainAfterExit = true;
     };
   };
@@ -494,7 +565,9 @@ in
     # emulation
     # emulationstation-de
     emustation
-    retroarch-full
+    retroarchpkg
+    retroarchcorespkg
+    retroarchappimage
     unstable.pcsx2
     dolphin-emu
     cemu
@@ -524,7 +597,7 @@ in
     path = [ "/run/current-system/sw" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "/run/current-system/sw/bin/firstboot-dockernet";
+      ExecStart = "${scripts}/bin/firstboot-dockernet";
     };
   };
 
@@ -536,7 +609,7 @@ in
     serviceConfig = {
       Type = "oneshot";
       User = vars.targetUserName;
-      ExecStart = "/run/current-system/sw/bin/firstboot-dockerbuildx";
+      ExecStart = "${scripts}/bin/firstboot-dockerbuildx";
       RemainAfterExit = true;
     };
   };
