@@ -3,12 +3,12 @@
 let
   # change this
   vars = import ./vars.nix;
-  
-  # versions
-  nixVersion = "25.05";
-
   # end of change this
+
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+  
+  # versions that don't change often
+  nixVersion = "25.05";
 
   home-manager = builtins.fetchTarball (
     "https://github.com/nix-community/home-manager/archive/release-${nixVersion}.tar.gz"
@@ -63,6 +63,8 @@ let
 
 
   # custom packages
+
+  # custom scripts & webapps
   scripts = pkgs.stdenv.mkDerivation {
       pname = "scripts";
       version = "master";
@@ -79,31 +81,6 @@ let
 
         cp shortcuts/* $out/share/applications/
 
-        # webapps
-
-        export WEBAPPSLIST="
-          gpt|chatgpt-color|https://chatgpt.com
-          gm|gmail-color|https://mail.google.com/mail/u/1/#inbox
-          cal|google|https://calendar.google.com/calendar/u/1/r
-          teams|teams|https://teams.microsoft.com/v2/
-          whatsapp|whatsapp|https://web.whatsapp.com
-          messenger|messenger|https://www.messenger.com
-          telegram|telegram|https://web.telegram.org
-          notes|onenote|https://docs.google.com/document/d/1wTwA1NhzgYUGG1eyDyUZj8ExhbhdscQrdYWBOBkLnCs
-          gco|grafana|https://docs.google.com/presentation/d/1yo6Q0p0OBK9vIh3abwigtBDlFGMy9NqU7EzRKYjraro
-          gdemo|grafana|https://emea.cloud.demokit.grafana.com/a/grafana-asserts-app/assertions?start=now-24h&end=now&search=productcatalogservice%20connected%20services&view=BY_ENTITY
-          spotify|spotify|https://open.spotify.com/
-          youtube|youtube|https://www.youtube.com/
-          grok|grok|https://grok.com/
-          sd|chatgpt-color|https://stablediffusionweb.com/app/image-generator
-          brm|chatgpt-color|https://stablediffusionweb.com/background-remover
-          word|word|https://word.cloud.microsoft
-          excel|excel|https://excel.cloud.microsoft
-          powerpoint|powerpoint|https://powerpoint.cloud.microsoft
-          deezer|applemusic|https://www.deezer.com/
-        "
-        
-
         export APPDIR=$out/bin
         export SHORTCUTDIR=$out/share/applications
         bash "$src/webapps/genapps"
@@ -111,6 +88,7 @@ let
       '';
     };
 
+  # application icons package
   appicons = pkgs.stdenv.mkDerivation {
     pname = "appicons";
     version = "master";
@@ -122,6 +100,7 @@ let
   };
 
 
+  # emulationstation
   emustation = pkgs.appimageTools.wrapType2 {
     pname = "estation";
     version = "3.4.0";
@@ -134,6 +113,7 @@ let
   };
 
 
+  # retroarch
   retroarchversion = "1.21.0";
 
   retroarchpkg = pkgs.stdenv.mkDerivation {
@@ -193,16 +173,15 @@ let
   };
 
   retroarchappimage = pkgs.appimageTools.wrapType2 {
-    pname = "retroarch";
+    pname = "retroarchappimage";
     version = retroarchversion;
     src = "${retroarchpkg}/RetroArch.AppImage";
     buildInputs = [ pkgs.makeBinaryWrapper ];
 
     extraInstallCommands = ''
-      mv $out/bin/retroarch $out/bin/retroarch.original
       cat > $out/bin/retroarch << 'EOF'
       #!/bin/bash
-      $out/bin/retroarch.original --appendconfig ${retroarchpkg}/share/appdata/retroarch/ra-force.cfg "$@"
+      $out/bin/retroarchappimage --appendconfig ${retroarchpkg}/share/appdata/retroarch/ra-force.cfg|~/.config/retroarch/retroarch.override.cfg "$@"
       EOF
       chmod 755 $out/bin/retroarch
     '';
@@ -330,7 +309,11 @@ in
           recursive = true;
           force = true;
       };
-
+      "ES-DE" = { 
+          source = "${dotfilesgit}/home/ES-DE";
+          recursive = true;
+          force = true;
+      };
     };
 
   };

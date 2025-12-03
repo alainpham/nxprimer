@@ -3,6 +3,8 @@
 cfdisk
 
 export TARGETDISK=/dev/sda
+# for VMS
+export TARGETDISK=/dev/vda
 
 mkfs.fat -F 32 ${TARGETDISK}1
 fatlabel ${TARGETDISK}1 NIXBOOT
@@ -14,8 +16,13 @@ mount -o umask=077 /dev/disk/by-label/NIXBOOT /mnt/boot
 
 nixos-generate-config --root /mnt
 
-nixos-enter --root /mnt -c 'passwd apham'
+nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
 
+nix-channel --update
+
+nixos-install
+
+nixos-enter --root /mnt -c 'passwd apham'
 
 ```
 
