@@ -139,7 +139,7 @@ let
 
       cat > $out/share/appdata/retroarch/ra-force.cfg <<EOF
         assets_directory = "$out/share/appdata/retroarch/assets"
-        libretro_directory = "$out/share/appdata/retroarch/cores"
+        libretro_directory = "${pkgs.retroarchcorespkg}/share/appdata/retroarch/cores"
         libretro_info_path = "$out/share/appdata/retroarch/cores"
         content_database_path = "$out/share/appdata/retroarch/rdb"
         audio_filter_dir = "$out/share/appdata/retroarch/filters/audio"
@@ -147,6 +147,7 @@ let
         osk_overlay_directory = "$out/share/appdata/retroarch/overlays/keyboards"
         overlay_directory = "$out/share/appdata/retroarch/overlays"
         video_shader_dir = "$out/share/appdata/retroarch/shaders"
+        system_directory = "${pkgs.retroarchbiospkg}/share/appdata/retroarch/system"
       EOF
     '';
   };
@@ -169,6 +170,27 @@ let
     installPhase = ''
       mkdir -p $out/share/appdata/retroarch
       cp -r RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/* $out/share/appdata/retroarch/    
+    '';
+  };
+
+  retroarchbiospkg = pkgs.stdenv.mkDerivation {
+    pname = "retroarchbiospkg";
+    version = retroarchversion;
+
+    src = builtins.fetchurl {
+      url = "https://github.com/Abdess/retroarch_system/releases/download/v20220308/RetroArch_v1.10.1.zip";
+      sha256 = "341c5011976e2e650ac991411daf74701327c26974b59b89f8a63b61cbb61b18";
+    };
+
+    buildInputs = [ pkgs.unzip ];
+
+    unpackPhase = ''
+      unzip $src
+    '';
+
+    installPhase = ''
+      mkdir -p $out/share/appdata/retroarch/system
+      cp -r system/* $out/share/appdata/retroarch/system
     '';
   };
 
@@ -241,6 +263,7 @@ in
     export KEYBOARD_LAYOUT=${vars.keyboardLayout}
     export KEYBOARD_MODEL=${vars.keyboardModel}
     export PRODUCT_NAME=$(cat /sys/devices/virtual/dmi/id/product_name)
+    export SDL_GAMECONTROLLERCONFIG="0300d859bc2000000055000010010000,ShanWanWireless,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4"
   '';
 
   home-manager.users.${vars.targetUserName} = {
@@ -630,6 +653,15 @@ in
   hardware.graphics = {
     enable = true;
   };
+  hardware.bluetooth = {
+    enable = true;
+    input = {
+      General = {
+        ClassicBondedOnly = false;
+      };
+    };
+  };
+
   services.xserver = {
     enable = true;
     xkb.layout = vars.keyboardLayout;
