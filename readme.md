@@ -1,3 +1,30 @@
+# Nix distro for work and co.
+
+## Get hashes from latest git repos
+
+```sh
+gitrepos="
+dotfilesgit|https://github.com/alainpham/dotfiles.git
+dwmgit|https://github.com/alainpham/dwm-flexipatch.git
+stgit|https://github.com/alainpham/st-flexipatch.git
+dmenugit|https://github.com/alainpham/dmenu-flexipatch.git
+slockgit|https://github.com/alainpham/slock-flexipatch.git
+dwmblocksgit|https://github.com/alainpham/dwmblocks.git
+appiconsgit|https://github.com/alainpham/coloured-icons.git
+"
+
+for gitrepo in $(echo $gitrepos); do
+
+entry="${gitrepo%%|*}"
+url="${gitrepo##*|}"
+
+echo -n "$entry - "
+git ls-remote $url master
+done
+```
+
+## Installation
+
 ```sh
 
 cfdisk
@@ -16,22 +43,14 @@ mount -o umask=077 /dev/disk/by-label/NIXBOOT /mnt/boot
 
 nixos-generate-config --root /mnt
 
-nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
-
-nix-channel --update
-
 nixos-install
 
 nixos-enter --root /mnt -c 'passwd apham'
 
 ```
 
-
-```sh
-sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
-sudo nix-channel --update
-```
-
 ```sh
 scp *.nix nxvm:/etc/nixos ; scp vars.vm.nix nxvm:/etc/nixos/vars.nix
 ```
+
+## 

@@ -5,19 +5,20 @@ let
   vars = import ./vars.nix;
   # end of change this
 
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+  # initial state version
+  nixStateVersion ="25.11";
   
-  # versions that don't change often
-  nixVersion = "25.05";
+  # target version for fetching home-manager
+  nixTargetVersion = "25.11";
 
   home-manager = builtins.fetchTarball (
-    "https://github.com/nix-community/home-manager/archive/release-${nixVersion}.tar.gz"
+    "https://github.com/nix-community/home-manager/archive/release-${nixTargetVersion}.tar.gz"
   );
 
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "9ca6cc64e7f918b096d4f60a33fda3ae5c1e5c6e";
+    rev = "42ac20387e3ff558542320e788df88e29cf365ca";
   };
 
   # desktop related
@@ -141,7 +142,7 @@ let
         assets_directory = "$out/share/appdata/retroarch/assets"
         libretro_directory = "${pkgs.retroarchcorespkg}/share/appdata/retroarch/cores"
         libretro_info_path = "$out/share/appdata/retroarch/cores"
-        content_database_path = "$out/share/appdata/retroarch/rdb"
+        content_database_path = "$out/share/appdata/retroarch/database/rdb"
         audio_filter_dir = "$out/share/appdata/retroarch/filters/audio"
         video_filter_dir = "$out/share/appdata/retroarch/filters/video"
         osk_overlay_directory = "$out/share/appdata/retroarch/overlays/keyboards"
@@ -223,7 +224,7 @@ in
   # fastboot
   boot.loader.timeout = 1;
 
-  system.stateVersion = nixVersion;
+  system.stateVersion = nixStateVersion;
 
   networking.hostName = vars.hostname;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -262,12 +263,13 @@ in
     export TARGET_USER=${vars.targetUserName}
     export KEYBOARD_LAYOUT=${vars.keyboardLayout}
     export KEYBOARD_MODEL=${vars.keyboardModel}
+    export WILDCARD_DOMAIN=${vars.wildcardDomain}
     export PRODUCT_NAME=$(cat /sys/devices/virtual/dmi/id/product_name)
     export SDL_GAMECONTROLLERCONFIG="0300d859bc2000000055000010010000,ShanWanWireless,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4"
   '';
 
   home-manager.users.${vars.targetUserName} = {
-    home.stateVersion = nixVersion;
+    home.stateVersion = nixStateVersion;
     programs.git = {
       enable = true;
       userName = vars.targetUserName;
@@ -568,21 +570,16 @@ in
     postman
     dbeaver-bin
 
-    # emulation
-    # emulationstation-de
     emustation
     retroarchpkg
     retroarchcorespkg
+    retroarchbiospkg
     retroarchappimage
-    unstable.pcsx2
+    pcsx2
     dolphin-emu
     cemu
   ];
   
-  # nixpkgs.config.permittedInsecurePackages = [
-  #   "freeimage-3.18.0-unstable-2024-04-18"
-  #   "mbedtls-2.28.10"
-  # ];
 
   ##################################################
   # Dev environment
