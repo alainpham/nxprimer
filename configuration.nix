@@ -139,16 +139,16 @@ let
       cp -r RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/* $out/share/appdata/retroarch/
 
       cat > $out/share/appdata/retroarch/ra-force.cfg <<EOF
-        assets_directory = "$out/share/appdata/retroarch/assets"
-        libretro_directory = "${pkgs.retroarchcorespkg}/share/appdata/retroarch/cores"
-        libretro_info_path = "$out/share/appdata/retroarch/cores"
-        content_database_path = "$out/share/appdata/retroarch/database/rdb"
-        audio_filter_dir = "$out/share/appdata/retroarch/filters/audio"
-        video_filter_dir = "$out/share/appdata/retroarch/filters/video"
-        osk_overlay_directory = "$out/share/appdata/retroarch/overlays/keyboards"
-        overlay_directory = "$out/share/appdata/retroarch/overlays"
-        video_shader_dir = "$out/share/appdata/retroarch/shaders"
-        system_directory = "${pkgs.retroarchbiospkg}/share/appdata/retroarch/system"
+        assets_directory = "/run/current-system/sw/share/appdata/retroarch/assets"
+        libretro_directory = "/run/current-system/sw/share/appdata/retroarch/cores"
+        libretro_info_path = "/run/current-system/sw/share/appdata/retroarch/cores"
+        content_database_path = "/run/current-system/sw/share/appdata/retroarch/database/rdb"
+        audio_filter_dir = "/run/current-system/sw/share/appdata/retroarch/filters/audio"
+        video_filter_dir = "/run/current-system/sw/share/appdata/retroarch/filters/video"
+        osk_overlay_directory = "/run/current-system/sw/share/appdata/retroarch/overlays/keyboards"
+        overlay_directory = "/run/current-system/sw/share/appdata/retroarch/overlays"
+        video_shader_dir = "/run/current-system/sw/share/appdata/retroarch/shaders"
+        system_directory = "/run/current-system/sw/share/appdata/retroarch/system"
       EOF
     '';
   };
@@ -272,8 +272,6 @@ in
     home.stateVersion = nixStateVersion;
     programs.git = {
       enable = true;
-      userName = vars.targetUserName;
-      userEmail = vars.targetUserEmail;
     };
 
     programs.bash = { 
