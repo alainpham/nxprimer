@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "e719df5abb3496bc429d11c6f9ac228fea9334bb";
+    rev = "33e427f9239e4ba5831b011fc9b8c8a7cdb32cfd";
   };
 
   # desktop related
@@ -210,6 +210,11 @@ let
     '';
   };
 
+  pcsx2bios = builtins.fetchurl {
+    url = "https://github.com/archtaurus/RetroPieBIOS/raw/master/BIOS/pcsx2/bios/ps2-0230a-20080220.bin";
+    sha256 = "f609ed1ca62437519828cdd824b5ea79417fd756e71a4178443483e3781fedd2";
+  };
+
 in
 {
   imports =
@@ -279,34 +284,6 @@ in
       profileExtra = builtins.readFile "${dotfilesgit}/home/.profile";
     };
 
-    xfconf.settings = {
-      "thunar" = {
-        "last-view" = "ThunarDetailsView";
-        "last-details-view-zoom-level" = "THUNAR_ZOOM_LEVEL_38_PERCENT";
-        "last-details-view-fixed-columns" = false;
-        "last-details-view-column-widths" = "50,50,137,50,50,50,50,102,1145,50,50,55,107,61";
-
-        "last-details-view-column-order" = "THUNAR_COLUMN_NAME,THUNAR_COLUMN_SIZE,THUNAR_COLUMN_MIME_TYPE,THUNAR_COLUMN_DATE_MODIFIED";
-        "last-details-view-visible-columns" = "THUNAR_COLUMN_NAME,THUNAR_COLUMN_SIZE,THUNAR_COLUMN_MIME_TYPE,THUNAR_COLUMN_DATE_MODIFIED";
-        "last-icon-view-zoom-level" = "THUNAR_ZOOM_LEVEL_100_PERCENT";
-
-        "last-sort-column" = "THUNAR_COLUMN_NAME";
-        "last-sort-order" = "GTK_SORT_ASCENDING";
-        
-        
-        "last-separator-position" = 150;
-        "shortcuts-icon-size" = "THUNAR_ICON_SIZE_32";
-        "tree-icon-size" = "THUNAR_ICON_SIZE_24";
-
-
-        "misc-single-click" = false;
-        "misc-date-style" = "THUNAR_DATE_STYLE_YYYYMMDD";
-        "misc-thumbnail-mode" = "THUNAR_THUMBNAIL_MODE_NEVER";
-        "last-toolbar-items" = "menu:0,back:1,forward:1,open-parent:1,open-home:1,new-tab:0,new-window:0,toggle-split-view:0,undo:0,redo:0,zoom-out:0,zoom-in:0,zoom-reset:0,view-as-icons:0,view-as-detailed-list:0,view-as-compact-list:0,view-switcher:0,location-bar:1,reload:0,search:1,uca-action-0001:1,uca-action-0002:1";
-        
-      };
-    };
-
     home.file = {
       # files at root of home
       ".xinitrc" = { 
@@ -336,6 +313,10 @@ in
           source = "${dotfilesgit}/home/ES-DE";
           recursive = true;
           force = true;
+      };
+      ".config/PCSX2/bios/ps2-0230a-20080220.bin" = {
+        source = pcsx2bios;
+        force = true;
       };
     };
 
