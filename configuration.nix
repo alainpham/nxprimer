@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "c88e64182a9178413c8fd7d8b8adafc3d6e3395e";
+    rev = "c1944b3bba70b06fd7cd38f2b22ee0801b187b3c";
   };
 
   # desktop related
@@ -98,6 +98,18 @@ let
       mkdir -p $out/share/icons/hicolor/scalable/logos
       cp -r $src/public/logos/* "$out/share/icons/hicolor/scalable/logos"
     '';
+  };
+
+  # emulationstation
+  nvtop = pkgs.appimageTools.wrapType2 {
+    pname = "nvtop";
+    version = "3.2.0";
+
+    src = builtins.fetchurl {
+      url = "https://github.com/Syllo/nvtop/releases/download/3.2.0/nvtop-3.2.0-x86_64.AppImage";
+      sha256 = "33c54fb7025f43a213db8e98308860d400db3349a61fc9382fe4736c7d2580c4";
+      name = "nvtop.AppImage";
+    };
   };
 
 
@@ -407,6 +419,7 @@ in
     dnsutils
     bmon
     btop
+    nvtop
     zip
     unzip
     p7zip
