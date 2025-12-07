@@ -533,8 +533,10 @@ in
     rawtherapee
     krita
     mypaint
+    pinta
     inkscape
     blender
+    godot
     easytag
     audacity
     
