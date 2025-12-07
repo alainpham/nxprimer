@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "33e427f9239e4ba5831b011fc9b8c8a7cdb32cfd";
+    rev = "c88e64182a9178413c8fd7d8b8adafc3d6e3395e";
   };
 
   # desktop related
@@ -661,13 +661,6 @@ in
     nerd-fonts.noto
     noto-fonts
   ];
-
-  # # default terminal
-  # xdg.terminal-exec.settings = {
-  #   default = [
-  #     "st.desktop"
-  #   ];
-  # };
 
   # sound
   boot.kernelModules = [ 
