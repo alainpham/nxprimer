@@ -247,6 +247,14 @@ in
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.networkmanager.dns = "dnsmasq";
 
+  environment.etc."NetworkManager/dnsmasq.d/dev.conf".text = ''
+    #/etc/NetworkManager/dnsmasq.d/dev.conf
+    local=/${vars.wildcardDomain}/
+    address=/${vars.wildcardDomain}/172.18.0.1
+  '';
+  environment.etc."NetworkManager/dnsmasq.d/vms".source = "/home/${vars.targetUserName}/virt/runtime/vms";
+
+
   time.timeZone = "Europe/Paris";
 
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -269,7 +277,7 @@ in
         "audio"
         "video"
         "networkmanager"
-        "libvirt"
+        "libvirtd"
         "kvm"
         "input"
       ];
@@ -285,7 +293,7 @@ in
     export SDL_GAMECONTROLLERCONFIG="0300d859bc2000000055000010010000,ShanWanWireless,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4"
   '';
 
-  home-manager.users.${vars.targetUserName} = {
+  home-manager.users.${vars.targetUserName} = { lib, ... }: {
     home.stateVersion = nixStateVersion;
     programs.git = {
       enable = true;
@@ -294,6 +302,38 @@ in
     programs.bash = { 
       enable = true;
       profileExtra = builtins.readFile "${dotfilesgit}/home/.profile";
+    };
+
+    # create folders and empty files
+    home.activation = {
+      init-homefld = lib.hm.dag.entryAfter ["writeBoundary"] ''
+
+      folders="
+        virt/runtime
+        virt/images
+        
+        workspaces
+        recordings
+        
+        codefld
+        
+        ROMs
+        ES-DE/downloaded_media
+        .config/retroarch/states
+        .config/retroarch/saves
+
+        .config/PCSX2/memcards
+        .config/PCSX2/sstates
+        .config/PCSX2/covers
+
+        .local/share/Cemu/mlc01
+      "
+      for folder in $(echo $folders); do
+        mkdir -p "$HOME/$folder"
+      done
+      touch "$HOME/virt/runtime/vms"
+
+    '';
     };
 
     home.file = {
@@ -626,6 +666,9 @@ in
   # Disable k3s from starting at boot; we'll manage it manually
   systemd.services.k3s.wantedBy = lib.mkForce [ ];
   
+  ##################################################
+  # kubernetes
+  ##################################################
 
   ##################################################
   # gui
@@ -715,5 +758,7 @@ in
     enable = true;
     binfmt = true;
   };
+
+  
 }
 

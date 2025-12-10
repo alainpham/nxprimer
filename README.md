@@ -50,7 +50,7 @@ nixos-enter --root /mnt -c 'passwd apham'
 ```
 
 ```sh
-scp *.nix nxvm:/etc/nixos ; scp vars.vm.nix nxvm:/etc/nixos/vars.nix
+scp *.nix nxvm:/etc/nixos ; scp vars.nxvm.nix nxvm:/etc/nixos/vars.nix
 ```
 
 ## 
