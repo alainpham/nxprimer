@@ -309,6 +309,8 @@ in
       init-homefld = lib.hm.dag.entryAfter ["writeBoundary"] ''
 
       folders="
+        ssh
+        
         virt/runtime
         virt/images
         
