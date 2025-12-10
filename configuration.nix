@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "c1944b3bba70b06fd7cd38f2b22ee0801b187b3c";
+    rev = "51f25286a10879688b0e267ff793351e80ac653c";
   };
 
   # desktop related
@@ -100,7 +100,7 @@ let
     '';
   };
 
-  # emulationstation
+  # nvtop
   nvtop = pkgs.appimageTools.wrapType2 {
     pname = "nvtop";
     version = "3.2.0";
@@ -285,12 +285,10 @@ in
   };
 
   environment.loginShellInit = ''
-    export TARGET_USER=${vars.targetUserName}
+    export TARGET_USERNAME=${vars.targetUserName}
     export KEYBOARD_LAYOUT=${vars.keyboardLayout}
     export KEYBOARD_MODEL=${vars.keyboardModel}
     export WILDCARD_DOMAIN=${vars.wildcardDomain}
-    export PRODUCT_NAME=$(cat /sys/devices/virtual/dmi/id/product_name)
-    export SDL_GAMECONTROLLERCONFIG="0300d859bc2000000055000010010000,ShanWanWireless,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4"
   '';
 
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
@@ -476,7 +474,8 @@ in
     iperf
     dmidecode
     micro
-
+    parted
+    
     # dev environment
     ansible
     nodejs_24
@@ -486,6 +485,9 @@ in
     # kubernetes
     k9s
     kubernetes-helm
+
+    # virtualization todo
+    cdrkit
 
     # Basic desktop applications
     (dwm.overrideAttrs (oldAttrs: rec {
@@ -574,7 +576,7 @@ in
     
     moonlight-qt
 
-    # virtualization todo
+
 
     # all custom scripts & webapps
     scripts
@@ -669,8 +671,21 @@ in
   systemd.services.k3s.wantedBy = lib.mkForce [ ];
   
   ##################################################
-  # kubernetes
+  # virtualization
   ##################################################
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
+  systemd.services.firstboot-virt = {
+    description = "firstboot-virt";
+    after = [ "libvirtd.service" ];
+    wantedBy = [ "multi-user.target" ];
+    path = [ "/run/current-system/sw" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${scripts}/bin/firstboot-virt";
+    };
+  };
 
   ##################################################
   # gui
