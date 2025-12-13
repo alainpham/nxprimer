@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "51f25286a10879688b0e267ff793351e80ac653c";
+    rev = "3d7a976da7e5c07c17eb09e7dd808f93a7a62ef6";
   };
 
   # desktop related
@@ -302,6 +302,8 @@ in
       profileExtra = builtins.readFile "${dotfilesgit}/home/.profile";
     };
 
+    
+
     # create folders and empty files
     home.activation = {
       init-homefld = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -333,6 +335,11 @@ in
       done
       touch "$HOME/virt/runtime/vms"
 
+      sshkeyexists=$([ -f "$HOME/.ssh/id_"*".pub" ] && echo 1 || echo 0)
+
+      if [ $sshkeyexists -eq 0 ]; then
+          ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N  ""
+      fi
     '';
     };
 
@@ -488,6 +495,7 @@ in
 
     # virtualization todo
     cdrkit
+    libosinfo
 
     # Basic desktop applications
     (dwm.overrideAttrs (oldAttrs: rec {
