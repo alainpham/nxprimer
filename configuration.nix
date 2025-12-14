@@ -18,14 +18,14 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "3d7a976da7e5c07c17eb09e7dd808f93a7a62ef6";
+    rev = "6c63a8af3ded2b5aee46bb91ce62e8a5f8924a0e";
   };
 
   # desktop related
   dwmgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwm-flexipatch.git";
     ref = "master";
-    rev = "aa9548f7ba29529f7c6dfa7d9be367bb424c9d40";
+    rev = "08d1d95afd5b6d3da51f1ecf6cd2c745b6e3b0af";
   };
 
   stgit = builtins.fetchGit {
@@ -50,12 +50,6 @@ let
     url = "https://github.com/alainpham/dwmblocks.git";
     ref = "master";
     rev = "bf55e259f05b1f1e497dc63ed45f332ba1edd174";
-  };
-
-  appiconsgit = builtins.fetchGit {
-    url = "https://github.com/alainpham/coloured-icons.git";
-    ref = "master";
-    rev = "1423f027d4af5d6aaa6e7b096626810bc36a6231";
   };
 
 
@@ -86,19 +80,12 @@ let
         export SHORTCUTDIR=$out/share/applications
         bash "$src/webapps/genapps"
 
+        mkdir -p $out/share/icons/Adwaita/scalable/apps
+        mkdir -p $out/share/icons/breeze-dark/scalable/apps
+        cp -r $src/icons/* "$out/share/icons/Adwaita/scalable/apps"
+        cp -r $src/icons/* "$out/share/icons/breeze-dark/scalable/apps"
       '';
     };
-
-  # application icons package
-  appicons = pkgs.stdenv.mkDerivation {
-    pname = "appicons";
-    version = "master";
-    src = appiconsgit;
-    installPhase = ''
-      mkdir -p $out/share/icons/hicolor/scalable/logos
-      cp -r $src/public/logos/* "$out/share/icons/hicolor/scalable/logos"
-    '';
-  };
 
   # nvtop
   nvtop = pkgs.appimageTools.wrapType2 {
@@ -253,6 +240,7 @@ in
     address=/${vars.wildcardDomain}/172.18.0.1
   '';
   environment.etc."NetworkManager/dnsmasq.d/vms".source = "/home/${vars.targetUserName}/virt/runtime/vms";
+  environment.homeBinInPath = true;
 
 
   time.timeZone = "Europe/Paris";
@@ -519,6 +507,7 @@ in
       src = dwmblocksgit;
     }))
 
+    rofi
     numlockx
     usbutils
     libinput-gestures
@@ -588,7 +577,6 @@ in
 
     # all custom scripts & webapps
     scripts
-    appicons
 
 
     # workstation desktop apps
