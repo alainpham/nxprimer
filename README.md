@@ -10,7 +10,6 @@ stgit|https://github.com/alainpham/st-flexipatch.git
 dmenugit|https://github.com/alainpham/dmenu-flexipatch.git
 slockgit|https://github.com/alainpham/slock-flexipatch.git
 dwmblocksgit|https://github.com/alainpham/dwmblocks.git
-appiconsgit|https://github.com/alainpham/coloured-icons.git
 "
 
 for gitrepo in $(echo $gitrepos); do
