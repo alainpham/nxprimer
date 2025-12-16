@@ -3,7 +3,8 @@
   targetUserName = "apham";
   targetUserEmail = "apham@localhost";
   keyboardLayout = "fr";
-  keyboardModel = "pc105"; # for macbook use "macbook79"
+  keyboardModel = "pc105";
+  keyboardVariant = "";
   wildcardDomain = "houze.dns.army";
   enableKubernetes = true;
   automaticlogin = true;

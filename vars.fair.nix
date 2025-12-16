@@ -1,9 +1,10 @@
 {
-  hostname= "oair";
+  hostname= "fair";
   targetUserName = "apham";
   targetUserEmail = "apham@localhost";
   keyboardLayout = "fr";
-  keyboardModel = "macbook79"; # for macbook use "macbook79"
+  keyboardModel = "pc105";
+  keyboardVariant = "mac";
   wildcardDomain = "houze.dns.army";
   enableKubernetes = true;
   automaticlogin = true;

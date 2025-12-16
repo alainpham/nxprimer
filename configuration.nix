@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "7b72167f845f0b0d04b4dd67734454dd0409f30d";
+    rev = "c01effddd4d526a268cee656dbfa8e73adefa3ba";
   };
 
   # desktop related
@@ -203,7 +203,7 @@ let
     extraInstallCommands = ''
       cat > $out/bin/retroarch << 'EOF'
       #!/bin/bash
-      $out/bin/retroarchappimage --appendconfig ${retroarchpkg}/share/appdata/retroarch/ra-force.cfg|~/.config/retroarch/retroarch.override.cfg "$@"
+      retroarchappimage --appendconfig ~/.config/retroarch/retroarch.override.cfg "$@"
       EOF
       chmod 755 $out/bin/retroarch
     '';
