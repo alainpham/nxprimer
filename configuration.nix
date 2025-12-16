@@ -713,7 +713,7 @@ in
     enable = true;
     xkb.layout = vars.keyboardLayout;
     xkb.model = vars.keyboardModel;
-
+    xkb.variant = vars.keyboardVariant;
     displayManager.startx.enable = true;
   };
   services.udisks2.enable = true;
