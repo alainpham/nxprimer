@@ -43,8 +43,8 @@ sleep 1
 
 nixos-generate-config --root /mnt
 
-cp configuration.nix /mnt/nixos/
-cp $TARGETVARS /mnt/nixos/vars.nix
+cp configuration.nix /mnt/etc/nixos/configuration.nix
+cp $TARGETVARS /mnt/etc/nixos/vars.nix
 
 cd /mnt/nixos
 
