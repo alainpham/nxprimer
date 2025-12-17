@@ -12,7 +12,7 @@
 
   # ISO-specific overrides
   boot.supportedFilesystems = lib.mkForce [ "ext4" "xfs" "btrfs" ];
-  boot.loader.timeout = lib.mkForce 1;
+  boot.loader.timeout = lib.mkForce 5;
   # Make sure the installer has tools
   environment.systemPackages = with pkgs; [
     git

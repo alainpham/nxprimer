@@ -42,6 +42,8 @@ mount -o umask=077 /dev/disk/by-label/NIXBOOT /mnt/boot
 
 nixos-generate-config --root /mnt
 
+ip link set dev enp1s0 down
+
 nixos-install
 
 nixos-enter --root /mnt -c 'passwd apham'
