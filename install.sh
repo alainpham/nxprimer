@@ -50,5 +50,3 @@ cd /mnt/nixos
 nixos-install
 
 nixos-enter --root /mnt -c 'passwd apham'
-
-reboot
