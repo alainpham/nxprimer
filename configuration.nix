@@ -209,11 +209,20 @@ let
     '';
   };
 
-  pcsx2bios = builtins.fetchurl {
-    url = "https://github.com/archtaurus/RetroPieBIOS/raw/master/BIOS/pcsx2/bios/ps2-0230a-20080220.bin";
-    sha256 = "f609ed1ca62437519828cdd824b5ea79417fd756e71a4178443483e3781fedd2";
-  };
 
+  pcsx2biospkg = pkgs.stdenv.mkDerivation {
+    pname = "pcsx2biospkg";
+    version = "master";
+    src = pkgs.fetchurl {
+      url = "https://github.com/archtaurus/RetroPieBIOS/raw/master/BIOS/pcsx2/bios/ps2-0230a-20080220.bin";
+      sha256 = "f609ed1ca62437519828cdd824b5ea79417fd756e71a4178443483e3781fedd2";
+    };
+    unpackPhase = "true";
+    installPhase = ''
+      mkdir -p $out/share/appdata/pcsx2/bios
+      cp $src $out/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin
+    '';
+  };
 in
 {
   imports =
@@ -362,7 +371,7 @@ in
           force = true;
       };
       ".config/PCSX2/bios/ps2-0230a-20080220.bin" = {
-        source = pcsx2bios;
+        source = "${pcsx2biospkg}/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin";
         force = true;
       };
     };
@@ -609,6 +618,7 @@ in
     retroarchcorespkg
     retroarchbiospkg
     retroarchappimage
+    pcsx2biospkg
     pcsx2
     dolphin-emu
     cemu
