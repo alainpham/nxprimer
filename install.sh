@@ -39,6 +39,7 @@ sleep 1
 mount /dev/disk/by-label/NIXROOT /mnt
 mkdir -p /mnt/boot
 mount -o umask=077 /dev/disk/by-label/NIXBOOT /mnt/boot
+sleep 1
 
 nixos-generate-config --root /mnt
 
