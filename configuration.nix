@@ -455,10 +455,6 @@ in
   nixpkgs.config.allowUnfree = true;
   
   environment.systemPackages = with pkgs; [
-    (pkgs.runCommand "force-fetch" {} ''
-      mkdir -p $out
-      cp -r ${home-manager} $out/
-    '')
     # essentials
     curl
     wget
