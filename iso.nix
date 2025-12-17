@@ -15,10 +15,6 @@
   boot.loader.timeout = lib.mkForce 5;
   # Make sure the installer has tools
   environment.systemPackages = with pkgs; [
-    git
-    neovim
-    parted
-    cryptsetup
   ];
 
   system.includeBuildDependencies = true;

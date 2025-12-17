@@ -478,6 +478,7 @@ in
     dmidecode
     micro
     parted
+    cryptsetup
     
     # dev environment
     ansible
