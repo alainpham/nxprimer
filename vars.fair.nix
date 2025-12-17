@@ -7,6 +7,7 @@
   keyboardVariant = "mac";
   wildcardDomain = "houze.dns.army";
   enableKubernetes = true;
+  enableVirtualization = true;
   automaticlogin = true;
   disableTurboBoost = true; # disable turbo boost for laptops and minipcs that run intel
   # end of change this

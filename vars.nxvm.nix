@@ -7,6 +7,7 @@
   keyboardVariant = "";
   wildcardDomain = "houze.dns.army";
   enableKubernetes = true;
+  enableVirtualization = false;
   automaticlogin = true;
   disableTurboBoost = true; # disable turbo boost for laptops and minipcs that run intel
   # end of change this

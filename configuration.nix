@@ -479,7 +479,7 @@ in
     micro
     parted
     cryptsetup
-    
+
     # dev environment
     ansible
     nodejs_24
@@ -683,6 +683,7 @@ in
   programs.virt-manager.enable = true;
 
   systemd.services.firstboot-virt = {
+    enable = vars.enableVirtualization;
     description = "firstboot-virt";
     after = [ "libvirtd.service" ];
     wantedBy = [ "multi-user.target" ];
