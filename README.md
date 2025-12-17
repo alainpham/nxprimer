@@ -55,3 +55,10 @@ scp *.nix nxvm:/etc/nixos ; scp vars.nxvm.nix nxvm:/etc/nixos/vars.nix
 ```
 
 ## 
+
+
+build iso
+
+```sh
+nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=/etc/nixos/iso.nix
+```

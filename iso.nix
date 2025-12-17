@@ -8,6 +8,8 @@
     /etc/nixos/configuration.nix
   ];
   
+  # system.includeBuildDependencies = true;
+
   networking.networkmanager.enable = lib.mkForce false;
 
   # ISO-specific overrides
@@ -17,7 +19,6 @@
   environment.systemPackages = with pkgs; [
   ];
 
-  system.includeBuildDependencies = true;
   
   # Prevent network downloads during install
   nix.settings.substituters = lib.mkForce [];
