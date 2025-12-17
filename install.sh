@@ -46,7 +46,7 @@ nixos-generate-config --root /mnt
 cp configuration.nix /mnt/etc/nixos/configuration.nix
 cp $TARGETVARS /mnt/etc/nixos/vars.nix
 
-cd /mnt/nixos
+cd /mnt/etc/nixos
 
 nixos-install
 
