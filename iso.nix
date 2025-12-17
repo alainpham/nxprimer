@@ -21,6 +21,8 @@
     cryptsetup
   ];
 
+  system.includeBuildDependencies = true;
+  
   # Prevent network downloads during install
   nix.settings.substituters = lib.mkForce [];
   nix.settings.trusted-public-keys = lib.mkForce [];
