@@ -325,6 +325,9 @@ in
         .config/PCSX2/covers
 
         .local/share/Cemu/mlc01
+
+        .var/app/org.DolphinEmu.dolphin-emu/data/dolphin-emu/GC
+        .var/app/org.DolphinEmu.dolphin-emu/data/dolphin-emu/Wii
       "
       for folder in $(echo $folders); do
         mkdir -p "$HOME/$folder"
