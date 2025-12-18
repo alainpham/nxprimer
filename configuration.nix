@@ -298,8 +298,6 @@ in
       profileExtra = builtins.readFile "${dotfilesgit}/home/.profile";
     };
 
-    
-
     # create folders and empty files
     home.activation = {
       init-homefld = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -316,18 +314,6 @@ in
         codefld
         
         ROMs
-        ES-DE/downloaded_media
-        .config/retroarch/states
-        .config/retroarch/saves
-
-        .config/PCSX2/memcards
-        .config/PCSX2/sstates
-        .config/PCSX2/covers
-
-        .local/share/Cemu/mlc01
-
-        .var/app/org.DolphinEmu.dolphin-emu/data/dolphin-emu/GC
-        .var/app/org.DolphinEmu.dolphin-emu/data/dolphin-emu/Wii
       "
       for folder in $(echo $folders); do
         mkdir -p "$HOME/$folder"
