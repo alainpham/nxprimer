@@ -83,7 +83,6 @@ let
         mkdir -p $out/share/icons/Adwaita/scalable/apps
         mkdir -p $out/share/icons/breeze-dark/scalable/apps
         cp -r $src/icons/* "$out/share/icons/"
-        cp -r $src/icons/* "$out/share/icons/"
       '';
     };
 
