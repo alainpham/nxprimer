@@ -301,7 +301,7 @@ in
         ROMs
       "
       for folder in $(echo $folders); do
-        if [ ! -d "$HOME/$folder" ]; then
+        if [ ! -L "$HOME/$folder" ] && [ ! -d "$HOME/$folder" ]; then
           mkdir -p "$HOME/$folder"
         fi
       done
