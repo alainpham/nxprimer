@@ -79,7 +79,7 @@ let
         export APPDIR=$out/bin
         export SHORTCUTDIR=$out/share/applications
         bash "$src/webapps/genapps"
-
+        mkdir -p $out/share/icons
         cp -r $src/icons/* "$out/share/icons/"
       '';
     };
