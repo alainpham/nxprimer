@@ -353,32 +353,32 @@ in
 
       # retroarch folders
       ".config/retroarch/assets" = {
-        source = "${retroarchpkg}/share/appdata/retroarch/assets";
+        source = "/run/current-system/sw/share/appdata/retroarch/assets";
         force = true;
       };
 
       ".config/retroarch/cores" = {
-        source = "${retroarchcorespkg}/share/appdata/retroarch/cores";
+        source = "/run/current-system/sw/share/appdata/retroarch/cores";
         force = true;
       };
 
       ".config/retroarch/filters" = {
-        source = "${retroarchpkg}/share/appdata/retroarch/filters";
+        source = "/run/current-system/sw/share/appdata/retroarch/filters";
         force = true;
       };
 
       ".config/retroarch/overlays" = {
-        source = "${retroarchpkg}/share/appdata/retroarch/overlays";
+        source = "/run/current-system/sw/share/appdata/retroarch/overlays";
         force = true;
       };
 
       ".config/retroarch/shaders" = {
-        source = "${retroarchpkg}/share/appdata/retroarch/shaders";
+        source = "/run/current-system/sw/share/appdata/retroarch/shaders";
         force = true;
       };
 
       ".config/retroarch/system" = {
-        source = "${retroarchbiospkg}/share/appdata/retroarch/system";
+        source = "/run/current-system/sw/share/appdata/retroarch/system";
         force = true;
       };
     };
