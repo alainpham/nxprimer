@@ -283,6 +283,16 @@ in
       profileExtra = builtins.readFile "${dotfilesgit}/home/.profile";
     };
 
+    programs.chromium = {
+      enable = true;
+      package = pkgs.google-chrome;
+      extensions = [
+        { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin
+        { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
+        { id = "ghbmnnjooekpmoecnnnilnnbdlolhkhi"; } # google docs
+      ]
+    };
+
     # create folders and empty files
     home.activation = {
       init-homefld = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -781,7 +791,7 @@ in
     enable = true;
     enableVirtualCamera = true;
   };
-
+  
   # app images setup
   programs.appimage = {
     enable = true;
