@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "0963c3f5f985542076a973c9c219877962c26d46";
+    rev = "e39f546074d9f5c1b9c82c0096a87af14a157603";
   };
 
   # desktop related
@@ -590,11 +590,8 @@ in
     
     moonlight-qt
 
-
-
     # all custom scripts & webapps
     scripts
-
 
     # workstation desktop apps
     handbrake
