@@ -290,7 +290,7 @@ in
         { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin
         { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
         { id = "ghbmnnjooekpmoecnnnilnnbdlolhkhi"; } # google docs
-      ]
+      ];
     };
 
     # create folders and empty files
