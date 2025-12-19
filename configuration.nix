@@ -301,7 +301,9 @@ in
         ROMs
       "
       for folder in $(echo $folders); do
-        mkdir -p "$HOME/$folder"
+        if [ ! -d "$HOME/$folder" ]; then
+          mkdir -p "$HOME/$folder"
+        fi
       done
       touch "$HOME/virt/runtime/vms"
 
