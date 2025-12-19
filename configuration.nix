@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "f34e94078bbc171bf3a284b1fcca2b5541a62ce3";
+    rev = "b2f99fc3cf5090c4482ea16fed24483269cf8a01";
   };
 
   # desktop related
@@ -133,19 +133,6 @@ let
       mkdir -p $out/bin
       cp RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage $out/RetroArch.AppImage
       cp -r RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/* $out/share/appdata/retroarch/
-
-      cat > $out/share/appdata/retroarch/ra-force.cfg <<EOF
-        assets_directory = "/run/current-system/sw/share/appdata/retroarch/assets"
-        libretro_directory = "/run/current-system/sw/share/appdata/retroarch/cores"
-        libretro_info_path = "/run/current-system/sw/share/appdata/retroarch/cores"
-        content_database_path = "/run/current-system/sw/share/appdata/retroarch/database/rdb"
-        audio_filter_dir = "/run/current-system/sw/share/appdata/retroarch/filters/audio"
-        video_filter_dir = "/run/current-system/sw/share/appdata/retroarch/filters/video"
-        osk_overlay_directory = "/run/current-system/sw/share/appdata/retroarch/overlays/keyboards"
-        overlay_directory = "/run/current-system/sw/share/appdata/retroarch/overlays"
-        video_shader_dir = "/run/current-system/sw/share/appdata/retroarch/shaders"
-        system_directory = "/run/current-system/sw/share/appdata/retroarch/system"
-      EOF
     '';
   };
 
@@ -346,11 +333,6 @@ in
           recursive = true;
           force = true;
       };
-      ".config/retroarch/cores" = {
-        source = "${retroarchcorespkg}/share/appdata/retroarch/cores";
-        recursive = true;
-        force = true;
-      };
       ".local" = { 
           source = "${dotfilesgit}/home/.local";
           recursive = true;
@@ -361,8 +343,47 @@ in
           recursive = true;
           force = true;
       };
+
+
       ".config/PCSX2/bios/ps2-0230a-20080220.bin" = {
         source = "${pcsx2biospkg}/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin";
+        force = true;
+      };
+
+      # retroarch folders
+      ".config/retroarch/assets" = {
+        source = "${retroarchcorespkg}/share/appdata/retroarch/assets";
+        recursive = true;
+        force = true;
+      };
+
+      ".config/retroarch/cores" = {
+        source = "${retroarchcorespkg}/share/appdata/retroarch/cores";
+        recursive = true;
+        force = true;
+      };
+
+      ".config/retroarch/filters" = {
+        source = "${retroarchcorespkg}/share/appdata/retroarch/filters";
+        recursive = true;
+        force = true;
+      };
+
+      ".config/retroarch/overlays" = {
+        source = "${retroarchcorespkg}/share/appdata/retroarch/overlays";
+        recursive = true;
+        force = true;
+      };
+
+      ".config/retroarch/shaders" = {
+        source = "${retroarchcorespkg}/share/appdata/retroarch/shaders";
+        recursive = true;
+        force = true;
+      };
+
+      ".config/retroarch/system" = {
+        source = "${retroarchcorespkg}/share/appdata/retroarch/system";
+        recursive = true;
         force = true;
       };
     };
