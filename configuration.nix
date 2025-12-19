@@ -168,7 +168,7 @@ let
 
     installPhase = ''
       mkdir -p $out/share/appdata/retroarch
-      cp -r RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/* $out/share/appdata/retroarch/    
+      cp -r RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/* $out/share/appdata/retroarch/
     '';
   };
 
@@ -347,6 +347,11 @@ in
           source = "${dotfilesgit}/home/.config";
           recursive = true;
           force = true;
+      };
+      ".config/retroarch/cores" = {
+        source = "${retroarchcorespkg}/share/appdata/retroarch/cores";
+        recursive = true;
+        force = true;
       };
       ".local" = { 
           source = "${dotfilesgit}/home/.local";
