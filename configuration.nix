@@ -338,12 +338,13 @@ in
           recursive = true;
           force = true;
       };
+
+      # emulation configs
       "ES-DE" = { 
           source = "${dotfilesgit}/home/ES-DE";
           recursive = true;
           force = true;
       };
-
 
       ".config/PCSX2/bios/ps2-0230a-20080220.bin" = {
         source = "${pcsx2biospkg}/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin";
@@ -352,7 +353,7 @@ in
 
       # retroarch folders
       ".config/retroarch/assets" = {
-        source = "${retroarchcorespkg}/share/appdata/retroarch/assets";
+        source = "${retroarchpkg}/share/appdata/retroarch/assets";
         recursive = true;
         force = true;
       };
@@ -364,30 +365,29 @@ in
       };
 
       ".config/retroarch/filters" = {
-        source = "${retroarchcorespkg}/share/appdata/retroarch/filters";
+        source = "${retroarchpkg}/share/appdata/retroarch/filters";
         recursive = true;
         force = true;
       };
 
       ".config/retroarch/overlays" = {
-        source = "${retroarchcorespkg}/share/appdata/retroarch/overlays";
+        source = "${retroarchpkg}/share/appdata/retroarch/overlays";
         recursive = true;
         force = true;
       };
 
       ".config/retroarch/shaders" = {
-        source = "${retroarchcorespkg}/share/appdata/retroarch/shaders";
+        source = "${retroarchpkg}/share/appdata/retroarch/shaders";
         recursive = true;
         force = true;
       };
 
       ".config/retroarch/system" = {
-        source = "${retroarchcorespkg}/share/appdata/retroarch/system";
+        source = "${retroarchbiospkg}/share/appdata/retroarch/system";
         recursive = true;
         force = true;
       };
     };
-
   };
 
   ##################################################
