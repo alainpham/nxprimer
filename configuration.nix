@@ -74,8 +74,6 @@ let
          cp -r "$dir"* $out/bin/
         done
 
-        cp shortcuts/* $out/share/applications/
-
         export APPDIR=$out/bin
         export SHORTCUTDIR=$out/share/applications
         bash "$src/webapps/genapps"
