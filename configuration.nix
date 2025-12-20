@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "e39f546074d9f5c1b9c82c0096a87af14a157603";
+    rev = "e868391f19653061378d9aa6d2633cc91588e30e";
   };
 
   # desktop related
@@ -283,15 +283,6 @@ in
       profileExtra = builtins.readFile "${dotfilesgit}/home/.profile";
     };
 
-    programs.chromium = {
-      enable = true;
-      package = pkgs.google-chrome;
-      extensions = [
-        { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin
-        { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
-        { id = "ghbmnnjooekpmoecnnnilnnbdlolhkhi"; } # google docs
-      ];
-    };
 
     # create folders and empty files
     home.activation = {
