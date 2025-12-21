@@ -206,22 +206,6 @@ let
       cp $src $out/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin
     '';
   };
-
-  google-chrome-extensions = pkgs.stdenv.mkDerivation {
-    pname = "chrome-extensions";
-    version = "master";
-
-    dontUnpack = true;
-
-    installPhase = ''
-      mkdir -p $out/share/google-chrome/extensions
-
-      cat > $out/share/google-chrome/extensions/ddkjiahejlhfcafbddmgiahcphecmpfh.json <<EOF
-        { "external_update_url": "https://clients2.google.com/service/update2/crx" }
-      EOF
-    '';
-  };
-
 in
 {
   imports =
@@ -249,7 +233,44 @@ in
   '';
   environment.etc."NetworkManager/dnsmasq.d/vms".source = "/home/${vars.targetUserName}/virt/runtime/vms";
   environment.homeBinInPath = true;
-
+  
+  # chrome policies for extensions (ublock origin lite & bitwarden) & bookmarks
+  environment.etc."/etc/opt/chrome/policies/managed/chrome-policies.json".text = ''
+    {
+      "ExtensionInstallForcelist": [
+        "ddkjiahejlhfcafbddmgiahcphecmpfh",
+        "nngceckbapebfimnlniiiahkandclblb"
+      ],
+      "BookmarkBarEnabled": true,
+      "MetricsReportingEnabled": false,
+      "ManagedBookmarks": [
+        {
+          "toplevel_name": "My managed bookmarks folder"
+        },
+        {
+          "name": "Google",
+          "url": "google.com"
+        },
+        {
+          "name": "Youtube",
+          "url": "youtube.com"
+        },
+        {
+          "children": [
+            {
+              "name": "Chromium",
+              "url": "chromium.org"
+            },
+            {
+              "name": "Chromium Developers",
+              "url": "dev.chromium.org"
+            }
+          ],
+          "name": "Chrome links"
+        }
+      ]
+    }
+  '';
 
   time.timeZone = "Europe/Paris";
 
@@ -806,11 +827,6 @@ in
     enable = true;
     support32Bit = true;
   };
-
-  # chrome extensions path link
-  environment.pathsToLink = [
-    "/share/google-chrome/extensions"
-  ];
 
   # remote access
   services.sunshine.enable = true;
