@@ -500,7 +500,8 @@ in
     micro
     parted
     cryptsetup
-
+    envsubst
+    
     # dev environment
     ansible
     nodejs_24
