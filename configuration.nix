@@ -364,8 +364,17 @@ in
       };
 
       ".config/retroarch/cores" = {
-        source = "/run/current-system/sw/share/appdata/retroarch/cores";
+        # source = "/run/current-system/sw/share/appdata/retroarch/cores";
+        source = pkgs.symlinkJoin {
+          name = "merged-core-folder";
+          paths = [
+          "${retroarchcorespkg}/share/appdata/retroarch/cores"
+          "${retroarchpkg}/share/appdata/retroarch/cores"
+          ];
+        };
+          
         force = true;
+
       };
 
       ".config/retroarch/filters" = {
