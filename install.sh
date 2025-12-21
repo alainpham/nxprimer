@@ -1,4 +1,5 @@
 #!/bin/bash
+
 lsblk
 
 read -p "Enter target disk (e.g., /dev/sda): " TARGETDISK
@@ -51,3 +52,5 @@ cd /mnt/etc/nixos
 nixos-install
 
 nixos-enter --root /mnt -c 'passwd apham'
+
+umount -R /mnt
