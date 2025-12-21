@@ -216,10 +216,8 @@ let
     installPhase = ''
       mkdir -p $out/share/google-chrome/extensions
 
-      cat > $out/share/google-chrome/extensions/aapbdbdomjkkjkaonfhkkikfgjllcleb.json <<EOF
-      {
-        "external_update_url": "https://clients2.google.com/service/update2/crx"
-      }
+      cat > $out/share/google-chrome/extensions/ddkjiahejlhfcafbddmgiahcphecmpfh.json <<EOF
+        { "external_update_url": "https://clients2.google.com/service/update2/crx" }
       EOF
     '';
   };
