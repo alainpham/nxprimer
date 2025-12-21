@@ -155,6 +155,7 @@ let
     '';
   };
 
+
   retroarchbiospkg = pkgs.stdenv.mkDerivation {
     pname = "retroarchbiospkg";
     version = retroarchversion;
@@ -281,14 +282,6 @@ in
       profileExtra = builtins.readFile "${dotfilesgit}/home/.profile";
     };
 
-    home.packages = with pkgs; [ 
-      dotfilesgit 
-      retroarchpkg
-      retroarchcorespkg
-      retroarchbiospkg
-      pcsx2biospkg 
-      ];
-
     # create folders and empty files
     home.activation = {
       init-homefld = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -366,7 +359,7 @@ in
 
       # retroarch folders
       ".config/retroarch/assets" = {
-        source = "/run/current-system/sw/share/appdata/retroarch/assets";
+        source = "${retroarchpkg}/share/appdata/retroarch/assets";
         force = true;
       };
 
@@ -376,22 +369,22 @@ in
       };
 
       ".config/retroarch/filters" = {
-        source = "/run/current-system/sw/share/appdata/retroarch/filters";
+        source = "${retroarchpkg}/share/appdata/retroarch/filters";
         force = true;
       };
 
       ".config/retroarch/overlays" = {
-        source = "/run/current-system/sw/share/appdata/retroarch/overlays";
+        source = "${retroarchpkg}/share/appdata/retroarch/overlays";
         force = true;
       };
 
       ".config/retroarch/shaders" = {
-        source = "/run/current-system/sw/share/appdata/retroarch/shaders";
+        source = "${retroarchpkg}/share/appdata/retroarch/shaders";
         force = true;
       };
 
       ".config/retroarch/system" = {
-        source = "/run/current-system/sw/share/appdata/retroarch/system";
+        source = "${retroarchpkg}/share/appdata/retroarch/system";
         force = true;
       };
     };
