@@ -34,7 +34,11 @@ sleep 1
 fatlabel ${TARGETDISK}1 NIXBOOT
 sleep 1
 
-mkfs.ext4 ${TARGETDISK}2 -L NIXROOT
+if blkid "${TARGETDISK}2" >/dev/null 2>&1; then
+  mkfs.ext4 -F "${TARGETDISK}2" -L NIXROOT
+else
+  mkfs.ext4 "${TARGETDISK}2" -L NIXROOT
+fi
 sleep 1
 
 mount /dev/disk/by-label/NIXROOT /mnt
