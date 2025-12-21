@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "e4d745f99a742a2d8781f6de0d2fdede5687bb46";
+    rev = "0befe7b3d655976ac826ce4eb17701b58c89af04";
   };
 
   # desktop related
@@ -501,7 +501,7 @@ in
     parted
     cryptsetup
     envsubst
-    
+
     # dev environment
     ansible
     nodejs_24
