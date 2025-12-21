@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "e868391f19653061378d9aa6d2633cc91588e30e";
+    rev = "e4d745f99a742a2d8781f6de0d2fdede5687bb46";
   };
 
   # desktop related
@@ -626,6 +626,11 @@ in
     pcsx2
     dolphin-emu
     cemu
+    
+    sdl-jstest
+    linuxConsoleTools
+    jstest-gtk
+    antimicrox
   ];
   
 
