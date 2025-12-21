@@ -329,6 +329,11 @@ in
         force = true;
       };
       # folders
+      "bin" = { 
+          source = "${dotfilesgit}/home/bin";
+          recursive = true;
+          force = true;
+      };
       ".config" = { 
           source = "${dotfilesgit}/home/.config";
           recursive = true;
