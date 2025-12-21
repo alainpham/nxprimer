@@ -53,4 +53,8 @@ nixos-install
 
 nixos-enter --root /mnt -c 'passwd apham'
 
+cd /mnt/home/apham/
+
+git clone https://github.com/alainpham/nxprimer.git
+
 umount -R /mnt
