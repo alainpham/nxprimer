@@ -235,7 +235,7 @@ in
   environment.homeBinInPath = true;
   
   # chrome policies for extensions (ublock origin lite & bitwarden) & bookmarks
-  environment.etc."/etc/opt/chrome/policies/managed/chrome-policies.json".text = ''
+  environment.etc."opt/chrome/policies/managed/chrome-policies.json".text = ''
     {
       "ExtensionInstallForcelist": [
         "ddkjiahejlhfcafbddmgiahcphecmpfh",
