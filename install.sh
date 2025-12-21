@@ -49,12 +49,15 @@ cp $TARGETVARS /mnt/etc/nixos/vars.nix
 
 cd /mnt/etc/nixos
 
-nixos-install
+nixos-install --no-root-passwd
 
 nixos-enter --root /mnt -c 'passwd apham'
 
 cd /mnt/home/apham/
 
 git clone https://github.com/alainpham/nxprimer.git
+
+cd /
+sleep 2
 
 umount -R /mnt
