@@ -623,7 +623,6 @@ in
     fdk_aac
     yt-dlp
     google-chrome
-    google-chrome-extensions
     lxqt.pavucontrol-qt
     alsa-utils
     
