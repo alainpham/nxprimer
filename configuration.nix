@@ -281,6 +281,13 @@ in
       profileExtra = builtins.readFile "${dotfilesgit}/home/.profile";
     };
 
+    home.packages = with pkgs; [ 
+      dotfilesgit 
+      retroarchpkg
+      retroarchcorespkg
+      retroarchbiospkg
+      pcsx2biospkg 
+      ];
 
     # create folders and empty files
     home.activation = {
