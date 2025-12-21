@@ -206,6 +206,24 @@ let
       cp $src $out/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin
     '';
   };
+
+  google-chrome-extensions = pkgs.stdenv.mkDerivation {
+    pname = "chrome-extensions";
+    version = "master";
+
+    dontUnpack = true;
+
+    installPhase = ''
+      mkdir -p $out/share/google-chrome/extensions
+
+      cat > $out/share/google-chrome/extensions/aapbdbdomjkkjkaonfhkkikfgjllcleb.json <<EOF
+      {
+        "external_update_url": "https://clients2.google.com/service/update2/crx"
+      }
+      EOF
+    '';
+  };
+
 in
 {
   imports =
@@ -586,6 +604,7 @@ in
     fdk_aac
     yt-dlp
     google-chrome
+    google-chrome-extensions
     lxqt.pavucontrol-qt
     alsa-utils
     
@@ -789,6 +808,11 @@ in
     enable = true;
     support32Bit = true;
   };
+
+  # chrome extensions path link
+  environment.pathsToLink = [
+    "/share/google-chrome/extensions"
+  ];
 
   # remote access
   services.sunshine.enable = true;
