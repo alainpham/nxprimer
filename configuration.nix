@@ -458,7 +458,7 @@ in
       };
 
       ".config/retroarch/system" = {
-        source = "${retroarchpkg}/share/appdata/retroarch/system";
+        source = "${retroarchbiospkg}/share/appdata/retroarch/system";
         force = true;
       };
     };
