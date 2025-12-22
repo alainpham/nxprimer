@@ -217,13 +217,6 @@ let
       rev = "0081fee04d0070aec767bf2d10225675dfe91d07";
     };
 
-    # pkg-config is needed at build time to resolve SDL2 flags
-    nativeBuildInputs = [ pkgconfig ];
-    buildInputs = [ sdl2 ];
-
-    buildPhase = ''
-      make clean && make
-    '';
 
     installPhase = ''
       mkdir -p "$out/bin"
