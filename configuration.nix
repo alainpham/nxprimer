@@ -245,9 +245,6 @@ in
       "MetricsReportingEnabled": false,
       "ManagedBookmarks": [
         {
-          "toplevel_name": "My managed bookmarks folder"
-        },
-        {
           "name": "Google",
           "url": "google.com"
         },
