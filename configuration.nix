@@ -582,6 +582,9 @@ in
     libosinfo
 
     # Basic desktop applications
+    xorg.xwininfo
+    wmctrl
+
     (dwm.overrideAttrs (oldAttrs: rec {
       src = dwmgit;
     }))
