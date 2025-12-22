@@ -216,8 +216,23 @@ let
       ref = "master";
       rev = "0081fee04d0070aec767bf2d10225675dfe91d07";
     };
+    nativeBuildInputs = [
+      autoconf
+      automake
+      pkg-config
+      SDL2
+      SDL2.dev
+    ];
+    buildInputs = [
+      SDL2
+      SDL2.dev
+    ];
 
-
+    buildPhase = ''
+      make clean
+      make
+    '';
+     
     installPhase = ''
       mkdir -p "$out/bin"
       cp gshorts "$out/bin/gshorts"
