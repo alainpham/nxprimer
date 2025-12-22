@@ -206,6 +206,31 @@ let
       cp $src $out/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin
     '';
   };
+
+  gshorts = pkgs.stdenv.mkDerivation {
+    pname = "gshorts";
+    version = "master";
+
+    src = builtins.fetchGit {
+      url = "https://github.com/alainpham/gshorts.git";
+      ref = "master";
+      rev = "0081fee04d0070aec767bf2d10225675dfe91d07";
+    };
+
+    # pkg-config is needed at build time to resolve SDL2 flags
+    nativeBuildInputs = [ pkgconfig ];
+    buildInputs = [ sdl2 ];
+
+    buildPhase = ''
+      make clean && make
+    '';
+
+    installPhase = ''
+      mkdir -p "$out/bin"
+      cp gshorts "$out/bin/gshorts"
+    '';
+  };
+
 in
 {
   imports =
@@ -652,6 +677,7 @@ in
     godot
     easytag
     audacity
+    jellyfin-media-player
     
     kdePackages.kdenlive
     onlyoffice-desktopeditors
@@ -674,6 +700,7 @@ in
     dolphin-emu
     cemu
     
+    gshorts
     sdl-jstest
     linuxConsoleTools
     jstest-gtk
