@@ -61,6 +61,8 @@ cd /mnt/home/apham/
 
 git clone https://github.com/alainpham/nxprimer.git
 
+nixos-enter --root /mnt -c 'chown -R apham /home/apham/nxprimer'
+
 cd /
 sleep 2
 
