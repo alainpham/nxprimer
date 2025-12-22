@@ -245,25 +245,23 @@ in
       "MetricsReportingEnabled": false,
       "ManagedBookmarks": [
         {
-          "name": "Google",
-          "url": "google.com"
+          "toplevel_name": "MKS"
         },
         {
-          "name": "Youtube",
-          "url": "youtube.com"
+          "name": "sunshine",
+          "url": "https://localhost:47990/"
         },
         {
-          "children": [
-            {
-              "name": "Chromium",
-              "url": "chromium.org"
-            },
-            {
-              "name": "Chromium Developers",
-              "url": "dev.chromium.org"
-            }
-          ],
-          "name": "Chrome links"
+          "name": "local-syncthing",
+          "url": "http://localhost:8384/"
+        },
+        {
+          "name": "hub-syncthing",
+          "url": "http://192.168.8.100:8384/"
+        },
+        {
+          "name": "jellyfin",
+          "url": "http://192.168.8.100:8096/"
         }
       ]
     }
