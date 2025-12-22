@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "adadc978f60469a7894bbccf0b12839ff4290a22";
+    rev = "fe86401119ef13975411c7608604e9b2ddd1c1ef";
   };
 
   # desktop related
