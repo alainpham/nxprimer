@@ -219,13 +219,13 @@ let
     nativeBuildInputs = [
       # autoconf
       # automake
-      pkg-config
-      SDL2
-      SDL2.dev
+      pkgs.pkg-config
+      pkgs.SDL2
+      pkgs.SDL2.dev
     ];
     buildInputs = [
-      SDL2
-      SDL2.dev
+      pkgs.SDL2
+      pkgs.SDL2.dev
     ];
 
     buildPhase = ''
