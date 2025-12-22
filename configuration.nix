@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "0a5d33a537d2df3560131e4a367f075ed65f4b7e";
+    rev = "917e132e55c38fa3422dea9e9d0169de96b715bd";
   };
 
   # desktop related
@@ -214,7 +214,7 @@ let
     src = builtins.fetchGit {
       url = "https://github.com/alainpham/gshorts.git";
       ref = "master";
-      rev = "c9273cbce49d84af5ef137b38752f5c3eb9f21b1";
+      rev = "ed1cda785cd05ead4c97a7775c654f1d90345b3c";
     };
     nativeBuildInputs = [
       # autoconf
@@ -333,6 +333,7 @@ in
     export TARGET_USERNAME=${vars.targetUserName}
     export KEYBOARD_LAYOUT=${vars.keyboardLayout}
     export KEYBOARD_MODEL=${vars.keyboardModel}
+    export KEYBOARD_VARIANT=${vars.keyboardVariant}
     export WILDCARD_DOMAIN=${vars.wildcardDomain}
   '';
 
