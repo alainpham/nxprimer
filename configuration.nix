@@ -670,7 +670,6 @@ in
     godot
     easytag
     audacity
-    jellyfin-media-player
     
     kdePackages.kdenlive
     onlyoffice-desktopeditors
