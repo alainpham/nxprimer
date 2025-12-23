@@ -16,6 +16,16 @@ select file in vars.*.nix; do
     fi
 done
 
+select file in hw.*.nix; do
+    if [[ -n "$file" ]]; then
+        echo "You selected: $file"
+        export TARGETHW=$file
+        break
+    else
+        echo "Invalid selection. Please try again."
+    fi
+done
+
 parted -s ${TARGETDISK} mklabel gpt
 sleep 1
 
@@ -50,6 +60,12 @@ nixos-generate-config --root /mnt
 
 cp configuration.nix /mnt/etc/nixos/configuration.nix
 cp $TARGETVARS /mnt/etc/nixos/vars.nix
+
+if [ -n "$TARGETHW" ]; then
+  cp $TARGETHW /mnt/etc/nixos/hw.nix
+fi
+
+
 
 cd /mnt/etc/nixos
 
