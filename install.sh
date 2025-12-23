@@ -16,13 +16,17 @@ select file in vars.*.nix; do
     fi
 done
 
-select file in hw.*.nix; do
-    if [[ -n "$file" ]]; then
-        echo "You selected: $file"
-        export TARGETHW=$file
+options=("Skip selection" hw.*.nix)
+
+select file in "${options[@]}"; do
+    if [[ -z $file ]]; then
+        echo "No hardware selected"
+        unset TARGETHW
         break
     else
-        echo "Invalid selection. Please try again."
+        echo "You selected: $file"
+        export TARGETHW="$file"
+        break
     fi
 done
 
