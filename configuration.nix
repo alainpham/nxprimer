@@ -314,9 +314,9 @@ in
     keyMap = vars.keyboardLayout;
   };
 
-  # users.groups = { 
-  #   ${vars.targetUserName} = { };
-  # };
+  users.groups = { 
+    ${vars.targetUserName} = { };
+  };
 
   users.users = {
     ${vars.targetUserName} = {
