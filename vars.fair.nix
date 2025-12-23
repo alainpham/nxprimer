@@ -1,4 +1,3 @@
-{ config, lib, pkgs, ... }:
 {
   hostname= "fair";
   targetUserName = "apham";

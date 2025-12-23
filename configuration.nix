@@ -2,7 +2,7 @@
 
 let
   # change this
-  vars = import ./vars.nix;
+  vars = { config,lib, ... }: import ./vars.nix;
   # end of change this
 
   # initial state version
