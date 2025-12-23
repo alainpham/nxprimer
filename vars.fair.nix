@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   hostname= "fair";
   targetUserName = "apham";
