@@ -2,7 +2,7 @@
 
 let
   # change this
-  vars = { config,lib, ... }: import ./vars.nix;
+  vars = import ./vars.nix;
   # end of change this
 
   # initial state version
@@ -245,7 +245,9 @@ in
     [
       ./hardware-configuration.nix
       (import "${home-manager}/nixos")
-    ];
+    ]
+    ++ lib.optional (builtins.pathExists ./hw.nix) ./hw.nix;
+    ;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -255,11 +257,6 @@ in
 
   system.stateVersion = nixStateVersion;
 
-  # specific kernel modules configuration
-  boot.initrd.kernelModules = vars.kernelModules;
-  boot.extraModulePackages = vars.extraModulePackages;
-  boot.blacklistedKernelModules = vars.blacklistedKernelModules;
-  nixpkgs.config.allowInsecurePredicate = vars.allowInsecurePredicate;
 
   networking.hostName = vars.hostname;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -314,9 +311,9 @@ in
     keyMap = vars.keyboardLayout;
   };
 
-  users.groups = { 
-    ${vars.targetUserName} = { };
-  };
+  # users.groups = { 
+  #   ${vars.targetUserName} = { };
+  # };
 
   users.users = {
     ${vars.targetUserName} = {
