@@ -70,9 +70,6 @@ if [ -n "$TARGETHW" ]; then
 fi
 
 
-
-cd /mnt/etc/nixos
-
 nixos-install --no-root-passwd
 
 nixos-enter --root /mnt -c 'passwd apham'
