@@ -246,7 +246,7 @@ in
       ./hardware-configuration.nix
       (import "${home-manager}/nixos")
     ]
-    ++ lib.optional (builtins.pathExists ./hw.nix) ./hw.nix;
+    ++ lib.optional (builtins.pathExists ./hw.nix) ./hw.nix
     ;
 
   boot.loader.systemd-boot.enable = true;
