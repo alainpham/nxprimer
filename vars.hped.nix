@@ -11,4 +11,10 @@
   automaticlogin = true;
   disableTurboBoost = false; # disable turbo boost for laptops and minipcs that run intel
   # end of change this
+
+  # harware specific settings
+  kernelModules = [];
+  extraModulePackages = [];
+  blacklistedKernelModules = [];
+  allowInsecurePredicate = [];
 }

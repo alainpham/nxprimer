@@ -255,6 +255,12 @@ in
 
   system.stateVersion = nixStateVersion;
 
+  # specific kernel modules configuration
+  boot.initrd.kernelModules = vars.kernelModules;
+  boot.extraModulePackages = vars.extraModulePackages;
+  boot.blacklistedKernelModules = vars.blacklistedKernelModules;
+  nixpkgs.config.allowInsecurePredicate = vars.allowInsecurePredicate;
+
   networking.hostName = vars.hostname;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.networkmanager.dns = "dnsmasq";
