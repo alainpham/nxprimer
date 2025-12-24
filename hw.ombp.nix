@@ -13,7 +13,6 @@
     package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
   };
   services.xserver.videoDrivers = [
-    "modesetting"
     "nvidia"
   ];
   nixpkgs.config.nvidia.acceptLicense = true;
