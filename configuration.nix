@@ -364,8 +364,6 @@ in
         recordings
         
         codefld
-        
-        ROMs
       "
       for folder in $(echo $folders); do
         if [ ! -L "$HOME/$folder" ] && [ ! -d "$HOME/$folder" ]; then
