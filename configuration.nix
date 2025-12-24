@@ -214,7 +214,7 @@ let
     src = builtins.fetchGit {
       url = "https://github.com/alainpham/gshorts.git";
       ref = "master";
-      rev = "ed1cda785cd05ead4c97a7775c654f1d90345b3c";
+      rev = "dda21ee0407252346fd8839d12ce18952c76ac76";
     };
     nativeBuildInputs = [
       # autoconf

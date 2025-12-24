@@ -62,3 +62,10 @@ build iso
 ```sh
 nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=/etc/nixos/iso.nix
 ```
+
+Next steps
+
+ - fix syncthing script
+ - modularise into different files for server docker kubernetes worstation emulation station
+ - hardware encoding
+ - auto install vscode plugins
