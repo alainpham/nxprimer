@@ -569,6 +569,8 @@ in
     parted
     cryptsetup
     envsubst
+    pciutils
+    lshw
 
     # dev environment
     ansible

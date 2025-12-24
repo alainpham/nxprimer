@@ -1,5 +1,5 @@
 {
-  hostname= "hped";
+  hostname= "leol";
   targetUserName = "apham";
   targetUserEmail = "apham@localhost";
   keyboardLayout = "fr";
@@ -9,7 +9,7 @@
   enableKubernetes = true;
   enableVirtualization = true;
   automaticlogin = true;
-  disableTurboBoost = false; # disable turbo boost for laptops and minipcs that run intel
+  disableTurboBoost = true; # disable turbo boost for laptops and minipcs that run intel
   # end of change this
 
 }

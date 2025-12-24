@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export TARGET_USERNAME=${1:-apham}
+
 lsblk
 
 read -p "Enter target disk (e.g., /dev/sda): " TARGETDISK
@@ -65,20 +67,24 @@ nixos-generate-config --root /mnt
 cp configuration.nix /mnt/etc/nixos/configuration.nix
 cp $TARGETVARS /mnt/etc/nixos/vars.nix
 
-if [ -n "$TARGETHW" ]; then
+if [ -f "$TARGETHW" ]; then
   cp $TARGETHW /mnt/etc/nixos/hw.nix
 fi
 
 
 nixos-install --no-root-passwd
 
-nixos-enter --root /mnt -c 'passwd apham'
+nixos-enter --root /mnt -c "passwd $TARGET_USERNAME"
 
-cd /mnt/home/apham/
+cd /mnt/home/$TARGET_USERNAME/
 
 git clone https://github.com/alainpham/nxprimer.git
+git clone https://github.com/alainpham/dotfiles.git
+git clone https://github.com/alainpham/lab.git
 
-nixos-enter --root /mnt -c 'chown -R apham /home/apham/nxprimer'
+nixos-enter --root /mnt -c "chown -R $TARGET_USERNAME /home/$TARGET_USERNAME/nxprimer"
+nixos-enter --root /mnt -c "chown -R $TARGET_USERNAME /home/$TARGET_USERNAME/dotfiles"
+nixos-enter --root /mnt -c "chown -R $TARGET_USERNAME /home/$TARGET_USERNAME/lab"
 
 cd /
 sleep 2
