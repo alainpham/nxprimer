@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
 {
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
+
   boot.extraModulePackages = [ ];
   boot.initrd.kernelModules = [ ];
   boot.blacklistedKernelModules = [
