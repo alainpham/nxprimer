@@ -2,7 +2,7 @@
   hostname= "ombp";
   targetUserName = "apham";
   targetUserEmail = "apham@localhost";
-  keyboardLayout = "fr";
+  keyboardLayout = "us";
   keyboardModel = "pc105";
   keyboardVariant = "mac";
   wildcardDomain = "houze.dns.army";
