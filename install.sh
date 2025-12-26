@@ -67,14 +67,13 @@ sleep 1
 # Formating
 echo "Formatting filesystems..."
 mkfs.fat -F 32 ${TARGETDISK}1
+sleep 2
 fatlabel ${TARGETDISK}1 NIXBOOT
-sleep 1
 
 if [[ "$SWAP_GIB" -gt 0 ]]; then
     mkswap "${TARGETDISK}2"
     swapon "${TARGETDISK}2"
 fi
-sleep 1
 
 if blkid "${TARGETDISK}${ROOT_PART}" >/dev/null 2>&1; then
     mkfs.ext4 -F "${TARGETDISK}${ROOT_PART}" -L NIXROOT
@@ -87,7 +86,6 @@ echo "Mounting filesystems..."
 mount /dev/disk/by-label/NIXROOT /mnt
 mkdir -p /mnt/boot
 mount -o umask=077 /dev/disk/by-label/NIXBOOT /mnt/boot
-sleep 1
 
 nixos-generate-config --root /mnt
 
@@ -113,3 +111,5 @@ cd /
 sleep 2
 
 umount -R /mnt
+swapoff -a || true
+echo "Installation complete."
