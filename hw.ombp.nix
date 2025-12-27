@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_10;
 
   boot.extraModulePackages = [ ];
   boot.initrd.kernelModules = [ ];
@@ -9,6 +9,7 @@
   ];
   
   hardware.nvidia = {
+    modesetting.enable = false;
     nvidiaSettings = false;
     package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
   };
