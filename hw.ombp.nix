@@ -9,7 +9,7 @@
   ];
   
   hardware.nvidia = {
-    modesetting.enable = true;
+    nvidiaSettings = false;
     package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
   };
   services.xserver.videoDrivers = [
