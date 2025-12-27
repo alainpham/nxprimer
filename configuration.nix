@@ -378,6 +378,16 @@ in
           ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N  ""
       fi
     '';
+
+    numlockOnBoot = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if ${vars.numlockOnBoot}; then
+        echo numlock on boot enabled
+      else
+        echo numlock on boot disabled
+        touch "$HOME/.nonumlock"
+      fi
+    ''
+
     };
 
     home.file = {
