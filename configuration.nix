@@ -386,7 +386,7 @@ in
         echo numlock on boot disabled
         touch "$HOME/.nonumlock"
       fi
-    ''
+    '';
 
     };
 
