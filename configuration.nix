@@ -380,7 +380,7 @@ in
     '';
 
     numlockOnBoot = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if ${toString vars.numlockOnBoot}; then
+      if [ ${toString vars.numlockOnBoot} ]; then
         echo numlock on boot enabled
       else
         echo numlock on boot disabled
