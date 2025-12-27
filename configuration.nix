@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "2a5760cb44faaf8e4bc7e90391b7910a2cf2cd8a";
+    rev = "1b2dc1f625f76765e855de72545451ec1b77e8aa";
   };
 
   # desktop related
@@ -795,7 +795,7 @@ in
   ##################################################
 
   systemd.services.numLockOnTty = {
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = lib.optionals (vars.numlockOnBoot) [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = lib.mkForce (pkgs.writeShellScript "numLockOnTty" ''
         for tty in /dev/tty{1..6}; do

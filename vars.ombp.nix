@@ -9,7 +9,7 @@
   enableKubernetes = true;
   enableVirtualization = true;
   automaticlogin = true;
-  disableTurboBoost = false; # disable turbo boost for laptops and minipcs that run intel
-  # end of change this
-
+  disableTurboBoost = false;
+  numlockOnBoot = false;
+  enablePicom = false;
 }
