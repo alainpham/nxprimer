@@ -4,7 +4,7 @@
   targetUserEmail = "apham@localhost";
   keyboardLayout = "fr";
   keyboardModel = "pc105";
-  keyboardVariant = "";
+  keyboardVariant = "azerty";
   wildcardDomain = "houze.dns.army";
   enableKubernetes = true;
   enableVirtualization = false;
