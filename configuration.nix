@@ -18,7 +18,7 @@ let
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "1b2dc1f625f76765e855de72545451ec1b77e8aa";
+    rev = "4775fe33c7ab896775b4b9f4a6f8a6851bae7f86";
   };
 
   # desktop related
@@ -109,7 +109,7 @@ let
 
 
   # retroarch
-  retroarchversion = "1.21.0";
+  retroarchversion = "1.22.2";
 
   retroarchpkg = pkgs.stdenv.mkDerivation {
     pname = "retroarchpkg";
@@ -117,7 +117,7 @@ let
 
     src = builtins.fetchurl {
       url = "https://buildbot.libretro.com/stable/${retroarchversion}/linux/x86_64/RetroArch.7z";
-      sha256 = "294ea29d50adf281806dabae14f1a12b879c925ea5be15bc4de1068874d5236a";
+      sha256 = "7d62da9a21397d6e1b9490785cedbeafd262781b50115076736fbe8a77ef30e9";
     };
 
     buildInputs = [ pkgs.p7zip ];
@@ -140,7 +140,7 @@ let
 
     src = builtins.fetchurl {
       url = "https://buildbot.libretro.com/stable/${retroarchversion}/linux/x86_64/RetroArch_cores.7z";
-      sha256 = "cbf7c866f77259e6cc61243d2fcf4668471a0a7bf9be00649b84556b7bc22c57";
+      sha256 = "4b7ed8dc97d4bf035fce182c64b5658c7662e2e9e5d42129538afbd4b6096307";
     };
 
     buildInputs = [ pkgs.p7zip ];
@@ -362,8 +362,6 @@ in
         
         workspaces
         recordings
-        
-        codefld
       "
       for folder in $(echo $folders); do
         if [ ! -L "$HOME/$folder" ] && [ ! -d "$HOME/$folder" ]; then
@@ -376,6 +374,15 @@ in
 
       if [ $sshkeyexists -eq 0 ]; then
           ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N  ""
+      fi
+    '';
+
+    enablePicom = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ ${toString vars.enablePicom} ]; then
+        echo picom enabled
+      else
+        echo picom disabled
+        touch "$HOME/.nopicom"
       fi
     '';
 
@@ -834,7 +841,6 @@ in
     displayManager.startx.enable = true;
   };
   services.udisks2.enable = true;
-  services.picom.enable = true;
 
   services.libinput.touchpad = {
     tapping = true;
