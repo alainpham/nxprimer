@@ -11,5 +11,5 @@
   automaticlogin = true;
   disableTurboBoost = false;
   numlockOnBoot = false;
-  enablePicom = false;
+  enablePicom = true;
 }

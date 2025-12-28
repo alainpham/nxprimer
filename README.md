@@ -73,7 +73,11 @@ Next steps
 
 # silence chime of macbook pro 2007
 
-Remove the kernel-applied protection on the variable: sudo chattr -i /sys/firmware/efi/efivars/SystemAudioVolume-7c436110-ab2a-4bbb-a880-fe41995c9f82
+Remove the kernel-applied protection on the variable: 
+```sh
+sudo chattr -i /sys/firmware/efi/efivars/SystemAudioVolume-7c436110-ab2a-4bbb-a880-fe41995c9f82
+
 sudo rm /sys/firmware/efi/efivars/SystemAudioVolume-7c436110-ab2a-4bbb-a880-fe41995c9f82
 printf "\x07\x00\x00\x00\x00" > ~/SystemAudioVolume-7c436110-ab2a-4bbb-a880-fe41995c9f82
 sudo cp ~/SystemAudioVolume-7c436110-ab2a-4bbb-a880-fe41995c9f82 /sys/firmware/efi/efivars
+```
