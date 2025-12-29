@@ -4,9 +4,7 @@
 
   boot.extraModulePackages = [ ];
   boot.initrd.kernelModules = [ ];
-  boot.blacklistedKernelModules = [
-    "nouveau"
-  ];
+  boot.blacklistedKernelModules = [ ];
   
   hardware.nvidia = {
     modesetting.enable = false;
