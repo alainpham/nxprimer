@@ -5,7 +5,6 @@
   boot.blacklistedKernelModules = [ ];
 
   hardware.nvidia = {
-    enabled = true;
     open = false;
     powerManagement.enable = false;
     prime = {
