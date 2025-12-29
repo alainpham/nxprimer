@@ -7,7 +7,7 @@
   hardware.nvidia = {
     enable = true;
     open = false;
-    powerManagement.enable = true;
+    powerManagement.enable = false;
     prime = {
       offload.enable = true;
       offload.enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
@@ -22,4 +22,10 @@
     "nvidia"
   ];  
   nixpkgs.config.nvidia.acceptLicense = true;
+
+  hardware.graphics = {
+    extraPackages = with pkgs; [
+      vpl-gpu-rt
+    ];
+  };
 }

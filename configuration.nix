@@ -586,7 +586,8 @@ in
     envsubst
     pciutils
     lshw
-
+    libva-utils
+    
     # dev environment
     ansible
     nodejs_24
