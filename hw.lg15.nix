@@ -9,17 +9,17 @@
     open = false;
     powerManagement.enable = false;
     prime = {
+      offload.enable = true;
+      offload.enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
       nvidiaBusId = "PCI:01:00:0";
       intelBusId = "PCI:00:02:0";
       sync.enable = false;
-      offload.enable = true;
-      offload.enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
     };
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   services.xserver.videoDrivers = [
-    "nvidia"
     "modesetting"
+    "nvidia"
   ];  
   nixpkgs.config.nvidia.acceptLicense = true;
 
