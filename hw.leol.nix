@@ -5,7 +5,7 @@
   boot.blacklistedKernelModules = [ ];
   
   hardware.nvidia = {
-    modesetting.enable = false;
+    modesetting.enable = true;
     open = false;
     powerManagement.enable = false;
     prime = {
@@ -18,8 +18,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
   };
   services.xserver.videoDrivers = [
-    "modesetting"
     "nvidia"
+    "modesetting"
   ];
   nixpkgs.config.nvidia.acceptLicense = true;
 

@@ -5,21 +5,22 @@
   boot.blacklistedKernelModules = [ ];
   
   hardware.nvidia = {
-    modesetting.enable = false;
+    modesetting.enable = true;
     open = false;
     powerManagement.enable = false;
     prime = {
-      offload.enable = false;
+      offload.enable = true;
       offload.enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
       sync.enable = false;
       intelBusId = "PCI:00:02:0";
       nvidiaBusId = "PCI:01:00:0";
     };
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   services.xserver.videoDrivers = [
     "nvidia"
   ];
+
   nixpkgs.config.nvidia.acceptLicense = true;
 
   hardware.graphics = {
