@@ -587,7 +587,7 @@ in
     pciutils
     lshw
     libva-utils
-    
+
     # dev environment
     ansible
     nodejs_24
@@ -671,7 +671,7 @@ in
 
     gparted
     vulkan-tools
-    ffmpeg
+    ffmpeg-full
     fdk_aac
     yt-dlp
     google-chrome

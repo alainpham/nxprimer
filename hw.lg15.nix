@@ -25,7 +25,11 @@
 
   hardware.graphics = {
     extraPackages = with pkgs; [
-      vpl-gpu-rt
+      intel-media-driver
     ];
+  };
+
+  programs.obs-studio.package = pkgs.obs-studio.override {
+    cudaSupport = true;
   };
 }
