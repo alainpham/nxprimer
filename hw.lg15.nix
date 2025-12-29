@@ -17,8 +17,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   services.xserver.videoDrivers = [
-    "modesetting"
     "nvidia"
+    "modesetting"
   ];  
   nixpkgs.config.nvidia.acceptLicense = true;
 
