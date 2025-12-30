@@ -104,4 +104,16 @@ cp hw.lg15.nix /mnt/etc/nixos/hw.nix
 
 nixos-install --no-root-passwd
 
+nixos-enter --root /mnt -c "passwd apham"
+
+cd /mnt/home/apham/
+
+git clone https://github.com/alainpham/nxprimer.git
+git clone https://github.com/alainpham/dotfiles.git
+git clone https://github.com/alainpham/lab.git
+
+nixos-enter --root /mnt -c "chown -R apham /home/apham/nxprimer"
+nixos-enter --root /mnt -c "chown -R apham /home/apham/dotfiles"
+nixos-enter --root /mnt -c "chown -R apham /home/apham/lab"
+
 ```
