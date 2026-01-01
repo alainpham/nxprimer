@@ -736,7 +736,7 @@ in
     lutris
     # winetricks
     # wineWowPackages.stable
-steam
+    # steam
 
     gshorts
     sdl-jstest
