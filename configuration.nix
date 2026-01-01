@@ -734,8 +734,8 @@ in
 
     # windows games compatibility
     lutris
-    # winetricks
-    # wineWowPackages.stable
+    wineWowPackages.stable
+    winetricks
     # steam
 
     gshorts
