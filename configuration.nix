@@ -15,10 +15,14 @@ let
     "https://github.com/nix-community/home-manager/archive/release-${nixTargetVersion}.tar.gz"
   );
 
+  altTarball =
+    fetchTarball
+      https://codeload.github.com/NixOS/nixpkgs/tar.gz/refs/heads/nixpkgs-unstable;
+
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "4775fe33c7ab896775b4b9f4a6f8a6851bae7f86";
+    rev = "f4a3ae0a10e96dc4745b6c434942702f45f19168";
   };
 
   # desktop related
@@ -248,6 +252,14 @@ in
     ]
     ++ lib.optional (builtins.pathExists ./hw.nix) ./hw.nix
     ;
+
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+      altVersion = import altTarball {
+        config = config.nixpkgs.config;
+      };
+    };
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -657,7 +669,6 @@ in
     picom
     jgmenu
     brightnessctl
-    cups
     xsane
     filezilla
     speedcrunch
@@ -679,19 +690,16 @@ in
     lxqt.pavucontrol-qt
     alsa-utils
     
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
-    xfce.thunar-media-tags-plugin
-    xfce.xfconf
 
     flameshot
     maim
     xclip
     xdotool
 
+    xarchiver
+    ghostscript
     vscode
-    
+       
     moonlight-qt
 
     # all custom scripts & webapps
@@ -744,7 +752,11 @@ in
     jstest-gtk
     antimicrox
   ];
-  
+
+  services.printing = {
+    enable = true;       # enables CUPS
+    # package = pkgs.altVersion.cups;
+  };
 
   ##################################################
   # Dev environment
@@ -893,6 +905,20 @@ in
   services.sunshine.enable = true;
   services.sunshine.autoStart = false;
   services.sunshine.openFirewall = true;
+
+
+  # thunar
+  programs.xfconf.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+      thunar-media-tags-plugin
+    ];
+  };
+
+
 
   # obs
   programs.obs-studio = {
