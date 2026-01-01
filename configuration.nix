@@ -587,6 +587,7 @@ in
     pciutils
     lshw
     libva-utils
+    bchunk
 
     # dev environment
     ansible
@@ -730,7 +731,13 @@ in
     pcsx2
     dolphin-emu
     cemu
-    
+
+    # windows games compatibility
+    lutris
+    # winetricks
+    # wineWowPackages.stable
+steam
+
     gshorts
     sdl-jstest
     linuxConsoleTools

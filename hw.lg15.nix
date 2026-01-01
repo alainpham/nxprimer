@@ -7,7 +7,7 @@
   hardware.nvidia = {
     modesetting.enable = true;
     open = false;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     prime = {
       offload.enable = true;
       offload.enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
