@@ -567,6 +567,7 @@ in
       fi
   '';
   };
+  programs.nix-ld.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   
@@ -740,7 +741,7 @@ in
     dolphin-emu
     cemu
 
-    # windows games compatibility
+    # windows games compatibility experimental
     lutris
     wineWowPackages.stable
     winetricks
