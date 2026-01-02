@@ -117,3 +117,8 @@ nixos-enter --root /mnt -c "chown -R apham /home/apham/dotfiles"
 nixos-enter --root /mnt -c "chown -R apham /home/apham/lab"
 
 ```
+
+
+
+to target a certain release temporarily
+ sudo nixos-rebuild switch -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/d9bc5c7dceb3.tar.gz

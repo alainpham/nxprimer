@@ -245,13 +245,11 @@ let
 
 in
 {
-  imports =
-    [
+  imports = [
       ./hardware-configuration.nix
       (import "${home-manager}/nixos")
-    ]
-    ++ lib.optional (builtins.pathExists ./hw.nix) ./hw.nix
-    ;
+  ] 
+  ++ lib.optional (builtins.pathExists ./hw.nix) ./hw.nix;
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
@@ -268,7 +266,6 @@ in
   boot.loader.timeout = 1;
 
   system.stateVersion = nixStateVersion;
-
 
   networking.hostName = vars.hostname;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -318,10 +315,11 @@ in
   time.timeZone = "Europe/Paris";
 
   i18n.defaultLocale = "en_GB.UTF-8";
-  console = {
-    font = "LatArCyrHeb-16";
-    keyMap = vars.keyboardLayout;
-  };
+  console.useXkbConfig = true;
+  # console = {
+  #   font = "LatArCyrHeb-16";
+  #   keyMap = vars.keyboardLayout;
+  # };
 
   # users.groups = { 
   #   ${vars.targetUserName} = { };
