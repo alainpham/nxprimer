@@ -11,14 +11,6 @@ let
   # target version for fetching home-manager
   nixTargetVersion = "25.11";
 
-  home-manager = builtins.fetchTarball (
-    "https://github.com/nix-community/home-manager/archive/release-${nixTargetVersion}.tar.gz"
-  );
-
-  altTarball =
-    fetchTarball
-      https://codeload.github.com/NixOS/nixpkgs/tar.gz/refs/heads/nixpkgs-unstable;
-
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
@@ -245,19 +237,13 @@ let
 
 in
 {
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
   imports = [
       ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
   ] 
   ++ lib.optional (builtins.pathExists ./hw.nix) ./hw.nix;
 
-  nixpkgs.config = {
-    packageOverrides = pkgs: {
-      altVersion = import altTarball {
-        config = config.nixpkgs.config;
-      };
-    };
-  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -349,6 +335,7 @@ in
     export WILDCARD_DOMAIN=${vars.wildcardDomain}
   '';
 
+  home-manager.useGlobalPkgs = true;
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
     home.stateVersion = nixStateVersion;
     programs.git = {
