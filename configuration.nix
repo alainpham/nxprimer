@@ -239,7 +239,7 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
   specialArgs = {
-    inherit vars;
+    inherit vars nixStateVersion nixTargetVersion;
   };
 
   imports = [
