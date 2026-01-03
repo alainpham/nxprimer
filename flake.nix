@@ -1,7 +1,4 @@
-let
-  vars = import ./vars.nix;
-  nixStateVersion = "25.11";
-in
+
 {
   inputs = {
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
@@ -12,7 +9,12 @@ in
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { self, nixpkgs, home-manager, ... }: 
+  let
+    vars = import ./vars.nix;
+    nixStateVersion = "25.11";
+  in
+  {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
