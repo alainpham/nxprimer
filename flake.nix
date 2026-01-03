@@ -26,6 +26,7 @@
         ./hardware-configuration.nix
         ./hw.nix
         ./modules/common
+        ./derivations/scripts
         home-manager.nixosModules.home-manager
       ];
     };
