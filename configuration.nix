@@ -52,7 +52,6 @@ let
   # should not be set manually, but detect if running in vm
   isVm = lib.elem "virtio_console" config.boot.initrd.kernelModules;
 
-
   # custom packages
 
   # custom scripts & webapps
@@ -241,29 +240,10 @@ in
   
   imports = [
       ./hardware-configuration.nix
-  ] 
-  ++ lib.optional (builtins.pathExists ./hw.nix) ./hw.nix;
+      ./hw.nix
+      ./modules/common
+  ];
 
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # fastboot
-  boot.loader.timeout = 1;
-
-  system.stateVersion = nixStateVersion;
-
-  networking.hostName = vars.hostname;
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-  networking.networkmanager.dns = "dnsmasq";
-
-  environment.etc."NetworkManager/dnsmasq.d/dev.conf".text = ''
-    #/etc/NetworkManager/dnsmasq.d/dev.conf
-    local=/${vars.wildcardDomain}/
-    address=/${vars.wildcardDomain}/172.18.0.1
-  '';
-  environment.etc."NetworkManager/dnsmasq.d/vms".source = "/home/${vars.targetUserName}/virt/runtime/vms";
-  environment.homeBinInPath = true;
   
   # chrome policies for extensions (ublock origin lite & bitwarden) & bookmarks
   environment.etc."opt/chrome/policies/managed/chrome-policies.json".text = ''
