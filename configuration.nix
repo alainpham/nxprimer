@@ -239,23 +239,6 @@ in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  nixpkgs.overlays = [
-    (final: prev:
-      let
-        unstable-pkgs = import inputs.nixpkgs-unstable {
-          system = prev.system;
-        };
-        old-pkgs = import inputs.nixpkgs-old {
-          system = prev.system;
-        };
-      in
-      {
-        unstable = unstable-pkgs; # Provides pkgs.unstable for convenience
-        old = old-pkgs;  # Provides pkgs.old for convenience
-        cups = old-pkgs.cups;
-      })
-  ];
-
   imports = [
       ./hardware-configuration.nix
   ] 
