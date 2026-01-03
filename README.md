@@ -99,8 +99,8 @@ mount /dev/disk/by-label/NIXDATA /mnt/data
 
 nixos-generate-config --root /mnt
 cp configuration.nix /mnt/etc/nixos/configuration.nix
-cp vars.lg15.nix /mnt/etc/nixos/vars.nix
-cp hw.lg15.nix /mnt/etc/nixos/hw.nix
+cp vars/lg15.nix /mnt/etc/nixos/vars.nix
+cp hw/lg15.nix /mnt/etc/nixos/hw.nix
 
 nixos-install --no-root-passwd
 
