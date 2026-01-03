@@ -727,9 +727,9 @@ in
     cemu
 
     # windows games compatibility experimental
-    lutris
-    wineWowPackages.stable
-    winetricks
+    # lutris
+    # wineWowPackages.stable
+    # winetricks
     # steam
 
     gshorts
