@@ -22,6 +22,9 @@
       };
       modules = [
         ./configuration.nix
+        ./hardware-configuration.nix
+        ./hw.nix
+        ./modules/common
         home-manager.nixosModules.home-manager
       ];
     };

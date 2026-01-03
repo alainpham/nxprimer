@@ -228,9 +228,7 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
   imports = [
-      ./hardware-configuration.nix
-      ./hw.nix
-      ./modules/common
+
   ];
   
   # chrome policies for extensions (ublock origin lite & bitwarden) & bookmarks
