@@ -43,10 +43,6 @@ let
   };
 
 
-  # should not be set manually, but detect if running in vm
-
-  # custom packages
-
   # custom scripts & webapps
   scripts = pkgs.stdenv.mkDerivation {
       pname = "scripts";
