@@ -5,8 +5,6 @@ let
   # end of change this
 
   # initial state version
-  
-
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
@@ -239,7 +237,6 @@ in
       ./hw.nix
       ./modules/common
   ];
-
   
   # chrome policies for extensions (ublock origin lite & bitwarden) & bookmarks
   environment.etc."opt/chrome/policies/managed/chrome-policies.json".text = ''
@@ -274,42 +271,6 @@ in
     }
   '';
 
-  time.timeZone = "Europe/Paris";
-
-  i18n.defaultLocale = "en_GB.UTF-8";
-  console.useXkbConfig = true;
-  # console = {
-  #   font = "LatArCyrHeb-16";
-  #   keyMap = vars.keyboardLayout;
-  # };
-
-  # users.groups = { 
-  #   ${vars.targetUserName} = { };
-  # };
-
-  users.users = {
-    ${vars.targetUserName} = {
-      isNormalUser = true;
-      extraGroups = [ 
-        "wheel"
-        "docker"
-        "audio"
-        "video"
-        "networkmanager"
-        "libvirtd"
-        "kvm"
-        "input"
-      ];
-    };
-  };
-
-  environment.loginShellInit = ''
-    export TARGET_USERNAME=${vars.targetUserName}
-    export KEYBOARD_LAYOUT=${vars.keyboardLayout}
-    export KEYBOARD_MODEL=${vars.keyboardModel}
-    export KEYBOARD_VARIANT=${vars.keyboardVariant}
-    export WILDCARD_DOMAIN=${vars.wildcardDomain}
-  '';
 
   home-manager.useGlobalPkgs = true;
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
@@ -454,37 +415,6 @@ in
       };
     };
   };
-
-  ##################################################
-  # passwordless sudo for users in wheel group
-  ##################################################
-  security.sudo = {
-    enable = true;
-    wheelNeedsPassword = false;
-  };
-
-  ##################################################
-  # small logs
-  ##################################################
-  services.journald.extraConfig = ''
-    SystemMaxUse=50M
-    SystemMaxFileSize=10M
-  '';
-  
-  services.openssh.enable = true;
-  
-  ##################################################
-  # passwordless sudo for users in wheel group
-  ##################################################
-  services.getty.autologinOnce = vars.automaticlogin;
-  services.getty.autologinUser = vars.targetUserName;
-
-  services.envfs.enable = true;
-
-  ##################################################
-  # enable spice agent only when running in a VM
-  ##################################################
-  services.spice-vdagentd.enable = isVm;
 
   ##################################################
   # disableturbo
@@ -793,20 +723,11 @@ in
   # gui
   ##################################################
 
-  systemd.services.numLockOnTty = {
-    wantedBy = lib.optionals (vars.numlockOnBoot) [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = lib.mkForce (pkgs.writeShellScript "numLockOnTty" ''
-        for tty in /dev/tty{1..6}; do
-            ${pkgs.kbd}/bin/setleds -D +num < "$tty";
-        done
-      '');
-    };
-  };
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
+
   hardware.bluetooth = {
     enable = true;
     input = {
@@ -830,7 +751,6 @@ in
     naturalScrolling = false;
     disableWhileTyping = true;
   };
-
 
   services.gvfs.enable = true;
   

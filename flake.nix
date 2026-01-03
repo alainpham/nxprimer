@@ -12,7 +12,7 @@
   outputs = { self, nixpkgs, home-manager, ... }: 
   let
     vars = import ./vars.nix;
-    nixStateVersion = "25.11";
+    nixStateVersion = "25.11"; # change this only on fresh installs
   in
   {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
