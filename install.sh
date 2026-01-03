@@ -9,7 +9,7 @@ read -p "Enter swap size in GiB (0 = no swap): " SWAP_GIB
 
 echo "Available configuration files:"
 
-select file in vars.*.nix; do
+select file in vars/*.nix; do
     if [[ -n "$file" ]]; then
         echo "You selected: $file"
         export TARGETVARS=$file
@@ -19,7 +19,7 @@ select file in vars.*.nix; do
     fi
 done
 
-select file in hw.*.nix; do
+select file in hw/*.nix; do
     if [[ -z $file ]]; then
         echo "No hardware selected"
         unset TARGETHW

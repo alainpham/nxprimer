@@ -727,7 +727,7 @@ in
     cemu
 
     # windows games compatibility experimental
-    # lutris
+    lutris
     # wineWowPackages.stable
     # winetricks
     # steam
