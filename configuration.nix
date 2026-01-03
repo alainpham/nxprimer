@@ -238,6 +238,10 @@ in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
+  specialArgs = {
+    inherit vars;
+  };
+
   imports = [
       ./hardware-configuration.nix
       ./hw.nix
