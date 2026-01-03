@@ -60,7 +60,7 @@
   ##################################################
   # enable spice agent only when running in a VM
   ##################################################
-  services.spice-vdagentd.enable = isVm;
+  services.spice-vdagentd.enable = lib.elem "virtio_console" config.boot.initrd.kernelModules;
 
   ##################################################
   # numlock on ttys on boot
@@ -114,5 +114,5 @@
       RemainAfterExit = true;
     };
   };
-  
+
 }
