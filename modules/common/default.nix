@@ -1,4 +1,4 @@
-{ config, lib, pkgs, vars, nixStateVersion, nixTargetVersion, ... }:
+{ config, lib, pkgs, vars, nixStateVersion, ... }:
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.loader.systemd-boot.enable = true;

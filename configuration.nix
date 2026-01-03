@@ -1,15 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, vars, nixStateVersion, ... }:
 
 let
   # change this
-  vars = import ./vars.nix;
   # end of change this
 
   # initial state version
-  nixStateVersion ="25.11";
   
-  # target version for fetching home-manager
-  nixTargetVersion = "25.11";
 
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
@@ -238,10 +234,6 @@ in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  specialArgs = {
-    inherit vars nixStateVersion nixTargetVersion;
-  };
-
   imports = [
       ./hardware-configuration.nix
       ./hw.nix
