@@ -103,17 +103,17 @@
   ##################################################
   # disableturbo
   ##################################################
-  # systemd.services.disable-intel-turboboost = {
-  #   enable = vars.disableTurboBoost;
-  #   description = "disable-intel-turboboost";
-  #   wantedBy = [ "sysinit.target" ];
-  #   path = [ "/run/current-system/sw" ];
-  #   serviceConfig = {
-  #     ExecStart = "${scripts}/bin/turboboost no";
-  #     ExecStop = "${scripts}/bin/turboboost yes";
-  #     RemainAfterExit = true;
-  #   };
-  # };
+  systemd.services.disable-intel-turboboost = {
+    enable = vars.disableTurboBoost;
+    description = "disable-intel-turboboost";
+    wantedBy = [ "sysinit.target" ];
+    path = [ "/run/current-system/sw" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.scripts}/bin/turboboost no";
+      ExecStop = "${pkgs.scripts}/bin/turboboost yes";
+      RemainAfterExit = true;
+    };
+  };
 
   
 
