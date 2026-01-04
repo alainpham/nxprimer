@@ -5,9 +5,6 @@ let
   # end of change this
 
 
-
-
-
   pcsx2biospkg = pkgs.stdenv.mkDerivation {
     pname = "pcsx2biospkg";
     version = "master";
@@ -200,7 +197,7 @@ in
 
       # retroarch folders
       ".config/retroarch/assets" = {
-        source = "${retroarchpkg}/share/appdata/retroarch/assets";
+        source = "${pkgs.retroarchpkg}/share/appdata/retroarch/assets";
         force = true;
       };
 
@@ -209,8 +206,8 @@ in
         source = pkgs.symlinkJoin {
           name = "merged-core-folder";
           paths = [
-          "${retroarchcorespkg}/share/appdata/retroarch/cores"
-          "${retroarchpkg}/share/appdata/retroarch/cores"
+          "${pkgs.retroarchcorespkg}/share/appdata/retroarch/cores"
+          "${pkgs.retroarchpkg}/share/appdata/retroarch/cores"
           ];
         };
           
@@ -219,17 +216,17 @@ in
       };
 
       ".config/retroarch/filters" = {
-        source = "${retroarchpkg}/share/appdata/retroarch/filters";
+        source = "${pkgs.retroarchpkg}/share/appdata/retroarch/filters";
         force = true;
       };
 
       ".config/retroarch/overlays" = {
-        source = "${retroarchpkg}/share/appdata/retroarch/overlays";
+        source = "${pkgs.retroarchpkg}/share/appdata/retroarch/overlays";
         force = true;
       };
 
       ".config/retroarch/shaders" = {
-        source = "${retroarchpkg}/share/appdata/retroarch/shaders";
+        source = "${pkgs.retroarchpkg}/share/appdata/retroarch/shaders";
         force = true;
       };
 
