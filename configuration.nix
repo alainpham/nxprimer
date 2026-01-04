@@ -3,7 +3,11 @@
 {
   
   imports = [
-    # ./modules/dev/default.nix
+    ./modules/common
+    ./modules/dev
+    ./modules/containers
+    ./modules/virtualization
+    ./modules/gui
   ];
 
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
