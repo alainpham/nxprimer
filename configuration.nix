@@ -265,37 +265,37 @@ in
     home.file = {
       # files at root of home
       ".xinitrc" = { 
-        source = "${dotfilesgit}/home/.xinitrc";
+        source = "${sources.dotfilesgit}/home/.xinitrc";
         force = true;
       };
       ".gitconfig" = { 
-        source = "${dotfilesgit}/home/.gitconfig"; 
+        source = "${sources.dotfilesgit}/home/.gitconfig"; 
         force = true;
       };
       ".gtkrc-2.0" = { 
-        source = "${dotfilesgit}/home/.gtkrc-2.0"; 
+        source = "${sources.dotfilesgit}/home/.gtkrc-2.0"; 
         force = true;
       };
       # folders
       "bin" = { 
-          source = "${dotfilesgit}/home/bin";
+          source = "${sources.dotfilesgit}/home/bin";
           recursive = true;
           force = true;
       };
       ".config" = { 
-          source = "${dotfilesgit}/home/.config";
+          source = "${sources.dotfilesgit}/home/.config";
           recursive = true;
           force = true;
       };
       ".local" = { 
-          source = "${dotfilesgit}/home/.local";
+          source = "${sources.dotfilesgit}/home/.local";
           recursive = true;
           force = true;
       };
 
       # emulation configs
       "ES-DE" = { 
-          source = "${dotfilesgit}/home/ES-DE";
+          source = "${sources.dotfilesgit}/home/ES-DE";
           recursive = true;
           force = true;
       };
