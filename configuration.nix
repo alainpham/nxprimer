@@ -10,7 +10,7 @@
     ./modules/gui
   ];
 
-  home-manager.users.${vars.targetUserName} = { lib, ... }: {
+  home-manager.users.${vars.targetUserName} = {
 
     # create folders and empty files
 

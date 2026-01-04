@@ -29,7 +29,7 @@
   };
 
   # initialize virtualization folders in home
-  home-manager.users.${vars.targetUserName} = { lib, ... }: {
+  home-manager.users.${vars.targetUserName} = {
     home.activation = {
       vmfolders = lib.hm.dag.entryAfter ["writeBoundary"] ''
         folders="

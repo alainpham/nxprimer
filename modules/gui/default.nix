@@ -119,7 +119,7 @@
     };
   };
 
-  home-manager.users.${vars.targetUserName} = { lib, ... }: {
+  home-manager.users.${vars.targetUserName} = {
     
     programs.bash = { 
       profileExtra = builtins.readFile "${sources.dotfilesgit}/home/.profile";
