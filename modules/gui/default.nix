@@ -381,7 +381,6 @@
     moonlight-qt
 
     guiscripts
-    gamingscripts # to be moved later
     iconspkg
 
   ];
