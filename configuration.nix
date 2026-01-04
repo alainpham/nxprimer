@@ -408,24 +408,24 @@ in
     wmctrl
 
     (dwm.overrideAttrs (oldAttrs: rec {
-      src = dwmgit;
+      src = sources.dwmgit;
     }))
 
     (st.overrideAttrs (oldAttrs: rec {
-      src = stgit;
+      src = sources.stgit;
     }))
 
     (dmenu.overrideAttrs (oldAttrs: rec {
-      src = dmenugit;
+      src = sources.dmenugit;
     }))
 
     (slock.overrideAttrs (oldAttrs: rec {
-      src = slockgit;
+      src = sources.slockgit;
       buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama imlib2];  
     }))
 
     (dwmblocks.overrideAttrs (oldAttrs: rec {
-      src = dwmblocksgit;
+      src = sources.dwmblocksgit;
     }))
 
     rofi
