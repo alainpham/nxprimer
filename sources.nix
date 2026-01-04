@@ -52,6 +52,7 @@ in
     name = "estation.AppImage";
   };
 
+  retroarchversion = ${retroarchversion};
 
   retroarchpkgurl = builtins.fetchurl {
     url = "https://buildbot.libretro.com/stable/${retroarchversion}/linux/x86_64/RetroArch.7z";
