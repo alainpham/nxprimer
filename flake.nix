@@ -29,6 +29,8 @@
 
         # custom derivations of various apps
         ./derivations
+
+        # home manager
         home-manager.nixosModules.home-manager
       ];
     };

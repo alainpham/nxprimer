@@ -3,10 +3,6 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  imports = [
-
-  ];
-  
   # chrome policies for extensions (ublock origin lite & bitwarden) & bookmarks
   environment.etc."opt/chrome/policies/managed/chrome-policies.json".text = ''
     {
@@ -187,77 +183,9 @@
 
 
 
-  ##################################################
-  # essentials
-  ##################################################
-  programs.git.enable = true;
-  programs.tmux.enable = true;
-  programs.vim.enable = true;
-  programs.neovim.enable = true;
-  programs.htop.enable = true;
-  programs.gnupg.agent.enable = true;
-  programs.bash = {
-    promptInit = ''
-      # Provide a nice prompt if the terminal supports it.
-      if [ "$TERM" != "dumb" ] || [ -n "$INSIDE_EMACS" ]; then
-        PROMPT_COLOR="1;31m"
-        ((UID)) && PROMPT_COLOR="1;32m"
-        if [ -n "$INSIDE_EMACS" ]; then
-          # Emacs term mode doesn't support xterm title escape sequence (\e]0;)
-          PS1="\[\033[$PROMPT_COLOR\][\u@\h:\w]\\$\[\033[0m\] "
-        else
-          PS1="\[\033[$PROMPT_COLOR\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-        fi
-        if test "$TERM" = "xterm"; then
-          PS1="\[\033]2;\h:\u:\w\007\]$PS1"
-        fi
-      fi
-  '';
-  };
-  programs.nix-ld.enable = true;
-
   nixpkgs.config.allowUnfree = true;
   
   environment.systemPackages = with pkgs; [
-    # essentials
-    curl
-    wget
-    ncdu
-    dnsutils
-    bmon
-    btop
-    nvtop
-    zip
-    unzip
-    p7zip
-    virt-what
-    wireguard-tools
-    jq
-    jc
-    sshfs
-    iotop
-    wakeonlan
-    cloud-utils
-    iperf
-    dmidecode
-    micro
-    parted
-    cryptsetup
-    envsubst
-    pciutils
-    lshw
-    libva-utils
-    bchunk
-
-    # dev environment
-    ansible
-    nodejs_24
-    go
-    maven
-
-    # kubernetes
-    k9s
-    kubernetes-helm
 
     # virtualization todo
     cdrkit
@@ -406,57 +334,6 @@
     # package = pkgs.altVersion.cups;
   };
 
-  ##################################################
-  # Dev environment
-  ##################################################
-  programs.java.enable = true;
-  programs.java.package = pkgs.jdk17_headless;
-
-
-  ##################################################
-  # Docker
-  ##################################################
-  virtualisation.docker.enable = true;
-
-  systemd.services.firstboot-dockernet = {
-    description = "firstboot-dockernet";
-    after = [ "docker.service" ];
-    wantedBy = [ "multi-user.target" ];
-    path = [ "/run/current-system/sw" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.scripts}/bin/firstboot-dockernet";
-    };
-  };
-
-  systemd.services.firstboot-dockerbuildx = {
-    description = "firstboot-dockerbuildx";
-    after = [ "docker.service" ];
-    wantedBy = [ "multi-user.target" ];
-    path = [ "/run/current-system/sw" ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = vars.targetUserName;
-      ExecStart = "${pkgs.scripts}/bin/firstboot-dockerbuildx";
-      RemainAfterExit = true;
-    };
-  };
-
-  ##################################################
-  # kubernetes
-  ##################################################
-  services.k3s = {
-    enable = vars.enableKubernetes;
-    extraFlags = [ 
-      "--disable=traefik" 
-      "--disable=servicelb"
-      "--tls-san=${vars.wildcardDomain}"
-      "--write-kubeconfig-mode=644"
-    ];
-  };
-  # Disable k3s from starting at boot; we'll manage it manually
-  systemd.services.k3s.wantedBy = lib.mkForce [ ];
-  
   ##################################################
   # virtualization
   ##################################################
