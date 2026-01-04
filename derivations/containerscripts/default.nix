@@ -9,6 +9,6 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/bin
     cp $src/scripts/docker/* $out/bin/
-    cp $src/scripts/kube/* $out/bin/
+    cp -r $src/scripts/kube/* $out/bin/
   '';
 }
