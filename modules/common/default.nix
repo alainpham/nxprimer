@@ -14,6 +14,11 @@
   networking.hostName = vars.hostname;
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "dnsmasq";
+  
+  systemd.services.NetworkManager.serviceConfig = {
+    CapabilityBoundingSet = [ "CAP_CHOWN" "CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" ];
+    AmbientCapabilities = [ "CAP_CHOWN" ];
+  };
 
   environment.etc."NetworkManager/dnsmasq.d/dev.conf".text = ''
     #/etc/NetworkManager/dnsmasq.d/dev.conf
