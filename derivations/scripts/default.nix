@@ -1,4 +1,4 @@
-{ pkgs, sources, ... }:
+{ stdenv, sources, ... }:
 
 stdenv.mkDerivation {
     pname = "scripts";
