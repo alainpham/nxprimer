@@ -33,12 +33,14 @@
         ./modules/common
         ./modules/dev
         ./modules/containers
-        # ./modules/virtualization
+        ./modules/virtualization
         ./modules/gui
 
         # home manager
         home-manager.nixosModules.home-manager
-      ];
+      ]
+      ++ lib.optional (vars.) ./hw.nix
+      ;
     };
   };
 }

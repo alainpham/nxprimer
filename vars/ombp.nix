@@ -6,9 +6,16 @@
   keyboardModel = "pc105";
   keyboardVariant = "mac";
   wildcardDomain = "houze.dns.army";
-  automaticlogin = true;
   disableTurboBoost = false;
   numlockOnBoot = false;
+  automaticlogin = true;
+
+  enableContainers = true;
+  enableVirtualization = true;
+  enableGui = true;
+  enableWorkstation = true;
+  enableGaming = true;
+  
   enablePicom = true;
   sunshineOnBoot = false;
 }
