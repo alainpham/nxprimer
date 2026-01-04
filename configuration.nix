@@ -174,7 +174,7 @@ in
       };
 
       ".config/PCSX2/bios/ps2-0230a-20080220.bin" = {
-        source = "${pcsx2biospkg}/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin";
+        source = "${pkgs.pcsx2biospkg}/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin";
         force = true;
       };
 
