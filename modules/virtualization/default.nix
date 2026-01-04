@@ -51,5 +51,5 @@
     cdrkit
     libosinfo
     vmscripts
-  ]
+  ];
 }
