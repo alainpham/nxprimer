@@ -4,8 +4,8 @@
     (
       final: prev: {
         scripts = final.callPackage ./scripts {
-          sources = final.sources;
-          vars = final.vars;
+          sources = sources;
+          vars = vars;
         };
       }
     )
