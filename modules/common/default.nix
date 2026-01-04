@@ -161,7 +161,7 @@
         source = "${sources.dotfilesgit}/home/.gitconfig"; 
         force = true;
       };
-    }
+    };
   };
 
   environment.systemPackages = with pkgs; [
