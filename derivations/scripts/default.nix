@@ -1,6 +1,6 @@
-{ pkgs, sources, ... }:
+{ stdenv, sources, ... }:
 
-pkgs.stdenv.mkDerivation {
+stdenv.mkDerivation {
     pname = "scripts";
     version = "master";
 

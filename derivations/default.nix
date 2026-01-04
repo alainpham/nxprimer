@@ -2,9 +2,8 @@
 {
   nixpkgs.overlays = [
     (
-      self: super:
-      {
-        scripts = super.callPackage ./scripts {}; # path containing default.nix
+      final: prev: {
+        scripts = final.callPackage ./scripts {};
       }
     )
   ];
