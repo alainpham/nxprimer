@@ -7,6 +7,10 @@
           sources = sources;
           vars = vars;
         };
+        nvtop = final.callPackage ./nvtop {
+          sources = sources;
+          vars = vars;
+        };
       }
     )
   ];
