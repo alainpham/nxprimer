@@ -22,6 +22,10 @@
         source = "${sources.dotfilesgit}/home/.local/share/applications/info.cemu.Cemu.desktop";
         force = true;
       };
+      ".local/share/applications/estation.desktop" = {
+        source = "${sources.dotfilesgit}/home/.local/share/applications/estation.desktop";
+        force = true;
+      };
       "bin/cemu" = { 
         source = "${sources.dotfilesgit}/home/bin/cemu";
         force = true;
