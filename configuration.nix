@@ -5,7 +5,7 @@
   imports = [
   ];
 
-  home-manager.users.${vars.targetUserName} = { config, lib, pkgs, vars, sources, nixStateVersion, ... }:{
+  home-manager.users.${vars.targetUserName} = { lib, ... }:{
 
     # create folders and empty files
 
