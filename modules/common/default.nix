@@ -22,6 +22,7 @@
   '';
   environment.homeBinInPath = true;
   # to be put specifically in vm
+  # environment.etc."NetworkManager/dnsmasq.d/vms".source = "/home/${vars.targetUserName}/virt/runtime/vms";
 
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_GB.UTF-8";
