@@ -15,6 +15,10 @@
           sources = sources;
           vars = vars;
         };
+        retroarchpkg = final.callPackage ./retroarchpkg {
+          sources = sources;
+          vars = vars;
+        };
       }
     )
   ];
