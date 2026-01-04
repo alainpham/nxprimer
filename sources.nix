@@ -1,3 +1,6 @@
+let
+  retroarchversion = "1.22.2";
+in
 {
   # initial state version
   dotfilesgit = builtins.fetchGit {
@@ -49,7 +52,6 @@
     name = "estation.AppImage";
   };
 
-  retroarchversion = "1.22.2";
 
   retroarchpkgurl = builtins.fetchurl {
     url = "https://buildbot.libretro.com/stable/${retroarchversion}/linux/x86_64/RetroArch.7z";
