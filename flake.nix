@@ -25,8 +25,12 @@
         ./configuration.nix
         ./hardware-configuration.nix
         ./hw.nix
+        
         ./modules/common
-
+        ./modules/dev
+        ./modules/containers
+        ./modules/virtualization
+        ./modules/gui
         # custom derivations of various apps
         ./derivations
 
