@@ -1,6 +1,6 @@
-{ pkgs, vars, sources, ... }:
-let
-  scripts = pkgs.stdenv.mkDerivation {
+{ pkgs, sources, ... }:
+
+stdenv.mkDerivation {
     pname = "scripts";
     version = "master";
 
@@ -21,12 +21,3 @@ let
       cp -r $src/icons/* "$out/share/icons/"
     '';
   }; 
-in
-{
-  nixpkgs.overlays = [
-    (final: prev:
-      {
-        scripts = scripts;
-      })
-  ];
-}
