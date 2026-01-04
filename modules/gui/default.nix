@@ -113,7 +113,7 @@
     };
 
     home.activation = {
-      init-homefld = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      homews = lib.hm.dag.entryAfter ["writeBoundary"] ''
         folders="
           workspaces
           recordings

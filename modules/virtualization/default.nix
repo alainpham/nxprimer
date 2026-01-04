@@ -31,7 +31,7 @@
   # initialize virtualization folders in home
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
     home.activation = {
-      init-homefld = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      vmfolders = lib.hm.dag.entryAfter ["writeBoundary"] ''
         folders="
           virt/runtime
           virt/images
