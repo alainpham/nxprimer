@@ -24,6 +24,11 @@
           vars = vars;
         };
 
+        gamingscripts = final.callPackage ./gamingscripts {
+          sources = sources;
+          vars = vars;
+        };
+
         iconspkg = final.callPackage ./iconspkg {
           sources = sources;
           vars = vars;
