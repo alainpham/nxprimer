@@ -20,7 +20,7 @@
     path = [ "/run/current-system/sw" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.scripts}/bin/firstboot-dockernet";
+      ExecStart = "${pkgs.containerscripts}/bin/firstboot-dockernet";
     };
   };
 
