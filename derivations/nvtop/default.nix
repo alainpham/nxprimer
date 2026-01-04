@@ -1,7 +1,7 @@
-{ appimageTools, sources, ... }:
+{ pkgs, sources, ... }:
 
-appimageTools.wrapType2 {
-    pname = "nvtop";
-    version = "master";
-    src = sources.nvtopurl;
+pkgs.appimageTools.wrapType2 {
+  pname = "nvtop";
+  version = "master";
+  src = sources.nvtopurl;
 }

@@ -1,7 +1,7 @@
-{ appimageTools, sources, ... }:
+{ pkgs, sources, ... }:
 
-appimageTools.wrapType2 {
-    pname = "estation";
-    version = "master";
-    src = sources.emustationurl;
+pkgs.appimageTools.wrapType2 {
+  pname = "estation";
+  version = "master";
+  src = sources.emustationurl;
 }
