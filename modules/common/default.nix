@@ -1,10 +1,12 @@
 { config, lib, pkgs, vars, nixStateVersion, ... }:
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # fastboot
+  # faster boot times
   boot.loader.timeout = 1;
 
   system.stateVersion = nixStateVersion;
@@ -89,13 +91,7 @@
       isNormalUser = true;
       extraGroups = [ 
         "wheel"
-        "docker"
-        "audio"
-        "video"
         "networkmanager"
-        "libvirtd"
-        "kvm"
-        "input"
       ];
     };
   };
@@ -109,8 +105,8 @@
     wantedBy = [ "sysinit.target" ];
     path = [ "/run/current-system/sw" ];
     serviceConfig = {
-      ExecStart = "${pkgs.scripts}/bin/turboboost no";
-      ExecStop = "${pkgs.scripts}/bin/turboboost yes";
+      ExecStart = "${pkgs.osscripts}/bin/turboboost no";
+      ExecStop = "${pkgs.osscripts}/bin/turboboost yes";
       RemainAfterExit = true;
     };
   };
@@ -141,6 +137,34 @@
   '';
   };
   programs.nix-ld.enable = true;
+
+  home-manager.users.${vars.targetUserName} = { lib, ... }: {
+    home.stateVersion = nixStateVersion;
+    programs.git = {
+      enable = true;
+    };
+    programs.bash = { 
+      enable = true;
+    };
+    home.activation = {
+      ssh-key = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        sshkeyexists=$([ -f "$HOME/.ssh/id_"*".pub" ] && echo 1 || echo 0)
+
+        if [ $sshkeyexists -eq 0 ]; then
+            ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N  ""
+        fi
+      '';
+    };
+
+    home.file = {
+      ".gitconfig" = { 
+        source = "${sources.dotfilesgit}/home/.gitconfig"; 
+        force = true;
+      };
+    }
+  };
+
+  environment.systemPackages = with pkgs; [
     curl
     wget
     ncdu
@@ -170,5 +194,8 @@
     libva-utils
     bchunk
     stow
+
+    osscripts
+  ]; 
 
 }

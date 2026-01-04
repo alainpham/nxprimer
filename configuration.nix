@@ -1,132 +1,22 @@
 { config, lib, pkgs, vars, sources, nixStateVersion, ... }:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  # chrome policies for extensions (ublock origin lite & bitwarden) & bookmarks
-  environment.etc."opt/chrome/policies/managed/chrome-policies.json".text = ''
-    {
-      "ExtensionInstallForcelist": [
-        "ddkjiahejlhfcafbddmgiahcphecmpfh",
-        "nngceckbapebfimnlniiiahkandclblb"
-      ],
-      "BookmarkBarEnabled": true,
-      "MetricsReportingEnabled": false,
-      "ManagedBookmarks": [
-        {
-          "toplevel_name": "MKS"
-        },
-        {
-          "name": "sunshine",
-          "url": "https://localhost:47990/"
-        },
-        {
-          "name": "local-syncthing",
-          "url": "http://localhost:8384/"
-        },
-        {
-          "name": "hub-syncthing",
-          "url": "http://192.168.8.100:8384/"
-        },
-        {
-          "name": "jellyfin",
-          "url": "http://192.168.8.100:8096/"
-        }
-      ]
-    }
-  '';
+  imports = [
+    # ./modules/dev/default.nix
+  ];
 
-
-  home-manager.useGlobalPkgs = true;
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
-    home.stateVersion = nixStateVersion;
-    programs.git = {
-      enable = true;
-    };
-
-    programs.bash = { 
-      enable = true;
-      profileExtra = builtins.readFile "${sources.dotfilesgit}/home/.profile";
-    };
 
     # create folders and empty files
-    home.activation = {
-      init-homefld = lib.hm.dag.entryAfter ["writeBoundary"] ''
-
-      folders="
-        ssh
-        
-        virt/runtime
-        virt/images
-        
-        workspaces
-        recordings
-      "
-      for folder in $(echo $folders); do
-        if [ ! -L "$HOME/$folder" ] && [ ! -d "$HOME/$folder" ]; then
-          mkdir -p "$HOME/$folder"
-        fi
-      done
-      touch "$HOME/virt/runtime/vms"
-
-      sshkeyexists=$([ -f "$HOME/.ssh/id_"*".pub" ] && echo 1 || echo 0)
-
-      if [ $sshkeyexists -eq 0 ]; then
-          ${pkgs.openssh}/bin/ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N  ""
-      fi
-    '';
-
-    enablePicom = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if [ ${toString vars.enablePicom} ]; then
-        echo picom enabled
-      else
-        echo picom disabled
-        touch "$HOME/.nopicom"
-      fi
-    '';
-
-    numlockOnBoot = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if [ ${toString vars.numlockOnBoot} ]; then
-        echo numlock on boot enabled
-      else
-        echo numlock on boot disabled
-        touch "$HOME/.nonumlock"
-      fi
-    '';
-
-    };
 
     home.file = {
-      # files at root of home
-      ".xinitrc" = { 
-        source = "${sources.dotfilesgit}/home/.xinitrc";
-        force = true;
-      };
-      ".gitconfig" = { 
-        source = "${sources.dotfilesgit}/home/.gitconfig"; 
-        force = true;
-      };
-      ".gtkrc-2.0" = { 
-        source = "${sources.dotfilesgit}/home/.gtkrc-2.0"; 
-        force = true;
-      };
       # folders
       "bin" = { 
           source = "${sources.dotfilesgit}/home/bin";
           recursive = true;
           force = true;
       };
-      ".config" = { 
-          source = "${sources.dotfilesgit}/home/.config";
-          recursive = true;
-          force = true;
-      };
-      ".local" = { 
-          source = "${sources.dotfilesgit}/home/.local";
-          recursive = true;
-          force = true;
-      };
-
       # emulation configs
       "ES-DE" = { 
           source = "${sources.dotfilesgit}/home/ES-DE";
@@ -154,9 +44,7 @@
           "${pkgs.retroarchpkg}/share/appdata/retroarch/cores"
           ];
         };
-          
         force = true;
-
       };
 
       ".config/retroarch/filters" = {
@@ -181,105 +69,8 @@
     };
   };
 
-
-
-  nixpkgs.config.allowUnfree = true;
   
   environment.systemPackages = with pkgs; [
-
-    # virtualization todo
-    cdrkit
-    libosinfo
-
-    # Basic desktop applications
-    xorg.xwininfo
-    wmctrl
-
-    (dwm.overrideAttrs (oldAttrs: rec {
-      src = sources.dwmgit;
-    }))
-
-    (st.overrideAttrs (oldAttrs: rec {
-      src = sources.stgit;
-    }))
-
-    (dmenu.overrideAttrs (oldAttrs: rec {
-      src = sources.dmenugit;
-    }))
-
-    (slock.overrideAttrs (oldAttrs: rec {
-      src = sources.slockgit;
-      buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama imlib2];  
-    }))
-
-    (dwmblocks.overrideAttrs (oldAttrs: rec {
-      src = sources.dwmblocksgit;
-    }))
-
-    rofi
-    numlockx
-    usbutils
-    libinput-gestures
-    SDL2
-    ntfs3g
-    ifuse
-    mpv
-    haruna
-    vlc
-    cmatrix
-    nmon
-    mesa-demos
-    fastfetch
-    feh
-    qimgv
-    kdePackages.kimageformats
-    acpitool
-    lm_sensors
-    libnotify
-    dunst
-    mkvtoolnix
-    imagemagick
-    mediainfo-gui
-    mediainfo
-    arandr
-    picom
-    jgmenu
-    brightnessctl
-    xsane
-    filezilla
-    speedcrunch
-    font-awesome
-    lxappearance
-    kdePackages.breeze
-    kdePackages.breeze-icons
-    kdePackages.breeze-gtk
-
-    bluetui
-    impala
-
-    gparted
-    vulkan-tools
-    ffmpeg-full
-    fdk_aac
-    yt-dlp
-    google-chrome
-    lxqt.pavucontrol-qt
-    alsa-utils
-    
-
-    flameshot
-    maim
-    xclip
-    xdotool
-
-    xarchiver
-    ghostscript
-    vscode
-       
-    moonlight-qt
-
-    # all custom scripts & webapps
-    scripts
 
     # workstation desktop apps
     handbrake
@@ -306,7 +97,7 @@
     postman
     dbeaver-bin
 
-    emustation
+    estation
     retroarchpkg
     retroarchcorespkg
     retroarchbiospkg
@@ -329,123 +120,7 @@
     antimicrox
   ];
 
-  services.printing = {
-    enable = true;       # enables CUPS
-    # package = pkgs.altVersion.cups;
-  };
 
-  ##################################################
-  # virtualization
-  ##################################################
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-
-  systemd.services.firstboot-virt = {
-    enable = vars.enableVirtualization;
-    description = "firstboot-virt";
-    after = [ "libvirtd.service" ];
-    wantedBy = [ "multi-user.target" ];
-    path = [ "/run/current-system/sw" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.scripts}/bin/firstboot-virt";
-    };
-  };
-
-  ##################################################
-  # gui
-  ##################################################
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-  hardware.bluetooth = {
-    enable = true;
-    input = {
-      General = {
-        ClassicBondedOnly = false;
-      };
-    };
-  };
-
-  services.xserver = {
-    enable = true;
-    xkb.layout = vars.keyboardLayout;
-    xkb.model = vars.keyboardModel;
-    xkb.variant = vars.keyboardVariant;
-    displayManager.startx.enable = true;
-  };
-  services.udisks2.enable = true;
-
-  services.libinput.touchpad = {
-    tapping = true;
-    naturalScrolling = false;
-    disableWhileTyping = true;
-  };
-
-  services.gvfs.enable = true;
-  
-  fonts.packages = with pkgs; [
-    nerd-fonts.noto
-    noto-fonts
-  ];
-
-  # sound
-  boot.kernelModules = [ 
-    "snd-dummy"
-    "snd_aloop"
-  ];
-  boot.extraModprobeConfig = ''
-    options snd-aloop index=10 id=loop
-    options snd-dummy index=11 id=dummy
-  '';
-
-  services.udev.extraRules = ''
-    ATTR{id}=="dummy", ATTR{number}=="11",SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1",ENV{ACP_IGNORE}="1"
-    ATTR{id}=="loop", ATTR{number}=="10",SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1"
-    ATTR{id}=="C920", SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1",ENV{ACP_IGNORE}="1"
-    # shanwan gamepad to inhibit keyboard input
-    SUBSYSTEM=="input",ATTRS{id/vendor}=="20bc",ATTRS{id/product}=="5500",ATTRS{capabilities/key}=="1000002000000 39fad941d801 1c000000000000 0", RUN+="${pkgs.scripts}/bin/inhibit-gpad-kbd"
-  '';
-
-  services.pipewire.enable = false;
-  services.pulseaudio = {
-    enable = true;
-    support32Bit = true;
-  };
-
-  # remote access
-  services.sunshine.enable = true;
-  services.sunshine.autoStart = false;
-  services.sunshine.openFirewall = true;
-
-
-  # thunar
-  programs.xfconf.enable = true;
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-      thunar-media-tags-plugin
-    ];
-  };
-
-
-
-  # obs
-  programs.obs-studio = {
-    enable = true;
-    enableVirtualCamera = true;
-  };
-  
-  # app images setup
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
 
   
 }

@@ -4,7 +4,27 @@
     (
       final: prev: {
 
-        scripts = final.callPackage ./scripts {
+        osscripts = final.callPackage ./osscripts {
+          sources = sources;
+          vars = vars;
+        };
+
+        containerscripts = final.callPackage ./containerscripts {
+          sources = sources;
+          vars = vars;
+        };
+
+        vmscripts = final.callPackage ./vmscripts {
+          sources = sources;
+          vars = vars;
+        };
+
+        guiscripts = final.callPackage ./guiscripts {
+          sources = sources;
+          vars = vars;
+        };
+
+        iconspkg = final.callPackage ./iconspkg {
           sources = sources;
           vars = vars;
         };
@@ -14,7 +34,7 @@
           vars = vars;
         };
 
-        emustation = final.callPackage ./emustation {
+        estation = final.callPackage ./estation {
           sources = sources;
           vars = vars;
         };

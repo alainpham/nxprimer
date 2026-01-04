@@ -53,7 +53,7 @@ in
     name = "nvtop.AppImage";
   };
 
-  emustationurl = builtins.fetchurl {
+  estationurl = builtins.fetchurl {
     url = "https://gitlab.com/es-de/emulationstation-de/-/package_files/246875981/download";
     sha256 = "4cb66cfc923099711cfa0eddd83db64744a6294e02e3ffd19ee867f77a88ec7e";
     name = "estation.AppImage";

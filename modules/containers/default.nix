@@ -5,6 +5,14 @@
   ##################################################
   virtualisation.docker.enable = true;
 
+  users.users = {
+    ${vars.targetUserName} = {
+      extraGroups = [ 
+        "docker"
+      ];
+    };
+  };
+
   systemd.services.firstboot-dockernet = {
     description = "firstboot-dockernet";
     after = [ "docker.service" ];
@@ -33,7 +41,7 @@
   # kubernetes
   ##################################################
   services.k3s = {
-    enable = vars.enableKubernetes;
+    enable = true;
     extraFlags = [ 
       "--disable=traefik" 
       "--disable=servicelb"
@@ -43,8 +51,11 @@
   };
   # Disable k3s from starting at boot; we'll manage it manually
   systemd.services.k3s.wantedBy = lib.mkForce [ ];
+
   environment.systemPackages = with pkgs; [
     k9s
     kubernetes-helm
+
+    containerscripts
   ]
 }
