@@ -57,5 +57,5 @@
     kubernetes-helm
 
     containerscripts
-  ]
+  ];
 }
