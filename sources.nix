@@ -45,7 +45,7 @@ in
     url = "https://github.com/alainpham/gshorts.git";
     ref = "master";
     rev = "dda21ee0407252346fd8839d12ce18952c76ac76";
-  }
+  };
 
   nvtopurl =  builtins.fetchurl {
     url = "https://github.com/Syllo/nvtop/releases/download/3.2.0/nvtop-3.2.0-x86_64.AppImage";
