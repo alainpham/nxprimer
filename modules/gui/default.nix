@@ -109,15 +109,6 @@
   };
 
 
-  users.users = {
-    ${vars.targetUserName} = {
-      extraGroups = [ 
-        "audio"
-        "video"
-        "input"
-      ];
-    };
-  };
 
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
     

@@ -7,15 +7,6 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
-  users.users = {
-    ${vars.targetUserName} = {
-      extraGroups = [ 
-        "libvirtd"
-        "kvm"
-      ];
-    };
-  };
-
   systemd.services.firstboot-virt = {
     enable = true;
     description = "firstboot-virt";
