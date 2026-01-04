@@ -62,11 +62,7 @@
       ATTR{id}=="C920", SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1",ENV{ACP_IGNORE}="1"
     '';
 
-  # services.udev.extraRules = lib.mkAfter
-  #   ''
-  #     # shanwan gamepad to inhibit keyboard input
-  #     SUBSYSTEM=="input",ATTRS{id/vendor}=="20bc",ATTRS{id/product}=="5500",ATTRS{capabilities/key}=="1000002000000 39fad941d801 1c000000000000 0", RUN+="${pkgs.scripts}/bin/inhibit-gpad-kbd"
-  #   '';
+
 
   services.pipewire.enable = false;
   services.pulseaudio = {
@@ -96,11 +92,6 @@
     ];
   };
 
-  # obs
-  programs.obs-studio = {
-    enable = true;
-    enableVirtualCamera = true;
-  };
   
   # app images setup
   programs.appimage = {

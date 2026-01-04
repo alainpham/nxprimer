@@ -71,31 +71,6 @@
   
   # environment.systemPackages = with pkgs; [
 
-  #   # workstation desktop apps
-  #   handbrake
-  #   libdvdcss
-  #   gimp3
-  #   rawtherapee
-  #   krita
-  #   mypaint
-  #   pinta
-  #   inkscape
-  #   blender
-  #   godot
-  #   easytag
-  #   audacity
-    
-  #   kdePackages.kdenlive
-  #   onlyoffice-desktopeditors
-  #   mlv-app
-  #   drawio
-  #   viber
-  #   freac
-  #   localsend
-  #   avidemux
-  #   postman
-  #   dbeaver-bin
-
   #   estation
   #   retroarchpkg
   #   retroarchcorespkg

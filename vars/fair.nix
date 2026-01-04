@@ -10,6 +10,7 @@
   numlockOnBoot = true;
   automaticlogin = true;
 
+  enableDev = true;
   enableContainers = true;
   enableVirtualization = true;
   enableGui = true;

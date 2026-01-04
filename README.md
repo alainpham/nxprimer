@@ -69,6 +69,7 @@ Next steps
  - modularise into different files for server docker kubernetes worstation emulation station
  - hardware encoding
  - auto install vscode plugins
+ - make first boot unreliant on network connectivity
 
 
 # silence chime of macbook pro 2007
@@ -122,3 +123,4 @@ nixos-enter --root /mnt -c "chown -R apham /home/apham/lab"
 
 to target a certain release temporarily
  sudo nixos-rebuild switch -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/d9bc5c7dceb3.tar.gz
+

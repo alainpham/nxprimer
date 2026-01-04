@@ -39,7 +39,12 @@
         # home manager
         home-manager.nixosModules.home-manager
       ]
-      ++ lib.optional (vars.) ./hw.nix
+      ++ lib.optional (vars.enableDev) ./modules/dev
+      ++ lib.optional (vars.enableContainers) ./modules/containers
+      ++ lib.optional (vars.enableVirtualization) ./modules/virtualization
+      ++ lib.optional (vars.enableGui) ./modules/gui
+      ++ lib.optional (vars.enableWorkstation) ./modules/workstation
+      ++ lib.optional (vars.enableGaming) ./modules/gaming
       ;
     };
   };
