@@ -231,7 +231,7 @@ in
       };
 
       ".config/retroarch/system" = {
-        source = "${retroarchbiospkg}/share/appdata/retroarch/system";
+        source = "${pkgs.retroarchbiospkg}/share/appdata/retroarch/system";
         force = true;
       };
     };
