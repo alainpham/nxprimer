@@ -23,27 +23,45 @@
         force = true;
       };
       "bin/cemu" = { 
-          source = "${sources.dotfilesgit}/home/bin/cemu";
-          force = true;
+        source = "${sources.dotfilesgit}/home/bin/cemu";
+        force = true;
       };
       "bin/dolphin-emu" = { 
-          source = "${sources.dotfilesgit}/home/bin/dolphin-emu";
-          force = true;
+        source = "${sources.dotfilesgit}/home/bin/dolphin-emu";
+        force = true;
       };
       "bin/estation" = { 
-          source = "${sources.dotfilesgit}/home/bin/estation";
-          force = true;
+        source = "${sources.dotfilesgit}/home/bin/estation";
+        force = true;
       };
 
       # folders
       # emulation configs
       "ES-DE" = { 
-          source = "${sources.dotfilesgit}/home/ES-DE";
-          recursive = true;
-          force = true;
+        source = "${sources.dotfilesgit}/home/ES-DE";
+        recursive = true;
+        force = true;
+      };
+
+      ".config/Cemu" = { 
+        source = "${sources.dotfilesgit}/home/.config/Cemu";
+        recursive = true;
+        force = true;
+      };
+
+      ".config/dolphin-emu" = { 
+        source = "${sources.dotfilesgit}/home/.config/dolphin-emu";
+        recursive = true;
+        force = true;
       };
 
       # retroarch folders
+      ".config/retroarch" = {
+        source = "${sources.dotfilesgit}/home/.config/retroarch";
+        recursive = true;
+        force = true;
+      };
+
       ".config/retroarch/assets" = {
         source = "${pkgs.retroarchpkg}/share/appdata/retroarch/assets";
         force = true;
