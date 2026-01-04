@@ -19,8 +19,6 @@
     };
   };
 
-  environment.etc."NetworkManager/dnsmasq.d/vms".source = "/home/${vars.targetUserName}/virt/runtime/vms";
-
   users.users = {
     ${vars.targetUserName} = {
       extraGroups = [ 
@@ -31,22 +29,21 @@
   };
 
   # initialize virtualization folders in home
-  home-manager.users.${vars.targetUserName} = { config, lib, pkgs, vars, sources, nixStateVersion, ... }:{
-    home.activation = {
-      vmfolders = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        folders="
-          virt/runtime
-          virt/images
-        "
-        for folder in $(echo $folders); do
-          if [ ! -L "$HOME/$folder" ] && [ ! -d "$HOME/$folder" ]; then
-            mkdir -p "$HOME/$folder"
-          fi
-        done
-        touch "$HOME/virt/runtime/vms"
-      '';
-    };
-  };
+  # home-manager.users.${vars.targetUserName} = { config, lib, pkgs, vars, sources, nixStateVersion, ... }:{
+  #   home.activation = {
+  #     vmfolders = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  #       folders="
+  #         virt/runtime
+  #         virt/images
+  #       "
+  #       for folder in $(echo $folders); do
+  #         if [ ! -L "$HOME/$folder" ] && [ ! -d "$HOME/$folder" ]; then
+  #           mkdir -p "$HOME/$folder"
+  #         fi
+  #       done
+  #     '';
+  #   };
+  # };
 
   environment.systemPackages = with pkgs; [
     # virtualization todo
