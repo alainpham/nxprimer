@@ -1,4 +1,4 @@
-{ config, lib, pkgs, vars, nixStateVersion, ... }:
+{ config, lib, pkgs, vars, sources, nixStateVersion, ... }:
 {
   ##################################################
   # Docker

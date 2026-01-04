@@ -1,4 +1,4 @@
-{ config, lib, pkgs, vars, nixStateVersion, ... }:
+{ config, lib, pkgs, vars, sources, nixStateVersion, ... }:
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
