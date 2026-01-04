@@ -27,7 +27,7 @@
         ./hw.nix
         ./modules/common
 
-        # custom derivations
+        # custom derivations of various apps
         ./derivations
         home-manager.nixosModules.home-manager
       ];

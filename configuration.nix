@@ -4,20 +4,6 @@ let
   # change this
   # end of change this
 
-  
-  # # nvtop
-  # nvtop = pkgs.appimageTools.wrapType2 {
-  #   pname = "nvtop";
-  #   version = "3.2.0";
-  #   src = sources.nvtopurl;
-  # };
-
-  # emulationstation
-  emustation = pkgs.appimageTools.wrapType2 {
-    pname = "estation";
-    version = "3.4.0";
-    src = sources.emustationurl;
-  };
 
 
   # retroarch

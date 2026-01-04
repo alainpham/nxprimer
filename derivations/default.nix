@@ -11,6 +11,10 @@
           sources = sources;
           vars = vars;
         };
+        emustation = final.callPackage ./emustation {
+          sources = sources;
+          vars = vars;
+        };
       }
     )
   ];
