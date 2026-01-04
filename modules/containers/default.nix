@@ -32,7 +32,7 @@
     serviceConfig = {
       Type = "oneshot";
       User = vars.targetUserName;
-      ExecStart = "${pkgs.scripts}/bin/firstboot-dockerbuildx";
+      ExecStart = "${pkgs.containerscripts}/bin/firstboot-dockerbuildx";
       RemainAfterExit = true;
     };
   };
