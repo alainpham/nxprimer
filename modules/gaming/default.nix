@@ -18,7 +18,10 @@
         source = "${pkgs.pcsx2biospkg}/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin";
         force = true;
       };
-
+      ".local/share/applications/info.cemu.Cemu.desktop" = {
+        source = "${sources.dotfilesgit}/home/.local/share/applications/info.cemu.Cemu.desktop";
+        force = true;
+      };
       "bin/cemu" = { 
           source = "${sources.dotfilesgit}/home/bin/cemu";
           force = true;
