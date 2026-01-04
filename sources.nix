@@ -41,6 +41,12 @@ in
     rev = "bf55e259f05b1f1e497dc63ed45f332ba1edd174";
   };
 
+  gshortsgit = builtins.fetchGit {
+    url = "https://github.com/alainpham/gshorts.git";
+    ref = "master";
+    rev = "dda21ee0407252346fd8839d12ce18952c76ac76";
+  }
+
   nvtopurl =  builtins.fetchurl {
     url = "https://github.com/Syllo/nvtop/releases/download/3.2.0/nvtop-3.2.0-x86_64.AppImage";
     sha256 = "33c54fb7025f43a213db8e98308860d400db3349a61fc9382fe4736c7d2580c4";
@@ -52,7 +58,7 @@ in
     sha256 = "4cb66cfc923099711cfa0eddd83db64744a6294e02e3ffd19ee867f77a88ec7e";
     name = "estation.AppImage";
   };
-
+  
   retroarchversion = retroarchversion;
 
   retroarchpkgurl = builtins.fetchurl {
@@ -74,4 +80,6 @@ in
     url = "https://github.com/archtaurus/RetroPieBIOS/raw/master/BIOS/pcsx2/bios/ps2-0230a-20080220.bin";
     sha256 = "f609ed1ca62437519828cdd824b5ea79417fd756e71a4178443483e3781fedd2";
   };
+
+
 }

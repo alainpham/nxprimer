@@ -38,8 +38,13 @@
           sources = sources;
           vars = vars;
         };
-        
+
         pcsx2biospkg = final.callPackage ./pcsx2biospkg {
+          sources = sources;
+          vars = vars;
+        };
+
+        gshorts = final.callPackage ./gshorts {
           sources = sources;
           vars = vars;
         };

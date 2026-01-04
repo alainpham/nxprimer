@@ -1,40 +1,5 @@
 { config, lib, pkgs, vars, sources, nixStateVersion, ... }:
 
-let
-
-  gshorts = pkgs.stdenv.mkDerivation {
-    pname = "gshorts";
-    version = "master";
-
-    src = builtins.fetchGit {
-      url = "https://github.com/alainpham/gshorts.git";
-      ref = "master";
-      rev = "dda21ee0407252346fd8839d12ce18952c76ac76";
-    };
-    nativeBuildInputs = [
-      # autoconf
-      # automake
-      pkgs.pkg-config
-      pkgs.SDL2
-      pkgs.SDL2.dev
-    ];
-    buildInputs = [
-      pkgs.SDL2
-      pkgs.SDL2.dev
-    ];
-
-    buildPhase = ''
-      make clean
-      make
-    '';
-     
-    installPhase = ''
-      mkdir -p "$out/bin"
-      cp gshorts "$out/bin/gshorts"
-    '';
-  };
-
-in
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
