@@ -1,23 +1,6 @@
 { config, lib, pkgs, vars, sources, nixStateVersion, ... }:
 
 let
-  # change this
-  # end of change this
-
-
-  pcsx2biospkg = pkgs.stdenv.mkDerivation {
-    pname = "pcsx2biospkg";
-    version = "master";
-    src = pkgs.fetchurl {
-      url = "https://github.com/archtaurus/RetroPieBIOS/raw/master/BIOS/pcsx2/bios/ps2-0230a-20080220.bin";
-      sha256 = "f609ed1ca62437519828cdd824b5ea79417fd756e71a4178443483e3781fedd2";
-    };
-    unpackPhase = "true";
-    installPhase = ''
-      mkdir -p $out/share/appdata/pcsx2/bios
-      cp $src $out/share/appdata/pcsx2/bios/ps2-0230a-20080220.bin
-    '';
-  };
 
   gshorts = pkgs.stdenv.mkDerivation {
     pname = "gshorts";
