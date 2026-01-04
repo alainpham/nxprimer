@@ -20,4 +20,4 @@ stdenv.mkDerivation {
       mkdir -p $out/share/icons
       cp -r $src/icons/* "$out/share/icons/"
     '';
-  }; 
+  }
