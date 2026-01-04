@@ -5,6 +5,13 @@
   ##################################################
   virtualisation.docker.enable = true;
 
+  users.users = {
+    ${vars.targetUserName} = {
+      extraGroups = [ 
+        "docker"
+      ];
+    };
+  };
 
   systemd.services.firstboot-dockernet = {
     description = "firstboot-dockernet";

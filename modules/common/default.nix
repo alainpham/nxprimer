@@ -96,12 +96,6 @@
       extraGroups = [ 
         "wheel"
         "networkmanager"
-        "libvirtd"
-        "kvm"
-        "docker"
-        "audio"
-        "video"
-        "input"
       ];
     };
   };
