@@ -25,15 +25,16 @@
         ./configuration.nix
         ./hardware-configuration.nix
         ./hw.nix
-        
+
+        # custom derivations of various apps
+        ./derivations
+
+        # modularized configurations
         ./modules/common
         ./modules/dev
         ./modules/containers
         ./modules/virtualization
         ./modules/gui
-        # custom derivations of various apps
-        ./derivations
-
         # home manager
         home-manager.nixosModules.home-manager
       ];

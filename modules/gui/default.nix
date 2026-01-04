@@ -238,20 +238,20 @@
       };
 
       # .local
-      ".local/applications/bluetui.desktop" = { 
-          source = "${sources.dotfilesgit}/home/.local/applications/bluetui.desktop";
+      ".local/share/applications/bluetui.desktop" = { 
+          source = "${sources.dotfilesgit}/home/.local/share/applications/bluetui.desktop";
           force = true;
       };
-      ".local/applications/ctext.desktop" = { 
-          source = "${sources.dotfilesgit}/home/.local/applications/ctext.desktop";
+      ".local/share/applications/ctext.desktop" = { 
+          source = "${sources.dotfilesgit}/home/.local/share/applications/ctext.desktop";
           force = true;
       };
-      ".local/applications/nmtui.desktop" = { 
-          source = "${sources.dotfilesgit}/home/.local/applications/nmtui.desktop";
+      ".local/share/applications/nmtui.desktop" = { 
+          source = "${sources.dotfilesgit}/home/.local/share/applications/nmtui.desktop";
           force = true;
       };
-      ".local/dwm" = { 
-          source = "${sources.dotfilesgit}/home/.local/dwm";
+      ".local/share/dwm" = { 
+          source = "${sources.dotfilesgit}/home/.local/share/dwm";
           recursive = true;
           force = true;
       };
