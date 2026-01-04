@@ -28,6 +28,9 @@
     };
   };
 
+  environment.etc."NetworkManager/dnsmasq.d/vms".source = "/home/${vars.targetUserName}/virt/runtime/vms";
+
+
   # initialize virtualization folders in home
   home-manager.users.${vars.targetUserName} = { config, lib, pkgs, vars, sources, nixStateVersion, ... }:{
     home.activation = {
