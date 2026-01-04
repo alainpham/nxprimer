@@ -89,15 +89,15 @@ mount -o umask=077 /dev/disk/by-label/NIXBOOT /mnt/boot
 
 nixos-generate-config --root /mnt
 
-cp configuration.nix /etc/nixos
-cp sources.nix /etc/nixos
-cp flake.nix /etc/nixos/flake.nix
-cp -r modules /etc/nixos/
-cp -r derivations /etc/nixos/
+cp configuration.nix /mnt/etc/nixos
+cp sources.nix /mnt/etc/nixos
+cp flake.nix /mnt/etc/nixos/flake.nix
+cp -r modules /mnt/etc/nixos/
+cp -r derivations /mnt/etc/nixos/
 cp $TARGETVARS /mnt/etc/nixos/vars.nix
 cp $TARGETHW /mnt/etc/nixos/hw.nix
 
-nixos-install --no-root-passwd --flake /etc/nixos#nixos
+nixos-install --no-root-passwd --flake /mnt/etc/nixos#nixos
 
 nixos-enter --root /mnt -c "passwd $TARGET_USERNAME"
 
