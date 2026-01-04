@@ -9,5 +9,5 @@
     nodejs_24
     go
     maven
-  ]
+  ];
 }
