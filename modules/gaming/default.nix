@@ -116,8 +116,8 @@
 
     # windows games compatibility experimental
     lutris
-    # wineWowPackages.stable
-    # winetricks
+    wineWowPackages.stable
+    winetricks
     # steam
 
     gshorts
