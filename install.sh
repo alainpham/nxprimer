@@ -97,7 +97,7 @@ cp -r derivations /mnt/etc/nixos/
 cp $TARGETVARS /mnt/etc/nixos/vars.nix
 cp $TARGETHW /mnt/etc/nixos/hw.nix
 
-nixos-install --no-root-passwd --flake /mnt/etc/nixos#nixos
+nixos-install --no-root-passwd  --root /mnt --flake /mnt/etc/nixos#nixos
 
 nixos-enter --root /mnt -c "passwd $TARGET_USERNAME"
 

@@ -119,7 +119,7 @@
     };
   };
 
-  home-manager.users.${vars.targetUserName} = {
+  home-manager.users.${vars.targetUserName} = { config, lib, pkgs, vars, sources, nixStateVersion, ... }: {
     
     programs.bash = { 
       profileExtra = builtins.readFile "${sources.dotfilesgit}/home/.profile";
