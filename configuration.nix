@@ -587,7 +587,7 @@ in
     path = [ "/run/current-system/sw" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${scripts}/bin/firstboot-dockernet";
+      ExecStart = "${pkgs.scripts}/bin/firstboot-dockernet";
     };
   };
 
@@ -599,7 +599,7 @@ in
     serviceConfig = {
       Type = "oneshot";
       User = vars.targetUserName;
-      ExecStart = "${scripts}/bin/firstboot-dockerbuildx";
+      ExecStart = "${pkgs.scripts}/bin/firstboot-dockerbuildx";
       RemainAfterExit = true;
     };
   };
@@ -633,7 +633,7 @@ in
     path = [ "/run/current-system/sw" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${scripts}/bin/firstboot-virt";
+      ExecStart = "${pkgs.scripts}/bin/firstboot-virt";
     };
   };
 
@@ -692,7 +692,7 @@ in
     ATTR{id}=="loop", ATTR{number}=="10",SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1"
     ATTR{id}=="C920", SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1",ENV{ACP_IGNORE}="1"
     # shanwan gamepad to inhibit keyboard input
-    SUBSYSTEM=="input",ATTRS{id/vendor}=="20bc",ATTRS{id/product}=="5500",ATTRS{capabilities/key}=="1000002000000 39fad941d801 1c000000000000 0", RUN+="${scripts}/bin/inhibit-gpad-kbd"
+    SUBSYSTEM=="input",ATTRS{id/vendor}=="20bc",ATTRS{id/product}=="5500",ATTRS{capabilities/key}=="1000002000000 39fad941d801 1c000000000000 0", RUN+="${pkgs.scripts}/bin/inhibit-gpad-kbd"
   '';
 
   services.pipewire.enable = false;
