@@ -138,7 +138,7 @@
   };
   programs.nix-ld.enable = true;
 
-  home-manager.users.${vars.targetUserName} = { config, lib, pkgs, vars, sources, nixStateVersion, ... }:{
+  home-manager.users.${vars.targetUserName} = { lib, ... }:{
     home.stateVersion = nixStateVersion;
     programs.git = {
       enable = true;
