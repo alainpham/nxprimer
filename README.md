@@ -65,9 +65,6 @@ nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=/etc
 
 Next steps
 
- - fix syncthing script
- - modularise into different files for server docker kubernetes worstation emulation station
- - hardware encoding
  - auto install vscode plugins
  - make first boot unreliant on network connectivity
 
