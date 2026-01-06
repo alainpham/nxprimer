@@ -122,7 +122,7 @@
     lutris
     wineWowPackages.stable
     winetricks
-    proton-rs
+    protonup-rs
     # steam
 
     gshorts
