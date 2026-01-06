@@ -92,50 +92,11 @@
     ];
   };
 
-  
   # app images setup
   programs.appimage = {
     enable = true;
     binfmt = true;
   };
-
-  # programs.vscode = {
-  #   enable = true;
-  #   extensions = with pkgs.vscode-extensions; [
-  #     # eclipse keybindings
-  #     alphabotsec.vscode-eclipse-keybindings
-  #     # markdown
-  #     yzhang.markdown-all-in-one
-  #     # python
-  #     ms-python.python
-  #     # cpp
-  #     ms-vscode.cpptools-extension-pack 
-  #     # java
-  #     vscjava.vscode-java-pack 
-  #     # c sharp
-  #     ms-dotnettools.csharp
-  #     # golang
-  #     golang.go
-  #     # php
-  #     xdebug.php-pack
-
-  #     # AI
-  #     github.copilot-chat
-
-  #     # grafana alloy
-  #     Grafana.grafana-alloy
-
-  #     # wsl for windows
-  #     ms-vscode-remote.remote-wsl
-
-  #     # file formats
-  #     redhat.vscode-xml
-  #     redhat.vscode-yaml
-
-  #     # nixos
-  #     jnoortheen.nix-ide
-  #   ];
-  # };
 
   users.users = {
     ${vars.targetUserName} = {
