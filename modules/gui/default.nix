@@ -99,43 +99,43 @@
     binfmt = true;
   };
 
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      # eclipse keybindings
-      alphabotsec.vscode-eclipse-keybindings
-      # markdown
-      yzhang.markdown-all-in-one
-      # python
-      ms-python.python
-      # cpp
-      ms-vscode.cpptools-extension-pack 
-      # java
-      vscjava.vscode-java-pack 
-      # c sharp
-      ms-dotnettools.csharp
-      # golang
-      golang.go
-      # php
-      xdebug.php-pack
+  # programs.vscode = {
+  #   enable = true;
+  #   extensions = with pkgs.vscode-extensions; [
+  #     # eclipse keybindings
+  #     alphabotsec.vscode-eclipse-keybindings
+  #     # markdown
+  #     yzhang.markdown-all-in-one
+  #     # python
+  #     ms-python.python
+  #     # cpp
+  #     ms-vscode.cpptools-extension-pack 
+  #     # java
+  #     vscjava.vscode-java-pack 
+  #     # c sharp
+  #     ms-dotnettools.csharp
+  #     # golang
+  #     golang.go
+  #     # php
+  #     xdebug.php-pack
 
-      # AI
-      GitHub.copilot-chat
+  #     # AI
+  #     github.copilot-chat
 
-      # grafana alloy
-      Grafana.grafana-alloy
+  #     # grafana alloy
+  #     Grafana.grafana-alloy
 
-      # wsl for windows
-      ms-vscode-remote.remote-wsl
+  #     # wsl for windows
+  #     ms-vscode-remote.remote-wsl
 
-      # file formats
-      redhat.vscode-xml
-      redhat.vscode-yaml
+  #     # file formats
+  #     redhat.vscode-xml
+  #     redhat.vscode-yaml
 
-      # nixos
-      jnoortheen.nix-ide
-    ];
-  };
+  #     # nixos
+  #     jnoortheen.nix-ide
+  #   ];
+  # };
 
   users.users = {
     ${vars.targetUserName} = {
@@ -277,6 +277,18 @@
       ".local/share/applications/nmtui.desktop" = { 
           source = "${sources.dotfilesgit}/home/.local/share/applications/nmtui.desktop";
           force = true;
+      };
+      ".local/share/applications/code.desktop" = { 
+          source = "${sources.dotfilesgit}/home/.local/share/applications/code.desktop";
+          force = true;
+      };
+      ".local/share/applications/code-url-handler.desktop" = { 
+          source = "${sources.dotfilesgit}/home/.local/share/applications/code-url-handler.desktop";
+          force = true;
+      };
+      "bin/code" = { 
+        source = "${sources.dotfilesgit}/home/bin/code";
+        force = true;
       };
       ".local/share/dwm" = { 
           source = "${sources.dotfilesgit}/home/.local/share/dwm";
