@@ -251,6 +251,10 @@
         source = "${sources.dotfilesgit}/home/bin/code";
         force = true;
       };
+      ".config/Code/User/settings.json" = { 
+        source = "${sources.dotfilesgit}/home/.config/Code/User/settings.json";
+        force = true;
+      };
       ".local/share/dwm" = { 
           source = "${sources.dotfilesgit}/home/.local/share/dwm";
           recursive = true;

@@ -65,7 +65,6 @@ nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=/etc
 
 Next steps
 
- - auto install vscode plugins
  - make first boot unreliant on network connectivity
 
 
