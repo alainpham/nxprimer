@@ -28,6 +28,11 @@
           sources = sources;
           vars = vars;
         };
+        
+        webapps = final.callPackage ./webapps {
+          sources = sources;
+          vars = vars;
+        };
 
         iconspkg = final.callPackage ./iconspkg {
           sources = sources;

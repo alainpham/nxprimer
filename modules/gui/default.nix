@@ -385,6 +385,7 @@
     moonlight-qt
 
     guiscripts
+    webapps
     iconspkg
 
   ];
