@@ -107,7 +107,7 @@
 
   environment.variables = {
     # for lutri
-    PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION="python"
+    PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION="python";
   };
 
   environment.systemPackages = with pkgs; [
