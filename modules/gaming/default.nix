@@ -105,7 +105,11 @@
     };
   };
 
-  
+  environment.variables = {
+    # for lutri
+    PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION="python"
+  };
+
   environment.systemPackages = with pkgs; [
 
     estation
@@ -123,7 +127,9 @@
     wineWowPackages.stable
     winetricks
     protonup-rs
-    # steam
+    protonup-qt
+    steam
+    steam-run
 
     gshorts
     sdl-jstest
