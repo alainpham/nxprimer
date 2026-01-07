@@ -130,6 +130,7 @@
     protonup-qt
     steam
     steam-run
+    q4wine
 
     gshorts
     sdl-jstest
