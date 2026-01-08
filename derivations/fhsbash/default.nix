@@ -5,8 +5,10 @@
   extraPkgs ? pkgs: [ ],
   extraLibraries ? pkgs: [ ],
   steamSupport ? true,
+  vars,
+  sources,
+  ...
 }:
-
 let
 
   qt5Deps =
