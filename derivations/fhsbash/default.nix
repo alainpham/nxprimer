@@ -24,5 +24,5 @@ pkgs.buildFHSEnv {
     xorg.libXi
   ];
 
-  runScript = "bash";
+  runScript = "${pkgs.bashInteractive}/bin/bash";
 }
