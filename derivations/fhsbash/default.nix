@@ -1,7 +1,7 @@
 { pkgs, sources, ... }:
 
 
-pkgs.buildFHSUserEnv {
+pkgs.buildFHSEnv {
   name = "fhsbash";
 
   targetPkgs = pkgs: with pkgs; [
