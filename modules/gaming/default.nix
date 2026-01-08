@@ -132,7 +132,7 @@
     # steam-run
     # bottles
     fhsbash
-    (dwm.overrideAttrs (oldAttrs: rec {
+    (lutris.overrideAttrs (oldAttrs: rec {
       runScript = "${pkgs.bash}/bin/bash";
     }))
 
