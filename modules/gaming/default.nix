@@ -123,14 +123,14 @@
     cemu
 
     # windows games compatibility experimental
-    lutris
-    wineWowPackages.stable
-    winetricks
+    # lutris
+    # wineWowPackages.stable
+    # winetricks
     protonup-rs
     protonup-qt
-    steam
-    steam-run
-    bottles
+    # steam
+    # steam-run
+    # bottles
 
     gshorts
     sdl-jstest
