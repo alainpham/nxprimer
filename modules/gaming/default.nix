@@ -131,6 +131,7 @@
     # steam
     # steam-run
     # bottles
+    fhsbash
 
     gshorts
     sdl-jstest
