@@ -132,6 +132,9 @@
     # steam-run
     # bottles
     fhsbash
+    (dwm.overrideAttrs (oldAttrs: rec {
+      runScript = "${pkgs.bash}/bin/bash";
+    }))
 
     gshorts
     sdl-jstest
