@@ -1,0 +1,1 @@
+export WINEDLLOVERRIDES="ddraw=n,b"
