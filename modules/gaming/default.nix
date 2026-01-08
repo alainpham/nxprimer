@@ -132,9 +132,6 @@
     # steam-run
     # bottles
     fhsbash
-    (lutris.overrideAttrs (oldAttrs: rec {
-      runScript = "${pkgs.bash}/bin/bash";
-    }))
 
     gshorts
     sdl-jstest
