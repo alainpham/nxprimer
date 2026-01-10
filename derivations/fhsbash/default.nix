@@ -6,8 +6,8 @@
   extraLibraries ? pkgs: [ ],
   extraProfile ? "", # string to append to shell profile
   extraEnv ? { }, # Environment variables to include in shell profile
-#   vars,
-#   sources,
+  vars,
+  sources,
 }:
 steam.buildRuntimeEnv {
   pname = "fhsbash";
