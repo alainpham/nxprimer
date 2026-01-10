@@ -105,7 +105,7 @@ buildFHSEnv {
     echo "Usage: fhsbash command-to-run args..." >&2
     exit 1
   fi
-
+  PS1="(fhsbash) \$PS1"
   exec "$@"
 '';
 
