@@ -132,6 +132,7 @@
     # steam-run
     # bottles
     fhsbash
+    umu-launcher
 
     gshorts
     sdl-jstest
