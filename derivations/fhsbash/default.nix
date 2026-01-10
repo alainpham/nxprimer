@@ -36,6 +36,7 @@
 {
   lib,
   buildFHSEnv,
+  writeShellScript
   lutris-unwrapped,
   extraPkgs ? pkgs: [ ],
   extraLibraries ? pkgs: [ ],
