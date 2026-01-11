@@ -66,7 +66,7 @@ buildFHSEnv {
   version = "master";
   profile = ''
     export PS1="(fhsrun)$PS1"
-  ''
+  '';
   runScript = writeShellScript "fhsrun" ''
   if [ $# -eq 0 ]; then
     echo "Usage: fhsrun command-to-run args..." >&2
