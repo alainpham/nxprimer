@@ -126,12 +126,12 @@
     # lutris
     # wineWowPackages.stable
     # winetricks
-    protonup-rs
-    protonup-qt
+    # protonup-rs
+    # protonup-qt
     # steam
     # steam-run
     # bottles
-    fhsbash
+    fhsrun
     umu-launcher
 
     gshorts

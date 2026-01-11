@@ -78,8 +78,8 @@
           sources = sources;
           vars = vars;
         };
-        
-        fhsbash = final.callPackage ./fhsbash {
+
+        fhsrun = final.callPackage ./fhsrun {
           sources = sources;
           vars = vars;
         };
