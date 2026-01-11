@@ -38,6 +38,10 @@
         source = "${sources.dotfilesgit}/home/bin/estation";
         force = true;
       };
+      "bin/winege" = { 
+        source = "${sources.dotfilesgit}/home/bin/winege";
+        force = true;
+      };
 
       # folders
       # emulation configs
