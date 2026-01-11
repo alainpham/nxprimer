@@ -1,43 +1,7 @@
-# {
-#   lib,
-#   steam,
-#   umu-launcher-unwrapped,
-#   extraPkgs ? pkgs: [ ],
-#   extraLibraries ? pkgs: [ ],
-#   extraProfile ? "", # string to append to shell profile
-#   extraEnv ? { }, # Environment variables to include in shell profile
-#   vars,
-#   sources,
-# }:
-# steam.buildRuntimeEnv {
-#   pname = "fhsbash";
-#   version = "master";
-
-#   extraPkgs = pkgs: [ umu-launcher-unwrapped ] ++ extraPkgs pkgs;
-#   inherit
-#     extraLibraries
-#     extraProfile
-#     extraEnv
-#     ;
-
-#   runScript = "bash";
-
-#   # Legendary spawns UMU, doesn't wait for it to exit,
-#   # and immediately exits itself. This makes it so we can't
-#   # die with parent, because parent is already dead.
-#   dieWithParent = false;
-
-#   extraInstallCommands = ''
-#     ln -s ${umu-launcher-unwrapped}/lib $out/lib
-#     ln -s ${umu-launcher-unwrapped}/share $out/share
-#   '';
-# }
-
 {
   lib,
   buildFHSEnv,
   writeShellScript,
-  lutris-unwrapped,
   extraPkgs ? pkgs: [ ],
   extraLibraries ? pkgs: [ ],
   steamSupport ? true,
@@ -98,15 +62,16 @@ let
 
 in
 buildFHSEnv {
-  pname = "fhsbash";
-  inherit (lutris-unwrapped) version;
-
-  runScript = writeShellScript "fhsbash" ''
+  pname = "fhsrun";
+  version = "master";
+  profile = ''
+    export PS1="(fhsrun)$PS1"
+  ''
+  runScript = writeShellScript "fhsrun" ''
   if [ $# -eq 0 ]; then
-    echo "Usage: fhsbash command-to-run args..." >&2
+    echo "Usage: fhsrun command-to-run args..." >&2
     exit 1
   fi
-  PS1="(fhsbash) \$PS1"
   exec "$@"
 '';
 
@@ -338,12 +303,6 @@ buildFHSEnv {
     ++ gstreamerDeps pkgs
     ++ extraLibraries pkgs;
 
-  extraInstallCommands = ''
-    mkdir -p $out/share
-    ln -sf ${lutris-unwrapped}/share/applications $out/share
-    ln -sf ${lutris-unwrapped}/share/icons $out/share
-  '';
-
   # allows for some gui applications to share IPC
   # this fixes certain issues where they don't render correctly
   unshareIpc = false;
@@ -353,16 +312,4 @@ buildFHSEnv {
   # breaks the ability for application to reference shared memory.
   unsharePid = false;
 
-  meta = {
-    inherit (lutris-unwrapped.meta)
-      homepage
-      description
-      platforms
-      license
-      maintainers
-      broken
-      ;
-
-    mainProgram = "fhsbash";
-  };
 }
