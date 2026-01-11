@@ -72,6 +72,9 @@ buildFHSEnv {
     echo "Usage: fhsrun command-to-run args..." >&2
     exit 1
   fi
+  if [[ "$1" == "bash" || "$1" == "sh" ]]; then
+    exec bash --rcfile <(cat ~/.bashrc <(echo 'PS1="(fhsrun) $PS1"'))
+  fi
   exec "$@"
 '';
 
