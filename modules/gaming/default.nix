@@ -122,16 +122,8 @@
     dolphin-emu
     cemu
 
-    # windows games compatibility experimental
-    # lutris
-    # wineWowPackages.stable
-    # winetricks
-    # protonup-rs
-    # protonup-qt
-    # steam
-    # steam-run
-    # bottles
     fhsrun
+    winetricks
     umu-launcher
 
     gshorts
