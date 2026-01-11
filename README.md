@@ -66,6 +66,7 @@ nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=/etc
 Next steps
 
  - make first boot unreliant on network connectivity
+ - fix thunar daemon not being able to launch st etc..
 
 
 # silence chime of macbook pro 2007
