@@ -95,9 +95,22 @@ mount -o umask=077 /dev/disk/by-label/NIXBOOT /mnt/boot
 mount /dev/disk/by-label/NIXDATA /mnt/data
 
 nixos-generate-config --root /mnt
-cp configuration.nix /mnt/etc/nixos/configuration.nix
+
+
+cp configuration.nix /mnt/etc/nixos
+cp sources.nix /mnt/etc/nixos
+cp flake.nix /mnt/etc/nixos/flake.nix
+cp -r modules /mnt/etc/nixos/
+cp -r derivations /mnt/etc/nixos/
 cp vars/lg15.nix /mnt/etc/nixos/vars.nix
 cp hw/lg15.nix /mnt/etc/nixos/hw.nix
+
+
+cd /mnt/etc/nixos
+nix flake update --extra-experimental-features nix-command --extra-experimental-features  flakes
+nix flake check --extra-experimental-features nix-command --extra-experimental-features  flakes
+nixos-install --no-root-passwd --flake /mnt/etc/nixos#nixos
+
 
 nixos-install --no-root-passwd
 
