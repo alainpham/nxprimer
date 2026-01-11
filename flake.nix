@@ -2,7 +2,7 @@
 {
   inputs = {
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs.url = "github:NixOS/nixpkgs/d9bc5c7dceb30d8d6fafa10aeb6aa8a48c218454"; # temporary workaround for cups issue
+    nixpkgs.url = "github:NixOS/nixpkgs/c8cfcd6ccd422e41cc631a0b73ed4d5a925c393d"; # temporary workaround for cups issue
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
