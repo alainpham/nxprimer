@@ -83,6 +83,11 @@
           sources = sources;
           vars = vars;
         };
+
+        decklinksdk = final.callPackage ./decklinksdk {
+          sources = sources;
+          vars = vars;
+        };
       }
     )
   ];
