@@ -7,7 +7,7 @@ let
     nativeBuildInputs = oldAttrs.nativeBuildInputs or [] ++ [ pkgs.makeWrapper ];
     buildInputs = oldAttrs.buildInputs ++ [
       pkgs.blackmagic-desktop-video
-      decklinksdk
+      pkgs.decklinksdk
     ];
     
     postFixup = ''
