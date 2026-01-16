@@ -5,6 +5,8 @@ pkgs.stdenv.mkDerivation {
   version = "master";
 
   src = sources.decklinksdkurl;
+  
+  buildInputs = [ pkgs.unzip ];
 
   installPhase = ''
     mkdir -p $out/include
