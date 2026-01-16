@@ -81,5 +81,9 @@ in
     sha256 = "f609ed1ca62437519828cdd824b5ea79417fd756e71a4178443483e3781fedd2";
   };
 
+  decklinksdkurl = builtins.fetchurl {
+    url = "http://192.168.8.100:28000/blackmagic/Blackmagic_DeckLink_SDK_15.3.zip";
+    sha256 = "e4429a6e111431344edba74994bb0a0e7db853289f1b2459e79a4a0018fe7de1";
+  };
 
 }
