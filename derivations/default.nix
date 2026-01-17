@@ -90,7 +90,7 @@
         };
 
         blackmagic-desktop-video =
-          prev.blackmagic-desktop-video.overrideAttrs (old: {
+          prev.blackmagic-desktop-video.overrideAttrs (_: {
             # version = "14.3";
             version = "12.9";
 
