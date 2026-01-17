@@ -86,4 +86,9 @@ in
     sha256 = "ffcd0e39e50aa788954d02a27d4368a1681fadf086fec3d2b53ae68463308578";
   };
 
+  blackmagicdesktopvideosrc = builtins.fetchurl {
+    url = "http://192.168.8.100:28000/blackmagic/desktopvideo-12.9a3-x86_64-patched.tar.gz";
+    sha256 = "44f571dcd325882f4b1e8dcffcef5899a8fcd297547b5f5414937e9cb4141e80";
+  };
+
 }

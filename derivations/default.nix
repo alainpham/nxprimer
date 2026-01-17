@@ -94,11 +94,21 @@
             # version = "14.3";
             version = "12.9";
 
-            src = old.src.overrideAttrs (_: {
-              # outputHash = "sha256-oFzqoIgyOAPDopVOgh1fnFFOKqoJ0QSaGNgjOeeEcGE="; # v14.3
-              outputHash = "sha256-H7AHD6u8KsJoL+ug3QCqxuPfMP4A0nHtIyKx5IaQkdQ="; # v12.9
-            });
+            src = sources.blackmagicdesktopvideosrc;
+            installPhase = ''
+              runHook preInstall
+              mkdir -p $out/{bin,share/doc,lib/systemd/system}
+              cp -r $src/usr/share/doc/desktopvideo $out/share/doc
+              cp $src/usr/lib/*.so $out/lib
+              cp $src/usr/lib/systemd/system/DesktopVideoHelper.service $out/lib/systemd/system
+              cp $src/usr/lib/blackmagic/DesktopVideo/DesktopVideoHelper $out/bin/
+              substituteInPlace $out/lib/systemd/system/DesktopVideoHelper.service \
+                --replace-fail "/usr/lib/blackmagic/DesktopVideo/DesktopVideoHelper" "$out/bin/DesktopVideoHelper"
+              runHook postInstall
+            '';
           });
+
+            
       }
     )
   ];
