@@ -91,7 +91,7 @@
 
         blackmagic-desktop-video =
           prev.blackmagic-desktop-video.overrideAttrs (old: {
-            version = "14.3";
+            version = "12.9";
 
             src = old.src.overrideAttrs (_: {
               outputHash = "sha256-oFzqoIgyOAPDopVOgh1fnFFOKqoJ0QSaGNgjOeeEcGE=";
