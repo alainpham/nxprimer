@@ -91,10 +91,12 @@
 
         blackmagic-desktop-video =
           prev.blackmagic-desktop-video.overrideAttrs (old: {
+            # version = "14.3";
             version = "12.9";
 
             src = old.src.overrideAttrs (_: {
-              outputHash = "sha256-oFzqoIgyOAPDopVOgh1fnFFOKqoJ0QSaGNgjOeeEcGE=";
+              # outputHash = "sha256-oFzqoIgyOAPDopVOgh1fnFFOKqoJ0QSaGNgjOeeEcGE="; # v14.3
+              outputHash = "sha256-H7AHD6u8KsJoL+ug3QCqxuPfMP4A0nHtIyKx5IaQkdQ="; # v12.9
             });
           });
       }
