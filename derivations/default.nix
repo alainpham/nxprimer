@@ -95,9 +95,7 @@
             version = "12.9";
 
             src = sources.blackmagicdesktopvideosrc;
-            postUnpack = ''
-              echo "No post unpack steps"
-            '';
+            postUnpack = null;
             installPhase = ''
               runHook preInstall
               mkdir -p $out/{bin,share/doc,lib/systemd/system}
