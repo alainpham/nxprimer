@@ -95,8 +95,6 @@
             version = "12.9";
             src = sources.blackmagicdesktopvideosrc;
           });
-
-            
       }
     )
   ];

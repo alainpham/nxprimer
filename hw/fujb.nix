@@ -41,6 +41,8 @@ in
     # decklinkffmpeg
   ];
 
-
+  programs.obs-studio.package = pkgs.obs-studio.override {
+    decklinkSupport = true;
+  };
 
 }
