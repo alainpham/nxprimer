@@ -94,7 +94,7 @@
             version = "14.3";
 
             src = old.src.overrideAttrs (_: {
-              outputHash = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=";
+              outputHash = "sha256-oFzqoIgyOAPDopVOgh1fnFFOKqoJ0QSaGNgjOeeEcGE=";
             });
           });
       }
