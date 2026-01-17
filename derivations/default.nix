@@ -93,21 +93,7 @@
           prev.blackmagic-desktop-video.overrideAttrs (old: {
             # version = "14.3";
             version = "12.9";
-
             src = sources.blackmagicdesktopvideosrc;
-            
-            postUnpack = null;
-            installPhase = ''
-              runHook preInstall
-              mkdir -p $out/{bin,share/doc,lib/systemd/system}
-              cp -r usr/share/doc/desktopvideo $out/share/doc
-              cp usr/lib/*.so $out/lib
-              cp usr/lib/systemd/system/DesktopVideoHelper.service $out/lib/systemd/system
-              cp usr/lib/blackmagic/DesktopVideo/DesktopVideoHelper $out/bin/
-              substituteInPlace $out/lib/systemd/system/DesktopVideoHelper.service \
-                --replace-fail "/usr/lib/blackmagic/DesktopVideo/DesktopVideoHelper" "$out/bin/DesktopVideoHelper"
-              runHook postInstall
-            '';
           });
 
             
