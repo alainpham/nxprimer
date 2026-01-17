@@ -96,16 +96,15 @@
 
             src = sources.blackmagicdesktopvideosrc;
             postUnpack = ''
-              mkdir -p $out/src
-              tar xvf $src -C $out/src
+              echo "No post unpack steps"
             '';
             installPhase = ''
               runHook preInstall
               mkdir -p $out/{bin,share/doc,lib/systemd/system}
-              cp -r $out/src/usr/share/doc/desktopvideo $out/share/doc
-              cp $out/src/usr/lib/*.so $out/lib
-              cp $out/src/usr/lib/systemd/system/DesktopVideoHelper.service $out/lib/systemd/system
-              cp $out/src/usr/lib/blackmagic/DesktopVideo/DesktopVideoHelper $out/bin/
+              cp -r usr/share/doc/desktopvideo $out/share/doc
+              cp usr/lib/*.so $out/lib
+              cp usr/lib/systemd/system/DesktopVideoHelper.service $out/lib/systemd/system
+              cp usr/lib/blackmagic/DesktopVideo/DesktopVideoHelper $out/bin/
               substituteInPlace $out/lib/systemd/system/DesktopVideoHelper.service \
                 --replace-fail "/usr/lib/blackmagic/DesktopVideo/DesktopVideoHelper" "$out/bin/DesktopVideoHelper"
               runHook postInstall
