@@ -10,9 +10,9 @@ pkgs.stdenv.mkDerivation {
   unpackPhase = ''
     unzip $src
   '';
-  
+
   installPhase = ''
     mkdir -p $out/include
-    cp -r $src/include $out
+    cp -r include $out
   '';
 }
