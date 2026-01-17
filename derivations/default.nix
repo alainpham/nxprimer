@@ -90,11 +90,12 @@
         };
 
         blackmagic-desktop-video =
-          prev.blackmagic-desktop-video.overrideAttrs (_: {
+          prev.blackmagic-desktop-video.overrideAttrs (old: {
             # version = "14.3";
             version = "12.9";
 
             src = sources.blackmagicdesktopvideosrc;
+            
             postUnpack = null;
             installPhase = ''
               runHook preInstall
