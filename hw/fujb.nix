@@ -11,8 +11,8 @@ let
     ];
     
     postFixup = ''
-      addOpenGLRunpath ${placeholder "lib"}/lib/libavcodec.so
-      addOpenGLRunpath ${placeholder "lib"}/lib/libavutil.so
+      adddriverrunpath ${placeholder "lib"}/lib/libavcodec.so
+      adddriverrunpath ${placeholder "lib"}/lib/libavutil.so
 
       wrapProgram $bin/bin/ffmpeg \
         --prefix LD_LIBRARY_PATH : ${pkgs.blackmagic-desktop-video}/lib
