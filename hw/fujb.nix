@@ -38,7 +38,7 @@ in
   environment.systemPackages = with pkgs; [
     blackmagic-desktop-video # for blackmagic capture card
     decklinksdk
-    decklinkffmpeg 
+    decklinkffmpeg
   ];
 
 

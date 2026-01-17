@@ -365,7 +365,7 @@
 
     gparted
     vulkan-tools
-    ffmpeg-full
+    # ffmpeg-full
     fdk_aac
     yt-dlp
     google-chrome
