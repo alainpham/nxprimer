@@ -31,7 +31,10 @@ select file in hw/*.nix; do
     fi
 done
 
+read -p "Do you want to format the disk? (y/n): " FORMAT_DISK
 
+if [[ "$FORMAT_DISK" == "y" ]]; then
+    echo "Formatting the disk..."
 
 echo "Partitioning disk..."
 parted -s "${TARGETDISK}" mklabel gpt
@@ -81,6 +84,10 @@ else
     mkfs.ext4 "${TARGETDISK}${ROOT_PART}" -L NIXROOT
 fi
 sleep 1
+
+else
+    echo "Disk formatting skipped."
+fi
 
 echo "Mounting filesystems..."
 mount /dev/disk/by-label/NIXROOT /mnt
