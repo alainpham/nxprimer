@@ -42,11 +42,20 @@
         source = "${sources.dotfilesgit}/home/bin/winege";
         force = true;
       };
-
+      "bin/winegecfg" = { 
+        source = "${sources.dotfilesgit}/home/bin/winegecfg";
+        force = true;
+      };
       # folders
       # emulation configs
       "ES-DE" = { 
         source = "${sources.dotfilesgit}/home/ES-DE";
+        recursive = true;
+        force = true;
+      };
+
+      ".config/PCSX2" = { 
+        source = "${sources.dotfilesgit}/home/.config/PCSX2";
         recursive = true;
         force = true;
       };
