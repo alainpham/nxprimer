@@ -88,7 +88,7 @@ in
 
   blackmagicdesktopvideosrc = builtins.fetchurl {
     url = "http://192.168.8.100:28000/blackmagic/Blackmagic_Desktop_Video_Linux_12.9-patched.tar";
-    sha256 = "f9c13d5af6f63a5de331c73b809e80cec03dfe1cc7360dda1cc9545443df4d5f";
+    sha256 = "e8d522d19accbe926aacb20feaada1aba695fdea0025cd84aa67356f431b0c9f";
   };
 
 }

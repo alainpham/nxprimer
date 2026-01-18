@@ -1,25 +1,4 @@
 { config, lib, pkgs, ... }:
-let
- 
-
-  decklinkffmpeg = pkgs.ffmpeg.overrideAttrs (oldAttrs: {
-    configureFlags = oldAttrs.configureFlags ++ [ "--enable-nonfree" "--enable-decklink" ];
-    nativeBuildInputs = oldAttrs.nativeBuildInputs or [] ++ [ pkgs.makeWrapper ];
-    buildInputs = oldAttrs.buildInputs ++ [
-      pkgs.blackmagic-desktop-video
-      pkgs.decklinksdk
-    ];
-    
-    postFixup = ''
-      adddriverrunpath ${placeholder "lib"}/lib/libavcodec.so
-      adddriverrunpath ${placeholder "lib"}/lib/libavutil.so
-
-      wrapProgram $bin/bin/ffmpeg \
-        --prefix LD_LIBRARY_PATH : ${pkgs.blackmagic-desktop-video}/lib
-    '';
-
-  });
-in
 {
   boot.extraModulePackages = [ ];
   boot.initrd.kernelModules = [ ];
@@ -37,8 +16,6 @@ in
 
   environment.systemPackages = with pkgs; [
     blackmagic-desktop-video # for blackmagic capture card
-    # decklinksdk
-    # decklinkffmpeg
   ];
 
   programs.obs-studio.package = pkgs.obs-studio.override {
