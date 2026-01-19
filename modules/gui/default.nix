@@ -251,6 +251,14 @@
         source = "${sources.dotfilesgit}/home/bin/code";
         force = true;
       };
+      "bin/vdl" = { 
+        source = "${sources.dotfilesgit}/home/bin/vdl";
+        force = true;
+      };
+      "bin/adl" = { 
+        source = "${sources.dotfilesgit}/home/bin/adl";
+        force = true;
+      };
       ".config/Code/User/settings.json" = { 
         source = "${sources.dotfilesgit}/home/.config/Code/User/settings.json";
         force = true;
