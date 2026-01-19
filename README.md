@@ -66,7 +66,6 @@ nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=/etc
 Next steps
 
  - make first boot unreliant on network connectivity
- - be able to use blackmagic capture card with the right drivers.
 
 
 # silence chime of macbook pro 2007
