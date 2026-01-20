@@ -4,7 +4,7 @@
   targetUserEmail = "apham@localhost";
   keyboardLayout = "fr";
   keyboardModel = "pc105";
-  keyboardVariant = "mac";
+  keyboardVariant = "azerty";
   wildcardDomain = "houze.dns.army";
   disableTurboBoost = true;
   numlockOnBoot = false;

@@ -9,5 +9,11 @@
     "ssb"
   ];
   
+  hardware.graphics = {
+    extraPackages = with pkgs; [
+      intel-vaapi-driver
+    ];
+  };
+
   nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
 }
