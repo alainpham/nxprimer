@@ -108,11 +108,9 @@ cp hw/lg15.nix /mnt/etc/nixos/hw.nix
 
 cd /mnt/etc/nixos
 nix flake update --extra-experimental-features nix-command --extra-experimental-features  flakes
-nix flake check --extra-experimental-features nix-command --extra-experimental-features  flakes
+# nix flake check --extra-experimental-features nix-command --extra-experimental-features  flakes
 nixos-install --no-root-passwd --flake /mnt/etc/nixos#nixos
 
-
-nixos-install --no-root-passwd
 
 nixos-enter --root /mnt -c "passwd apham"
 
