@@ -44,6 +44,7 @@
     drawio
     viber
     freac
+    sound-juicer
     localsend
     avidemux
     postman
