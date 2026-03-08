@@ -351,6 +351,7 @@
     acpitool
     lm_sensors
     libnotify
+    upower
     dunst
     mkvtoolnix
     imagemagick
