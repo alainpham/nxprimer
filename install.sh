@@ -2,11 +2,6 @@
 
 export TARGET_USERNAME=${1:-apham}
 
-lsblk
-
-read -p "Enter target disk (e.g., /dev/sda): " TARGETDISK
-read -p "Enter swap size in GiB (0 = no swap): " SWAP_GIB
-
 echo "Available configuration files:"
 
 select file in vars/*.nix; do
@@ -34,65 +29,115 @@ done
 read -p "Do you want to format the disk? (y/n): " FORMAT_DISK
 
 if [[ "$FORMAT_DISK" == "y" ]]; then
-    echo "Formatting the disk..."
+echo "Formatting the disk..."
+
+lsblk
+
+read -p "Enter target disk (e.g., /dev/sda): " TARGETDISK
+read -p "Enter EFI size in GiB: " EFI_GIB
+read -p "Enter swap size in GiB (0 = no swap): " SWAP_GIB
+read -p "Enter data partition size in GiB (0 = use existing data if it exists): " DATA_GIB
 
 echo "Partitioning disk..."
 parted -s "${TARGETDISK}" mklabel gpt
 sleep 1
 
+NEXT_PART=1
 echo "Creating EFI parition..."
-parted -s "${TARGETDISK}" mkpart primary fat32 1MiB 1GiB
+EFI_PART=$NEXT_PART
+parted -s "${TARGETDISK}" mkpart primary fat32 1MiB ${EFI_GIB}GiB
 parted -s "${TARGETDISK}" set 1 esp on
 sleep 1
 
-PART_START_ROOT="1GiB"
+NEXT_PART=$(($NEXT_PART +1 ))
+NEXT_START_GIB=$((0 + $EFI_GIB))
 
 if [[ "$SWAP_GIB" -gt 0 ]]; then
-    SWAP_END="$((1 + SWAP_GIB))GiB"
+    SWAP_PART=$NEXT_PART
+    SWAP_START_GIB=$NEXT_START_GIB
+    SWAP_END_GIB="$(($NEXT_START_GIB + $SWAP_GIB))"
 
     echo "Creating ${SWAP_GIB}GiB swap partition..."
-    parted -s "${TARGETDISK}" mkpart primary linux-swap 1GiB "${SWAP_END}"
+    parted -s "${TARGETDISK}" mkpart primary linux-swap ${SWAP_START_GIB}GiB ${SWAP_END_GIB}GiB
     sleep 1
 
-    PART_START_ROOT="${SWAP_END}"
-    ROOT_PART=3
-else
-    echo "No swap partition will be created."
-    ROOT_PART=2
+    NEXT_PART=$(($NEXT_PART +1 ))
+    NEXT_START_GIB=$SWAP_END_GIB
+
+fi
+
+
+if [[ "$DATA_GIB" -gt 0 ]]; then
+    DATA_PART=$NEXT_PART
+    DATA_START_GIB=$NEXT_START_GIB
+    DATA_END_GIB="$(($NEXT_START_GIB + $DATA_GIB))"
+
+    echo "Creating ${DATA_GIB}GiB data partition..."
+    parted -s "${TARGETDISK}" mkpart primary ext4 ${DATA_START_GIB}GiB ${DATA_END_GIB}GiB
+    sleep 1
+
+    NEXT_PART=$(($NEXT_PART +1 ))
+    NEXT_START_GIB=$DATA_END_GIB
 fi
 
 
 # Root
+ROOT_PART=$NEXT_PART
+ROOT_START_GIB=$NEXT_START_GIB
+
 echo "Creating Root parition..."
-parted -s "${TARGETDISK}" mkpart primary ext4 "${PART_START_ROOT}" 100%
+parted -s "${TARGETDISK}" mkpart primary ext4 ${ROOT_START_GIB}GiB 100%
 sleep 1
 
 # Formating
 echo "Formatting filesystems..."
-mkfs.fat -F 32 ${TARGETDISK}1
-sleep 2
-fatlabel ${TARGETDISK}1 NIXBOOT
 
+echo "EFI partition.."
+mkfs.fat -F 32 ${TARGETDISK}${EFI_PART}
+sleep 2
+fatlabel ${TARGETDISK}${EFI_PART} BOOT
+
+echo "Format and activate swap partition.."
 if [[ "$SWAP_GIB" -gt 0 ]]; then
-    mkswap "${TARGETDISK}2"
-    swapon "${TARGETDISK}2"
+    mkswap "${TARGETDISK}${SWAP_PART}"
+    swapon "${TARGETDISK}${SWAP_PART}"
+fi
+
+echo "Format data partition.."
+if [[ "$DATA_GIB" -gt 0 ]]; then
+    if blkid "${TARGETDISK}${DATA_PART}" >/dev/null 2>&1; then
+        mkfs.ext4 -F "${TARGETDISK}${DATA_PART}" -L DATA
+    else
+        mkfs.ext4 "${TARGETDISK}${DATA_PART}" -L DATA
+    fi
 fi
 
 if blkid "${TARGETDISK}${ROOT_PART}" >/dev/null 2>&1; then
-    mkfs.ext4 -F "${TARGETDISK}${ROOT_PART}" -L NIXROOT
+    mkfs.ext4 -F "${TARGETDISK}${ROOT_PART}" -L ROOT
 else
-    mkfs.ext4 "${TARGETDISK}${ROOT_PART}" -L NIXROOT
+    mkfs.ext4 "${TARGETDISK}${ROOT_PART}" -L ROOT
 fi
 sleep 1
 
 else
-    echo "Disk formatting skipped."
+    echo "Disk formatting skipped. Don't forget to turn swap on if needed"
 fi
 
 echo "Mounting filesystems..."
-mount /dev/disk/by-label/NIXROOT /mnt
+
+echo "Mounting ROOT"
+mount /dev/disk/by-label/ROOT /mnt
+
+echo "Mounting BOOT"
 mkdir -p /mnt/boot
-mount -o umask=077 /dev/disk/by-label/NIXBOOT /mnt/boot
+mount -o umask=077 /dev/disk/by-label/BOOT /mnt/boot
+
+if [ -e /dev/disk/by-label/DATA ]; then
+    echo "Mounting DATA"
+    mkdir -p /mnt/data
+    mount /dev/disk/by-label/DATA /mnt/data
+fi
+
 
 nixos-generate-config --root /mnt
 
