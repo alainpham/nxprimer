@@ -23,7 +23,7 @@
     displayManager.startx.enable = true;
   };
   services.udisks2.enable = true;
-
+  services.upower.enable = true;
   services.libinput.touchpad = {
     tapping = true;
     naturalScrolling = false;
@@ -351,7 +351,6 @@
     acpitool
     lm_sensors
     libnotify
-    upower
     dunst
     mkvtoolnix
     imagemagick
