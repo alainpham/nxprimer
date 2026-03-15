@@ -15,6 +15,9 @@
     };
   };
 
+  ###############################
+  # DWM and X related services
+  ###############################
   services.xserver = {
     enable = true;
     xkb.layout = vars.keyboardLayout;
@@ -22,6 +25,21 @@
     xkb.variant = vars.keyboardVariant;
     displayManager.startx.enable = true;
   };
+
+  # thunar
+  programs.xfconf.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+      thunar-media-tags-plugin
+    ];
+  };
+  ###############################
+  # end dwm and X related services
+  ###############################
+
   services.udisks2.enable = true;
   services.upower.enable = true;
   services.libinput.touchpad = {
@@ -37,7 +55,10 @@
     noto-fonts
   ];
 
+  ###############################
   # sound
+  ###############################
+
   boot.kernelModules = [ 
     "snd-dummy"
     "snd_aloop"
@@ -47,14 +68,6 @@
     options snd-dummy index=11 id=dummy
   '';
 
-  # services.udev.extraRules = ''
-  #   ATTR{id}=="dummy", ATTR{number}=="11",SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1",ENV{ACP_IGNORE}="1"
-  #   ATTR{id}=="loop", ATTR{number}=="10",SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1"
-  #   ATTR{id}=="C920", SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1",ENV{ACP_IGNORE}="1"
-  #   # shanwan gamepad to inhibit keyboard input
-  #   SUBSYSTEM=="input",ATTRS{id/vendor}=="20bc",ATTRS{id/product}=="5500",ATTRS{capabilities/key}=="1000002000000 39fad941d801 1c000000000000 0", RUN+="${pkgs.scripts}/bin/inhibit-gpad-kbd"
-  # '';
-
   services.udev.extraRules = lib.mkAfter 
     ''
       ATTR{id}=="dummy", ATTR{number}=="11",SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1",ENV{ACP_IGNORE}="1"
@@ -63,13 +76,15 @@
       KERNEL=="uinput", MODE="0660", GROUP="input", SYMLINK+="uinput"
     '';
 
-
-
   services.pipewire.enable = false;
   services.pulseaudio = {
     enable = true;
     support32Bit = true;
   };
+
+  ###############################
+  # end sound
+  ###############################
 
   services.printing = {
     enable = true;       # enables CUPS
@@ -80,18 +95,6 @@
   services.sunshine.enable = true;
   services.sunshine.autoStart = false;
   services.sunshine.openFirewall = true;
-
-
-  # thunar
-  programs.xfconf.enable = true;
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-      thunar-media-tags-plugin
-    ];
-  };
 
   # app images setup
   programs.appimage = {
@@ -112,6 +115,7 @@
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
     
     programs.bash = { 
+      # dwm related
       profileExtra = builtins.readFile "${sources.dotfilesgit}/home/.profile";
     };
 
@@ -155,13 +159,15 @@
       '';
     };
 
-
     home.file = {
       # files at root of home
+
+      # dwm related
       ".xinitrc" = { 
         source = "${sources.dotfilesgit}/home/.xinitrc";
         force = true;
       };
+      
       ".gtkrc-2.0" = { 
         source = "${sources.dotfilesgit}/home/.gtkrc-2.0"; 
         force = true;
@@ -176,6 +182,8 @@
       };
 
       # config folders
+      
+      # dwm related
       ".config/dunst" = { 
           source = "${sources.dotfilesgit}/home/.config/dunst";
           recursive = true;
@@ -191,11 +199,15 @@
           recursive = true;
           force = true;
       };
+
+      # dwm related
       ".config/jgmenu" = { 
           source = "${sources.dotfilesgit}/home/.config/jgmenu";
           recursive = true;
           force = true;
       };
+
+      # dwm related
       ".config/picom" = { 
           source = "${sources.dotfilesgit}/home/.config/picom";
           recursive = true;
@@ -216,11 +228,15 @@
           recursive = true;
           force = true;
       };
+
+      # dwm related
       ".config/Thunar" = { 
           source = "${sources.dotfilesgit}/home/.config/Thunar";
           recursive = true;
           force = true;
       };
+
+      # dwm related
       ".config/xfce4" = { 
           source = "${sources.dotfilesgit}/home/.config/xfce4";
           recursive = true;
@@ -307,31 +323,40 @@
   '';
 
   environment.systemPackages = with pkgs; [
+    # dwm related
     xorg.xwininfo
+
+    # dwm related
     wmctrl
 
+    # dwm related
     (dwm.overrideAttrs (oldAttrs: rec {
       src = sources.dwmgit;
     }))
 
+    # dwm related
     (st.overrideAttrs (oldAttrs: rec {
       src = sources.stgit;
     }))
 
+    # dwm related
     (dmenu.overrideAttrs (oldAttrs: rec {
       src = sources.dmenugit;
     }))
 
+    # dwm related
     (slock.overrideAttrs (oldAttrs: rec {
       src = sources.slockgit;
       buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama imlib2];  
     }))
 
+    # dwm related
     (dwmblocks.overrideAttrs (oldAttrs: rec {
       src = sources.dwmblocksgit;
     }))
 
     rofi
+    # dwm related
     numlockx
     usbutils
     libinput-gestures
@@ -350,15 +375,24 @@
     kdePackages.kimageformats
     acpitool
     lm_sensors
+
     libnotify
+
+    # dwm related
     dunst
+
     mkvtoolnix
     imagemagick
     mediainfo-gui
     mediainfo
+
+    # dwm related
     arandr
+    # dwm related
     picom
+    # dwm related
     jgmenu
+
     brightnessctl
     xsane
     filezilla
@@ -381,7 +415,7 @@
     lxqt.pavucontrol-qt
     alsa-utils
     
-
+    # dwm related
     flameshot
     maim
     xclip
