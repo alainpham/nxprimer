@@ -15,31 +15,7 @@
     };
   };
 
-  ###############################
-  # DWM and X related services
-  ###############################
-  services.xserver = {
-    enable = true;
-    xkb.layout = vars.keyboardLayout;
-    xkb.model = vars.keyboardModel;
-    xkb.variant = vars.keyboardVariant;
-    displayManager.startx.enable = true;
-  };
-
-  # thunar
-  programs.xfconf.enable = true;
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-      thunar-media-tags-plugin
-    ];
-  };
-  ###############################
-  # end dwm and X related services
-  ###############################
-
+  
   services.udisks2.enable = true;
   services.upower.enable = true;
   services.libinput.touchpad = {
@@ -115,7 +91,6 @@
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
     
     programs.bash = { 
-      # dwm related
       profileExtra = builtins.readFile "${sources.dotfilesgit}/home/.profile";
     };
 
@@ -130,15 +105,6 @@
             mkdir -p "$HOME/$folder"
           fi
         done
-      '';
-
-      enablePicom = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        if [ ${toString vars.enablePicom} ]; then
-          echo picom enabled
-        else
-          echo picom disabled
-          touch "$HOME/.nopicom"
-        fi
       '';
       
       sunshineOnBoot = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -162,20 +128,11 @@
     home.file = {
       # files at root of home
 
-      # dwm related
-      ".xinitrc" = { 
-        source = "${sources.dotfilesgit}/home/.xinitrc";
-        force = true;
-      };
-      
       ".gtkrc-2.0" = { 
         source = "${sources.dotfilesgit}/home/.gtkrc-2.0"; 
         force = true;
       };
-      ".config/libinput-gestures.conf" = { 
-        source = "${sources.dotfilesgit}/home/.config/libinput-gestures.conf";
-        force = true;
-      };
+
       ".config/mimeapps.list" = { 
         source = "${sources.dotfilesgit}/home/.config/mimeapps.list";
         force = true;
@@ -183,12 +140,6 @@
 
       # config folders
       
-      # dwm related
-      ".config/dunst" = { 
-          source = "${sources.dotfilesgit}/home/.config/dunst";
-          recursive = true;
-          force = true;
-      };
       ".config/gtk-3.0" = { 
           source = "${sources.dotfilesgit}/home/.config/gtk-3.0";
           recursive = true;
@@ -200,19 +151,6 @@
           force = true;
       };
 
-      # dwm related
-      ".config/jgmenu" = { 
-          source = "${sources.dotfilesgit}/home/.config/jgmenu";
-          recursive = true;
-          force = true;
-      };
-
-      # dwm related
-      ".config/picom" = { 
-          source = "${sources.dotfilesgit}/home/.config/picom";
-          recursive = true;
-          force = true;
-      };
       ".config/pulse" = { 
           source = "${sources.dotfilesgit}/home/.config/pulse";
           recursive = true;
@@ -229,19 +167,6 @@
           force = true;
       };
 
-      # dwm related
-      ".config/Thunar" = { 
-          source = "${sources.dotfilesgit}/home/.config/Thunar";
-          recursive = true;
-          force = true;
-      };
-
-      # dwm related
-      ".config/xfce4" = { 
-          source = "${sources.dotfilesgit}/home/.config/xfce4";
-          recursive = true;
-          force = true;
-      };
 
       # .local
       ".local/share/applications/bluetui.desktop" = { 
@@ -279,11 +204,6 @@
       ".config/Code/User/settings.json" = { 
         source = "${sources.dotfilesgit}/home/.config/Code/User/settings.json";
         force = true;
-      };
-      ".local/share/dwm" = { 
-          source = "${sources.dotfilesgit}/home/.local/share/dwm";
-          recursive = true;
-          force = true;
       };
     };
 
@@ -323,43 +243,9 @@
   '';
 
   environment.systemPackages = with pkgs; [
-    # dwm related
-    xorg.xwininfo
-
-    # dwm related
-    wmctrl
-
-    # dwm related
-    (dwm.overrideAttrs (oldAttrs: rec {
-      src = sources.dwmgit;
-    }))
-
-    # dwm related
-    (st.overrideAttrs (oldAttrs: rec {
-      src = sources.stgit;
-    }))
-
-    # dwm related
-    (dmenu.overrideAttrs (oldAttrs: rec {
-      src = sources.dmenugit;
-    }))
-
-    # dwm related
-    (slock.overrideAttrs (oldAttrs: rec {
-      src = sources.slockgit;
-      buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama imlib2];  
-    }))
-
-    # dwm related
-    (dwmblocks.overrideAttrs (oldAttrs: rec {
-      src = sources.dwmblocksgit;
-    }))
 
     rofi
-    # dwm related
-    numlockx
     usbutils
-    libinput-gestures
     SDL2
     ntfs3g
     ifuse
@@ -378,23 +264,12 @@
 
     libnotify
 
-    # dwm related
-    dunst
-
     mkvtoolnix
     imagemagick
     mediainfo-gui
     mediainfo
 
-    # dwm related
-    arandr
-    # dwm related
-    picom
-    # dwm related
-    jgmenu
-
     brightnessctl
-    xsane
     filezilla
     speedcrunch
     font-awesome
@@ -415,12 +290,6 @@
     lxqt.pavucontrol-qt
     alsa-utils
     
-    # dwm related
-    flameshot
-    maim
-    xclip
-    xdotool
-
     xarchiver
     ghostscript
     vscode

@@ -19,18 +19,20 @@
       thunar-media-tags-plugin
     ];
   };
-  ###############################
-  # end dwm and X related services
-  ###############################
   
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
     
-    programs.bash = { 
-      # dwm related
-      profileExtra = builtins.readFile "${sources.dotfilesgit}/home/.profile";
-    };
 
     home.activation = {
+
+      enableStartx = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        if [ ${toString vars.enableStartx} ]; then
+          echo startx enabled
+          touch "$HOME/.startxon"
+        else
+          echo startx disabled
+        fi
+      '';
 
       enablePicom = lib.hm.dag.entryAfter ["writeBoundary"] ''
         if [ ${toString vars.enablePicom} ]; then
@@ -41,14 +43,6 @@
         fi
       '';
       
-      numlockOnBoot = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        if [ ${toString vars.numlockOnBoot} ]; then
-          echo numlock on boot enabled
-        else
-          echo numlock on boot disabled
-          touch "$HOME/.nonumlock"
-        fi
-      '';
     };
 
     home.file = {
@@ -59,7 +53,10 @@
         source = "${sources.dotfilesgit}/home/.xinitrc";
         force = true;
       };
-
+      ".config/libinput-gestures.conf" = { 
+        source = "${sources.dotfilesgit}/home/.config/libinput-gestures.conf";
+        force = true;
+      };
       # config folders
       
       ".config/dunst" = { 
@@ -106,45 +103,39 @@
 
 
   environment.systemPackages = with pkgs; [
-    # dwm related
     xorg.xwininfo
-
-    # dwm related
     wmctrl
 
-    # dwm related
     (dwm.overrideAttrs (oldAttrs: rec {
       src = sources.dwmgit;
     }))
 
-    # dwm related
     (st.overrideAttrs (oldAttrs: rec {
       src = sources.stgit;
     }))
 
-    # dwm related
     (dmenu.overrideAttrs (oldAttrs: rec {
       src = sources.dmenugit;
     }))
 
-    # dwm related
     (slock.overrideAttrs (oldAttrs: rec {
       src = sources.slockgit;
       buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama imlib2];  
     }))
 
-    # dwm related
     (dwmblocks.overrideAttrs (oldAttrs: rec {
       src = sources.dwmblocksgit;
     }))
 
-    # dwm related
     numlockx
+    libinput-gestures
+    dunst
+
     arandr
     picom
     jgmenu
+    xsane
 
-    # dwm related
     flameshot
     maim
     xclip

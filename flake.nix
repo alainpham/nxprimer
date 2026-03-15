@@ -39,6 +39,7 @@
       ++ nixpkgs.lib.optional (vars.enableDev) ./modules/dev
       ++ nixpkgs.lib.optional (vars.enableContainers) ./modules/containers
       ++ nixpkgs.lib.optional (vars.enableVirtualization) ./modules/virtualization
+      ++ nixpkgs.lib.optional (vars.enableDwm) ./modules/dwm
       ++ nixpkgs.lib.optional (vars.enableGui) ./modules/gui
       ++ nixpkgs.lib.optional (vars.enableWorkstation) ./modules/workstation
       ++ nixpkgs.lib.optional (vars.enableGaming) ./modules/gaming

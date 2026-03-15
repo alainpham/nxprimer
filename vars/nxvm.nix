@@ -13,10 +13,12 @@
   enableDev = true;
   enableContainers = true;
   enableVirtualization = false;
+  enableDwm = true;
+  enableStartx = true;
+  enablePicom = true;
   enableGui = true;
   enableWorkstation = true;
   enableGaming = true;
   
-  enablePicom = true;
   sunshineOnBoot = true;
 }
