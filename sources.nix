@@ -72,8 +72,8 @@ in
   };
 
   retroarchbiosurl = builtins.fetchurl {
-    url = "https://github.com/Abdess/retroarch_system/releases/download/v20220308/RetroArch_v1.10.1.zip";
-    sha256 = "341c5011976e2e650ac991411daf74701327c26974b59b89f8a63b61cbb61b18";
+    url = "https://github.com/Abdess/retrobios/releases/download/v2026.03.17.2/Lakka_RetroArch_BIOS_Pack.zip";
+    sha256 = "cd93eb2b31b9487bef728ac011c92bd84faac51a6d3ea6502d74d2ced021942a";
   };
 
   pcsx2biospkgurl = builtins.fetchurl {
