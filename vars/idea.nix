@@ -1,5 +1,5 @@
 {
-  hostname= "asus";
+  hostname= "idea";
   targetUserName = "apham";
   targetUserEmail = "apham@localhost";
   keyboardLayout = "fr";
