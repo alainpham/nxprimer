@@ -158,6 +158,8 @@
     linuxConsoleTools
     jstest-gtk
     antimicrox
+
+    gamingscripts
   ];
 
 }
