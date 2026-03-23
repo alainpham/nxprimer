@@ -194,6 +194,8 @@
     bchunk
     stow
 
+    ookla-speedtest
+
     osscripts
   ]; 
 
