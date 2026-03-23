@@ -69,6 +69,11 @@
           vars = vars;
         };
 
+        ppssppappimage = final.callPackage ./ppssppappimage {
+          sources = sources;
+          vars = vars;
+        };
+
         pcsx2biospkg = final.callPackage ./pcsx2biospkg {
           sources = sources;
           vars = vars;

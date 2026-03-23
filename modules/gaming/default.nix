@@ -46,6 +46,17 @@
         source = "${sources.dotfilesgit}/home/bin/winegecfg";
         force = true;
       };
+
+      ".config/ppsspp/PSP/SYSTEM/controls.ini" = { 
+        source = "${sources.dotfilesgit}/home/.config/ppsspp/PSP/SYSTEM/controls.ini";
+        force = true;
+      };
+
+      ".config/ppsspp/PSP/SYSTEM/ppsspp.ini" = { 
+        source = "${sources.dotfilesgit}/home/.config/ppsspp/PSP/SYSTEM/ppsspp.ini";
+        force = true;
+      };
+
       # folders
       # emulation configs
       "ES-DE" = { 
@@ -53,6 +64,8 @@
         recursive = true;
         force = true;
       };
+
+
 
       ".config/PCSX2" = { 
         source = "${sources.dotfilesgit}/home/.config/PCSX2";
@@ -130,6 +143,7 @@
     retroarchcorespkg
     retroarchbiospkg
     retroarchappimage
+    ppssppappimage
     pcsx2biospkg
     pcsx2
     dolphin-emu

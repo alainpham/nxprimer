@@ -7,7 +7,7 @@ in
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "c55b040e715008de974a4c502233201a69a853f6";
+    rev = "a6f20bae1b23a967f2c20268e1629c2ec4919e6a";
   };
 
   # desktop related
@@ -74,6 +74,12 @@ in
   retroarchbiosurl = builtins.fetchurl {
     url = "https://github.com/Abdess/retrobios/releases/download/v2026.03.17.2/Lakka_RetroArch_BIOS_Pack.zip";
     sha256 = "cd93eb2b31b9487bef728ac011c92bd84faac51a6d3ea6502d74d2ced021942a";
+  };
+
+  ppssppurl =  builtins.fetchurl {
+    url = "https://github.com/hrydgard/ppsspp/releases/download/v1.20.3/PPSSPP-v1.20.3-anylinux-x86_64.AppImage";
+    sha256 = "f6c7c399adfad19476b0fd20216132046b84242c6679b6822d10d124bb1c5366";
+    name = "ppsspp.AppImage";
   };
 
   pcsx2biospkgurl = builtins.fetchurl {
