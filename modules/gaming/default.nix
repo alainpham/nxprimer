@@ -143,7 +143,7 @@
     retroarchcorespkg
     retroarchbiospkg
     retroarchappimage
-    ppssppappimage
+    ppsspp
     pcsx2biospkg
     pcsx2
     dolphin-emu
