@@ -69,7 +69,7 @@
           vars = vars;
         };
 
-        ppsspp = final.callPackage ./ppsspp {
+        ppssppappimage = final.callPackage ./ppssppappimage {
           sources = sources;
           vars = vars;
         };
