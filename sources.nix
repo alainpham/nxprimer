@@ -20,7 +20,7 @@ in
   stgit = builtins.fetchGit {
     url = "https://github.com/alainpham/st-flexipatch.git";
     ref = "master";
-    rev = "905323a8656e2e9210f83ab668c671e3697ea98d";
+    rev = "6d4b441d4710b694a208a97de7373f06173737f3";
   };
 
   dmenugit = builtins.fetchGit {
@@ -32,13 +32,13 @@ in
   slockgit = builtins.fetchGit {
     url = "https://github.com/alainpham/slock-flexipatch.git";
     ref = "master";
-    rev = "b3eb868cfd11a493698afa97aa09afcceed4bf57";
+    rev = "6c52d690584762a91d59191bd795bff438564103";
   };
 
   dwmblocksgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwmblocks.git";
     ref = "master";
-    rev = "9a5014fd9c62075b65a47d9066037534ed4c4c21";
+    rev = "f0ee733f1cb356fc8343078223b858f3d0074b4b";
   };
 
   gshortsgit = builtins.fetchGit {

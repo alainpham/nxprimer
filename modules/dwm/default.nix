@@ -19,7 +19,15 @@
       thunar-media-tags-plugin
     ];
   };
-  
+
+  # slock  
+  programs.slock.enable = true;
+  programs.slock.package = pkgs.slock.overrideAttrs (oldAttrs: rec {
+    src = sources.slockgit;
+    buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXinerama pkgs.imlib2];
+  });
+
+
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
     
 
@@ -116,11 +124,6 @@
 
     (dmenu.overrideAttrs (oldAttrs: rec {
       src = sources.dmenugit;
-    }))
-
-    (slock.overrideAttrs (oldAttrs: rec {
-      src = sources.slockgit;
-      buildInputs = oldAttrs.buildInputs ++ [ xorg.libXinerama imlib2];  
     }))
 
     (dwmblocks.overrideAttrs (oldAttrs: rec {
