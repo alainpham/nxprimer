@@ -143,5 +143,6 @@
     maim
     xclip
     xdotool
+    xev
   ];
 }
