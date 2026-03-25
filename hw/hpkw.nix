@@ -23,12 +23,13 @@
 
   nixpkgs.config.nvidia.acceptLicense = true;
 
+  hardware.nvidia-container-toolkit.enable = true;
+
   hardware.graphics = {
     extraPackages = with pkgs; [
       intel-media-driver
     ];
   };
-
   programs.obs-studio.package = pkgs.obs-studio.override {
     cudaSupport = true;
   };
