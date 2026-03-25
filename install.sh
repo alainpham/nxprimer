@@ -100,8 +100,8 @@ fatlabel ${TARGETDISK}${TARGETDISKPREFIX}${EFI_PART} BOOT
 
 echo "Format and activate swap partition.."
 if [[ "$SWAP_GIB" -gt 0 ]]; then
-    mkswap "${TARGETDISK}${TARGETDISKPREFIX}${SWAP_PART}"
-    swapon "${TARGETDISK}${TARGETDISKPREFIX}${SWAP_PART}"
+    mkswap -L SWAP "${TARGETDISK}${TARGETDISKPREFIX}${SWAP_PART}"
+    swapon -L SWAP
 fi
 
 echo "Format data partition.."
