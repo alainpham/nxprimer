@@ -14,7 +14,7 @@ in
   dwmgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwm-flexipatch.git";
     ref = "master";
-    rev = "5a42b3907ef5a862ba8fa4cae6507f9db1a78480";
+    rev = "690cd26c9e5476d22b9cbc0afc0f8afe5dad6813";
   };
 
   stgit = builtins.fetchGit {
@@ -38,7 +38,7 @@ in
   dwmblocksgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwmblocks.git";
     ref = "master";
-    rev = "690cd26c9e5476d22b9cbc0afc0f8afe5dad6813";
+    rev = "1e796d6fe576afb7c941a0f51b3d2670eb823409";
   };
 
   gshortsgit = builtins.fetchGit {
