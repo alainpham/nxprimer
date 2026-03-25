@@ -42,7 +42,7 @@
     onlyoffice-desktopeditors
     mlv-app
     drawio
-    viber
+    # viber
     freac
     sound-juicer
     localsend
