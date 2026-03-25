@@ -31,9 +31,10 @@ read -p "Do you want to format the disk? (y/n): " FORMAT_DISK
 if [[ "$FORMAT_DISK" == "y" ]]; then
 echo "Formatting the disk..."
 
+$TARGETDISKPREFIX=""
 lsblk
-
 read -p "Enter target disk (e.g., /dev/sda): " TARGETDISK
+read -p "Enter prefix of partition number (usually p for nvme empty for sdX): " TARGETDISKPREFIX
 read -p "Enter EFI size in GiB: " EFI_GIB
 read -p "Enter swap size in GiB (0 = no swap): " SWAP_GIB
 read -p "Enter data partition size in GiB (0 = use existing data if it exists): " DATA_GIB
@@ -93,29 +94,29 @@ sleep 1
 echo "Formatting filesystems..."
 
 echo "EFI partition.."
-mkfs.fat -F 32 ${TARGETDISK}${EFI_PART}
+mkfs.fat -F 32 ${TARGETDISK}${TARGETDISKPREFIX}${EFI_PART}
 sleep 2
-fatlabel ${TARGETDISK}${EFI_PART} BOOT
+fatlabel ${TARGETDISK}${TARGETDISKPREFIX}${EFI_PART} BOOT
 
 echo "Format and activate swap partition.."
 if [[ "$SWAP_GIB" -gt 0 ]]; then
-    mkswap "${TARGETDISK}${SWAP_PART}"
-    swapon "${TARGETDISK}${SWAP_PART}"
+    mkswap "${TARGETDISK}${TARGETDISKPREFIX}${SWAP_PART}"
+    swapon "${TARGETDISK}${TARGETDISKPREFIX}${SWAP_PART}"
 fi
 
 echo "Format data partition.."
 if [[ "$DATA_GIB" -gt 0 ]]; then
-    if blkid "${TARGETDISK}${DATA_PART}" >/dev/null 2>&1; then
-        mkfs.ext4 -F "${TARGETDISK}${DATA_PART}" -L DATA
+    if blkid "${TARGETDISK}${TARGETDISKPREFIX}${DATA_PART}" >/dev/null 2>&1; then
+        mkfs.ext4 -F "${TARGETDISK}${TARGETDISKPREFIX}${DATA_PART}" -L DATA
     else
-        mkfs.ext4 "${TARGETDISK}${DATA_PART}" -L DATA
+        mkfs.ext4 "${TARGETDISK}${TARGETDISKPREFIX}${DATA_PART}" -L DATA
     fi
 fi
 
-if blkid "${TARGETDISK}${ROOT_PART}" >/dev/null 2>&1; then
-    mkfs.ext4 -F "${TARGETDISK}${ROOT_PART}" -L ROOT
+if blkid "${TARGETDISK}${TARGETDISKPREFIX}${ROOT_PART}" >/dev/null 2>&1; then
+    mkfs.ext4 -F "${TARGETDISK}${TARGETDISKPREFIX}${ROOT_PART}" -L ROOT
 else
-    mkfs.ext4 "${TARGETDISK}${ROOT_PART}" -L ROOT
+    mkfs.ext4 "${TARGETDISK}${TARGETDISKPREFIX}${ROOT_PART}" -L ROOT
 fi
 sleep 1
 
