@@ -48,7 +48,7 @@ read -p "Enter EFI size in MiB [512]: " EFI_MIB
 EFI_MIB=${EFI_MIB:-512}
 read -p "Enter swap size in GiB (0 = no swap) [0]: " SWAP_GIB
 SWAP_GIB=${SWAP_GIB:-0}
-read -p "Enter data partition size in GiB (0 = use existing data if it exists) [0]: " DATA_GIB
+read -p "Enter data partition size in GiB (0 = no data partition) [0]: " DATA_GIB
 DATA_GIB=${DATA_GIB:-0}
 
 EFI_PART="${TARGETDISK}${TARGETDISKPREFIX}1"
