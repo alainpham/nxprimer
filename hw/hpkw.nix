@@ -24,7 +24,6 @@
   nixpkgs.config.nvidia.acceptLicense = true;
 
   hardware.nvidia-container-toolkit.enable = true;
-  virtualisation.docker.enableNvidia = true;
 
   hardware.graphics = {
     extraPackages = with pkgs; [
