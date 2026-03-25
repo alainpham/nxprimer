@@ -38,7 +38,7 @@ in
   dwmblocksgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwmblocks.git";
     ref = "master";
-    rev = "1e796d6fe576afb7c941a0f51b3d2670eb823409";
+    rev = "690cd26c9e5476d22b9cbc0afc0f8afe5dad6813";
   };
 
   gshortsgit = builtins.fetchGit {
