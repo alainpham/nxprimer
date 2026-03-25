@@ -1,11 +1,55 @@
 #!/bin/bash
 set -e
 
-read -p "Enter target disk (e.g., /dev/sda): " TARGETDISK
-read -p "Enter prefix of partition number (usually p for nvme empty for sdX): " TARGETDISKPREFIX
-read -p "Enter EFI size in MiB: " EFI_MIB
-read -p "Enter swap size in GiB (0 = no swap): " SWAP_GIB
-read -p "Enter data partition size in GiB (0 = use existing data if it exists): " DATA_GIB
+# Discover disks with no mounted partitions
+echo "Scanning for available disks..."
+CANDIDATE_DISKS=()
+CANDIDATE_LABELS=()
+
+while read -r name size type; do
+    [ "$type" = "disk" ] || continue
+    dev="/dev/$name"
+    # Skip if any partition/fs on this device is currently mounted
+    if lsblk -n -o MOUNTPOINT "$dev" 2>/dev/null | grep -qv '^[[:space:]]*$'; then
+        continue
+    fi
+    CANDIDATE_DISKS+=("$dev")
+    CANDIDATE_LABELS+=("$name  [$size]")
+done < <(lsblk -d -n -o NAME,SIZE,TYPE -e 7,11)
+
+if [ ${#CANDIDATE_DISKS[@]} -eq 0 ]; then
+    echo "No unmounted disks found." >&2
+    exit 1
+fi
+
+echo ""
+echo "Available disks:"
+for i in "${!CANDIDATE_LABELS[@]}"; do
+    echo "  $((i+1))) ${CANDIDATE_LABELS[$i]}"
+done
+echo ""
+
+while true; do
+    read -p "Select disk [1-${#CANDIDATE_DISKS[@]}]: " SEL
+    [[ "$SEL" =~ ^[0-9]+$ ]] && [ "$SEL" -ge 1 ] && [ "$SEL" -le "${#CANDIDATE_DISKS[@]}" ] && break
+    echo "Invalid selection."
+done
+
+TARGETDISK="${CANDIDATE_DISKS[$((SEL-1))]}"
+
+# Auto-detect partition prefix (nvme/mmcblk use 'p', others use '')
+if [[ "$TARGETDISK" =~ nvme|mmcblk ]]; then
+    TARGETDISKPREFIX="p"
+else
+    TARGETDISKPREFIX=""
+fi
+echo "Selected: $TARGETDISK  (partition prefix: '${TARGETDISKPREFIX}')"
+read -p "Enter EFI size in MiB [512]: " EFI_MIB
+EFI_MIB=${EFI_MIB:-512}
+read -p "Enter swap size in GiB (0 = no swap) [0]: " SWAP_GIB
+SWAP_GIB=${SWAP_GIB:-0}
+read -p "Enter data partition size in GiB (0 = use existing data if it exists) [0]: " DATA_GIB
+DATA_GIB=${DATA_GIB:-0}
 
 EFI_PART="${TARGETDISK}${TARGETDISKPREFIX}1"
 SWAP_PART="${TARGETDISK}${TARGETDISKPREFIX}2"
