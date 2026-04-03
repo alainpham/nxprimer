@@ -107,6 +107,9 @@ sgdisk -n "${LVM_NUM}:0:0" -t "${LVM_NUM}:8e00" -c "${LVM_NUM}:LVM" "${TARGETDIS
 # Inform kernel of new partition table
 partprobe "${TARGETDISK}"
 udevadm settle
+# Deactivate any LVM udev auto-activated on the new partitions
+vgchange -an 2>/dev/null || true
+udevadm settle
 
 # Format EFI
 mkfs.fat -F32 -n BOOT "${EFI_PART}"
