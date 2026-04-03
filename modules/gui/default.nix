@@ -71,6 +71,13 @@
   services.sunshine.enable = true;
   services.sunshine.autoStart = false;
   services.sunshine.openFirewall = true;
+  
+  # syncthing
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    extraFlags = [ "--no-default-folder" ]; 
+  };
 
   # app images setup
   programs.appimage = {
