@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export TARGET_USERNAME=${1:-apham}
+export TARGET_USERNAME=${1:-user}
 
 echo "Available configuration files:"
 
