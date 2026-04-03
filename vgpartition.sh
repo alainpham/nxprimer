@@ -104,6 +104,10 @@ fi
 # LVM partition (remaining space)
 sgdisk -n "${LVM_NUM}:0:0" -t "${LVM_NUM}:8e00" -c "${LVM_NUM}:LVM" "${TARGETDISK}"
 
+# Inform kernel of new partition table
+partprobe "${TARGETDISK}"
+udevadm settle
+
 # Format EFI
 mkfs.fat -F32 -n BOOT "${EFI_PART}"
 
