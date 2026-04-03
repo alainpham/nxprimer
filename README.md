@@ -46,7 +46,7 @@ ip link set enp1s0 down
 
 nixos-install
 
-nixos-enter --root /mnt -c 'passwd apham'
+nixos-enter --root /mnt -c 'passwd user'
 
 ```
 
@@ -112,17 +112,17 @@ nix flake update --extra-experimental-features nix-command --extra-experimental-
 nixos-install --no-root-passwd --flake /mnt/etc/nixos#nixos
 
 
-nixos-enter --root /mnt -c "passwd apham"
+nixos-enter --root /mnt -c "passwd user"
 
-cd /mnt/home/apham/
+cd /mnt/home/user/
 
 git clone https://github.com/alainpham/nxprimer.git
 git clone https://github.com/alainpham/dotfiles.git
 git clone https://github.com/alainpham/lab.git
 
-nixos-enter --root /mnt -c "chown -R apham /home/apham/nxprimer"
-nixos-enter --root /mnt -c "chown -R apham /home/apham/dotfiles"
-nixos-enter --root /mnt -c "chown -R apham /home/apham/lab"
+nixos-enter --root /mnt -c "chown -R user /home/user/nxprimer"
+nixos-enter --root /mnt -c "chown -R user /home/user/dotfiles"
+nixos-enter --root /mnt -c "chown -R user /home/user/lab"
 
 ```
 
