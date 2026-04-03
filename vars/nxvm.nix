@@ -1,7 +1,7 @@
 {
   hostname= "nxvm";
-  targetUserName = "apham";
-  targetUserEmail = "apham@localhost";
+  targetUserName = "user";
+  targetUserEmail = "user@localhost";
   keyboardLayout = "fr";
   keyboardModel = "pc105";
   keyboardVariant = "azerty";

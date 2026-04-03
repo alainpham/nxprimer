@@ -1,7 +1,7 @@
 {
   hostname= "ombp";
-  targetUserName = "apham";
-  targetUserEmail = "apham@localhost";
+  targetUserName = "user";
+  targetUserEmail = "user@localhost";
   keyboardLayout = "us";
   keyboardModel = "pc105";
   keyboardVariant = "mac";

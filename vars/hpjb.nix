@@ -1,7 +1,7 @@
 {
   hostname= "hpjb";
-  targetUserName = "apham";
-  targetUserEmail = "apham@localhost";
+  targetUserName = "user";
+  targetUserEmail = "user@localhost";
   keyboardLayout = "de";
   keyboardModel = "pc105";
   keyboardVariant = "";
