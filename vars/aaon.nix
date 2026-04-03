@@ -8,13 +8,13 @@
   wildcardDomain = "paaon.dns.army";
   disableTurboBoost = true;
   numlockOnBoot = true;
-  automaticlogin = true;
+  automaticlogin = false;
 
   enableDev = true;
   enableContainers = true;
   enableVirtualization = true;
   enableDwm = true;
-  enableStartx = false;
+  enableStartx = true;
   enablePicom = true;
   enableGui = true;
   enableWorkstation = true;
