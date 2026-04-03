@@ -113,7 +113,8 @@ if [ "${SWAP_GIB}" -gt 0 ]; then
 fi
 
 # Set up LVM
-pvcreate "${LVM_PART}"
+wipefs -a "${LVM_PART}"
+pvcreate -ff "${LVM_PART}"
 vgcreate "${VG_NAME}" "${LVM_PART}"
 
 if [ "${DATA_GIB}" -gt 0 ]; then
