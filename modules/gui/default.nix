@@ -76,6 +76,7 @@
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
+    user = "${vars.targetUserName}";
   };
 
   # app images setup
