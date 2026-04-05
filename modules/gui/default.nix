@@ -76,6 +76,7 @@
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
+    guiAddress = "0.0.0.0:8384";
     user = "${vars.targetUserName}";
     group = "users";
     settings.options.urAccepted = -1;
