@@ -77,6 +77,9 @@
     enable = true;
     openDefaultPorts = true;
     user = "${vars.targetUserName}";
+    group = "users";
+    settings.options.urAccepted = false;
+    configDir = "/home/${vars.targetUserName}/.local/state/syncthing/";
   };
 
   # app images setup
