@@ -82,6 +82,8 @@
     settings.options.urAccepted = -1;
     configDir = "/home/${vars.targetUserName}/.local/state/syncthing/";
   };
+  
+  networking.firewall.allowedTCPPorts = [ 8384 ];
 
   # app images setup
   programs.appimage = {
