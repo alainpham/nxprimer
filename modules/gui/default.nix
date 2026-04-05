@@ -76,7 +76,6 @@
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
-    extraFlags = [ "--no-default-folder" ]; 
   };
 
   # app images setup
