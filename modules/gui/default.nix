@@ -78,7 +78,7 @@
     openDefaultPorts = true;
     user = "${vars.targetUserName}";
     group = "users";
-    settings.options.urAccepted = false;
+    settings.options.urAccepted = -1;
     configDir = "/home/${vars.targetUserName}/.local/state/syncthing/";
   };
 
