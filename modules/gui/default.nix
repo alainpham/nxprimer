@@ -73,17 +73,17 @@
   services.sunshine.openFirewall = true;
   
   # syncthing
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-    guiAddress = "0.0.0.0:8384";
-    user = "${vars.targetUserName}";
-    group = "users";
-    settings.options.urAccepted = -1;
-    configDir = "/home/${vars.targetUserName}/.local/state/syncthing/";
-  };
+  # services.syncthing = {
+  #   enable = true;
+  #   openDefaultPorts = true;
+  #   guiAddress = "0.0.0.0:8384";
+  #   user = "${vars.targetUserName}";
+  #   group = "users";
+  #   settings.options.urAccepted = -1;
+  #   configDir = "/home/${vars.targetUserName}/.local/state/syncthing/";
+  # };
   
-  networking.firewall.allowedTCPPorts = [ 8384 ];
+  # networking.firewall.allowedTCPPorts = [ 8384 ];
 
   # app images setup
   programs.appimage = {
