@@ -61,6 +61,12 @@
         source = "${sources.dotfilesgit}/home/.xinitrc";
         force = true;
       };
+      
+      ".Xresources" = { 
+        source = "${sources.dotfilesgit}/home/.Xresources";
+        force = true;
+      };
+
       ".config/libinput-gestures.conf" = { 
         source = "${sources.dotfilesgit}/home/.config/libinput-gestures.conf";
         force = true;

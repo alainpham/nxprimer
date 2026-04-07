@@ -146,6 +146,16 @@
         force = true;
       };
 
+      ".icons/default/index.theme" = { 
+          source = "${sources.dotfilesgit}/home/.icons/default/index.theme";
+          force = true;
+      };
+
+      ".local/share/icons/default/index.theme" = { 
+          source = "${sources.dotfilesgit}/home/.local/share/icons/default/index.theme";
+          force = true;
+      };
+
       ".config/mimeapps.list" = { 
         source = "${sources.dotfilesgit}/home/.config/mimeapps.list";
         force = true;
@@ -158,8 +168,15 @@
           recursive = true;
           force = true;
       };
+      
       ".config/gtk-4.0" = { 
           source = "${sources.dotfilesgit}/home/.config/gtk-4.0";
+          recursive = true;
+          force = true;
+      };
+
+      ".config/dconf" = { 
+          source = "${sources.dotfilesgit}/home/.config/dconf";
           recursive = true;
           force = true;
       };
