@@ -72,9 +72,19 @@ while IFS= read -r line; do
 done < <(lsblk -n -o NAME,TYPE "${TARGETDISK}")
 
 # LVM logical volumes on VGs that live on this disk
-VG_NAME=$(pvs --noheadings -o pv_name,vg_name 2>/dev/null \
-    | awk -v disk="${TARGETDISK}" '$1 ~ "^"disk {print $2}' \
-    | head -1 | tr -d ' ')
+# First find the LVM PV partition on the disk, then scan + activate its VG
+LVM_PV=$(lsblk -n -o NAME,TYPE "${TARGETDISK}" \
+    | awk '$2=="part" {print "/dev/"$1}' \
+    | while read -r p; do
+        [ "$(blkid -s TYPE -o value "$p" 2>/dev/null)" = "LVM2_member" ] && echo "$p" && break
+    done)
+
+VG_NAME=""
+if [ -n "$LVM_PV" ]; then
+    echo "Found LVM PV: ${LVM_PV} — scanning for volume groups..."
+    pvscan 2>/dev/null || true
+    VG_NAME=$(pvs --noheadings -o vg_name "${LVM_PV}" 2>/dev/null | tr -d ' ')
+fi
 
 if [ -n "$VG_NAME" ]; then
     echo "Activating volume group ${VG_NAME}..."
