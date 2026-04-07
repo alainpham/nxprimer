@@ -77,6 +77,9 @@ VG_NAME=$(pvs --noheadings -o pv_name,vg_name 2>/dev/null \
     | head -1 | tr -d ' ')
 
 if [ -n "$VG_NAME" ]; then
+    echo "Activating volume group ${VG_NAME}..."
+    vgchange -ay "${VG_NAME}"
+    udevadm settle
     while IFS= read -r lv_name; do
         lv_name=$(echo "$lv_name" | tr -d ' ')
         dev="/dev/${VG_NAME}/${lv_name}"
