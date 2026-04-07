@@ -7,7 +7,7 @@ in
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "2e3d988952ff8b56ce6bdfb468b130102842a999";
+    rev = "58b8e18048c18f08ca6a86ea0ce14a11e3680abe";
   };
 
   # desktop related
