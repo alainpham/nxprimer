@@ -307,6 +307,7 @@
     kdePackages.breeze
     kdePackages.breeze-icons
     kdePackages.breeze-gtk
+    adwaita-icon-theme
 
     bluetui
     impala
