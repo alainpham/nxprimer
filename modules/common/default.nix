@@ -19,6 +19,8 @@
     #/etc/NetworkManager/dnsmasq.d/dev.conf
     local=/${vars.wildcardDomain}/
     address=/${vars.wildcardDomain}/172.18.0.1
+    local=/${vars.k3sWildcardDomain}/
+    address=/${vars.k3sWildcardDomain}/172.18.0.1
   '';
   environment.homeBinInPath = true;
   # to be put specifically in vm
