@@ -83,6 +83,8 @@
     export KEYBOARD_MODEL=${vars.keyboardModel}
     export KEYBOARD_VARIANT=${vars.keyboardVariant}
     export WILDCARD_DOMAIN=${vars.wildcardDomain}
+    export K3S_WILDCARD_DOMAIN=${vars.k3sWildcardDomain}
+
   '';
 
   users.users = {

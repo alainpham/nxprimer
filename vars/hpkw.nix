@@ -6,6 +6,7 @@
   keyboardModel = "pc105";
   keyboardVariant = "";
   wildcardDomain = "houze.dns.army";
+  k3sWildcardDomain = "kubes.dns.army";
   disableTurboBoost = false;
   numlockOnBoot = true;
   automaticlogin = true;

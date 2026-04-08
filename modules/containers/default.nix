@@ -45,7 +45,7 @@
     extraFlags = [ 
       "--disable=traefik" 
       "--disable=servicelb"
-      "--tls-san=${vars.wildcardDomain}"
+      "--tls-san=${vars.k3sWildcardDomain}"
       "--write-kubeconfig-mode=644"
     ];
   };

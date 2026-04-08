@@ -6,6 +6,7 @@
   keyboardModel = "pc105";
   keyboardVariant = "mac";
   wildcardDomain = "houze.dns.army";
+  k3sWildcardDomain = "kubes.dns.army";
   disableTurboBoost = false;
   numlockOnBoot = false;
   automaticlogin = true;
