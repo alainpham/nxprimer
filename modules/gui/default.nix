@@ -327,6 +327,8 @@
        
     moonlight-qt
 
+    nss
+
     guiscripts
     webapps
     iconspkg
