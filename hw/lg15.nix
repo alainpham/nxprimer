@@ -23,6 +23,9 @@
 
   nixpkgs.config.nvidia.acceptLicense = true;
 
+  hardware.nvidia-container-toolkit.enable = true;
+  virtualisation.docker.daemon.settings.features.cdi = true;
+
   hardware.graphics = {
     extraPackages = with pkgs; [
       intel-media-driver
