@@ -1,5 +1,12 @@
 # Nix distro for work and co.
 
+## TODOS
+
+```
+add opencode add a way to use llamacpp easily alongside with open code
+fix kubectl inside of sandbox
+```
+
 ## Get hashes from latest git repos
 
 ```sh
