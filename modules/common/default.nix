@@ -14,7 +14,8 @@
   networking.hostName = vars.hostname;
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "dnsmasq";
-  
+  networking.networkmanager.wifi.powersave = false; # disable wifi powersave
+
   environment.etc."NetworkManager/dnsmasq.d/dev.conf".text = ''
     #/etc/NetworkManager/dnsmasq.d/dev.conf
     local=/${vars.wildcardDomain}/
