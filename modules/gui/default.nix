@@ -297,6 +297,7 @@
     pulseaudio
     qpwgraph
     glib
+    gsettings-desktop-schemas
     
     rofi
     usbutils
