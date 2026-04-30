@@ -324,6 +324,7 @@
     speedcrunch
     font-awesome
     lxappearance
+    nwg-look
     kdePackages.breeze
     kdePackages.breeze-icons
     kdePackages.breeze-gtk
