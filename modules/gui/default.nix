@@ -165,7 +165,6 @@
           source = "${sources.dotfilesgit}/home/.local/share/icons/default/index.theme";
           force = true;
       };
-
       ".config/mimeapps.list" = { 
         source = "${sources.dotfilesgit}/home/.config/mimeapps.list";
         force = true;
@@ -184,7 +183,21 @@
           recursive = true;
           force = true;
       };
-
+      ".config/xsettingsd" = { 
+          source = "${sources.dotfilesgit}/home/.config/xsettingsd";
+          recursive = true;
+          force = true;
+      };
+      ".local/share/nwg-look" = { 
+          source = "${sources.dotfilesgit}/home/.local/share/nwg-look";
+          recursive = true;
+          force = true;
+      };
+      ".config/xdg-desktop-portal" = { 
+          source = "${sources.dotfilesgit}/home/.config/xdg-desktop-portal";
+          recursive = true;
+          force = true;
+      };
       ".config/dconf" = { 
           source = "${sources.dotfilesgit}/home/.config/dconf";
           recursive = true;
@@ -298,7 +311,7 @@
     qpwgraph
     glib
     gsettings-desktop-schemas
-    
+
     rofi
     usbutils
     SDL2
