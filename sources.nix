@@ -7,14 +7,14 @@ in
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "fc477c4a6549b329c51102ab0fddb5f231c36040";
+    rev = "02a6637a1fd3de92baba98cc17aab1f61eb7ce73";
   };
 
   # desktop related
   dwmgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwm-flexipatch.git";
     ref = "master";
-    rev = "ea5de4298f69f51208df13f7ef90bc83018edbeb";
+    rev = "f3c267b7c4e98aa70fd30a3d869bb3409b89a060";
   };
 
   stgit = builtins.fetchGit {
@@ -38,7 +38,7 @@ in
   dwmblocksgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwmblocks.git";
     ref = "master";
-    rev = "1e796d6fe576afb7c941a0f51b3d2670eb823409";
+    rev = "f3c267b7c4e98aa70fd30a3d869bb3409b89a060";
   };
 
   gshortsgit = builtins.fetchGit {
