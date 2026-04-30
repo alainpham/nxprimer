@@ -293,6 +293,7 @@
   environment.systemPackages = with pkgs; [
 
     pulseaudio
+    qpwgraph
 
     rofi
     usbutils
