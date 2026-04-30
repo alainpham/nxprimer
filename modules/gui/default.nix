@@ -52,9 +52,17 @@
       KERNEL=="uinput", MODE="0660", GROUP="input", SYMLINK+="uinput"
     '';
 
-  services.pipewire.enable = false;
-  services.pulseaudio = {
+  security.rtkit.enable = true;
+  services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+
+  services.pulseaudio = {
+    enable = false;
     support32Bit = true;
   };
 
