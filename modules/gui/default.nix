@@ -15,7 +15,6 @@
     };
   };
 
-  
   services.udisks2.enable = true;
   services.upower.enable = true;
   services.libinput.touchpad = {
@@ -153,7 +152,10 @@
         source = "${sources.dotfilesgit}/home/.gtkrc-2.0"; 
         force = true;
       };
-
+      ".gtkrc-2.0" = { 
+        source = "${sources.dotfilesgit}/home/.gtkrc-2.0"; 
+        force = true;
+      };
       ".icons/default/index.theme" = { 
           source = "${sources.dotfilesgit}/home/.icons/default/index.theme";
           force = true;
@@ -294,7 +296,8 @@
 
     pulseaudio
     qpwgraph
-
+    glib
+    
     rofi
     usbutils
     SDL2
