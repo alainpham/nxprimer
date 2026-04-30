@@ -152,8 +152,8 @@
         source = "${sources.dotfilesgit}/home/.gtkrc-2.0"; 
         force = true;
       };
-      ".gtkrc-2.0" = { 
-        source = "${sources.dotfilesgit}/home/.gtkrc-2.0"; 
+      ".config/user-dirs.dirs" = { 
+        source = "${sources.dotfilesgit}/home/.config/user-dirs.dirs"; 
         force = true;
       };
       ".icons/default/index.theme" = { 
