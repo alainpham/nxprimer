@@ -282,6 +282,8 @@
 
   environment.systemPackages = with pkgs; [
 
+    pulseaudio
+
     rofi
     usbutils
     SDL2
