@@ -194,6 +194,16 @@
           recursive = true;
           force = true;
       };
+      ".config/pipewire" = { 
+          source = "${sources.dotfilesgit}/home/.config/pipewire";
+          recursive = true;
+          force = true;
+      };
+      ".config/wireplumber" = { 
+          source = "${sources.dotfilesgit}/home/.config/wireplumber";
+          recursive = true;
+          force = true;
+      };
       ".config/rofi" = { 
           source = "${sources.dotfilesgit}/home/.config/rofi";
           recursive = true;
