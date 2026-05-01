@@ -17,6 +17,7 @@
 
   services.udisks2.enable = true;
   services.upower.enable = true;
+  # services.tuned.enable = true;
   services.libinput.touchpad = {
     tapping = true;
     naturalScrolling = false;
