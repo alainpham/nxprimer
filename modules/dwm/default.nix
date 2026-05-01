@@ -7,7 +7,7 @@
     xkb.model = vars.keyboardModel;
     xkb.variant = vars.keyboardVariant;
     displayManager.startx.enable = true;
-    services.xserver.dpi = 96;
+    dpi = 96;
     upscaleDefaultCursor = true;
   };
 
