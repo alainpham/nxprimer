@@ -7,6 +7,7 @@
     xkb.model = vars.keyboardModel;
     xkb.variant = vars.keyboardVariant;
     displayManager.startx.enable = true;
+    upscaleDefaultCursor = true;
   };
 
   # thunar
