@@ -118,6 +118,7 @@
 
   environment.systemPackages = with pkgs; [
     xorg.xwininfo
+    xorg.xdpyinfo
     wmctrl
 
     (dwm.overrideAttrs (oldAttrs: rec {
