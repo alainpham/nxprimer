@@ -30,6 +30,15 @@
     noto-fonts
   ];
 
+
+  # QT theming to match gtk
+  qt = {
+    enable = true;
+    platformTheme = "gtk2";
+  };
+  xdg.portal.enable = true;
+  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.configPackages = [ pkgs.xdg-desktop-portal-gtk ];
   ###############################
   # sound
   ###############################
