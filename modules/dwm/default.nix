@@ -16,6 +16,7 @@
   # services.displayManager.enable = false;
   # thunar
   programs.xfconf.enable = true;
+  programs.dconf.enable = true;
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
