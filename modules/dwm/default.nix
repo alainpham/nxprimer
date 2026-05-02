@@ -27,7 +27,7 @@
   };
 
   environment.variables = {
-    GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/glib-2.0/schemas";
+    GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-49.1/glib-2.0/schemas";
   };
 
   # slock  
