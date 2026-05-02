@@ -14,13 +14,13 @@ in
   dwmgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwm-flexipatch.git";
     ref = "master";
-    rev = "ea5de4298f69f51208df13f7ef90bc83018edbeb";
+    rev = "1198d5fdc6bda79f045563791bb538027af87037";
   };
 
   stgit = builtins.fetchGit {
     url = "https://github.com/alainpham/st-flexipatch.git";
     ref = "master";
-    rev = "6d4b441d4710b694a208a97de7373f06173737f3";
+    rev = "bd5778c3c7787d9599a59f49d0cfc7e93f8c30ab";
   };
 
   dmenugit = builtins.fetchGit {
