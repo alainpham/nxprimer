@@ -13,7 +13,9 @@
     #     ${pkgs.xorg.xrdb}/bin/xrdb -merge $HOME/.Xresources &disown
     #   fi    '';
   };
-
+  environment.variables = {
+    XCURSOR_SIZE = "24"; # default 16 I think
+  };
   # thunar
   programs.xfconf.enable = true;
   programs.thunar = {
