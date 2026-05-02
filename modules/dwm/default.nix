@@ -57,13 +57,7 @@
       '';
       
     };
-  home.pointerCursor = {
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
-    size = 24;
-    gtk.enable = true;
-    x11.enable = true;
-  };
+
     home.file = {
       # files at root of home
 
@@ -73,10 +67,10 @@
         force = true;
       };
       
-      # ".Xresources" = { 
-      #   source = "${sources.dotfilesgit}/home/.Xresources";
-      #   force = true;
-      # };
+      ".Xresources" = { 
+        source = "${sources.dotfilesgit}/home/.Xresources";
+        force = true;
+      };
 
       ".config/libinput-gestures.conf" = { 
         source = "${sources.dotfilesgit}/home/.config/libinput-gestures.conf";
