@@ -108,6 +108,7 @@
     retroarchbiospkg
     retroarchappimage
     ppsspp
+    mgba
 
     fhsrun
     winetricks
