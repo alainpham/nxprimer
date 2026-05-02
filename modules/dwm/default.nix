@@ -26,6 +26,10 @@
     ];
   };
 
+  environment.variables = {
+    GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/glib-2.0/schemas";
+  };
+
   # slock  
   programs.slock.enable = true;
   programs.slock.package = pkgs.slock.overrideAttrs (oldAttrs: rec {
