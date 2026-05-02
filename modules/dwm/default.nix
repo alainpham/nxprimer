@@ -7,8 +7,11 @@
     xkb.model = vars.keyboardModel;
     xkb.variant = vars.keyboardVariant;
     displayManager.startx.enable = true;
-    dpi = 96;
-    upscaleDefaultCursor = true;
+    displayManager.sessionCommands = ''
+      ${pkgs.xlibs.xsetroot}/bin/xsetroot -cursor_name ${pkgs.adwaita-icon-theme}/share/icons/Adwaita/cursors/left_ptr 24 &disown
+      if test -e $HOME/.Xresources; then
+        ${pkgs.xorg.xrdb}/bin/xrdb -merge $HOME/.Xresources &disown
+      fi    '';
   };
 
   # thunar
@@ -121,6 +124,7 @@
   environment.systemPackages = with pkgs; [
     xorg.xwininfo
     xorg.xdpyinfo
+    xorg.xrdb
     wmctrl
 
     (dwm.overrideAttrs (oldAttrs: rec {
