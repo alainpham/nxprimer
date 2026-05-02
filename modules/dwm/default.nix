@@ -13,6 +13,7 @@
     #     ${pkgs.xorg.xrdb}/bin/xrdb -merge $HOME/.Xresources &disown
     #   fi    '';
   };
+  services.displayManager.enable = false;
   # thunar
   programs.xfconf.enable = true;
   programs.thunar = {
