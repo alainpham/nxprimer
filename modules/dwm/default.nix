@@ -1,19 +1,19 @@
 { config, lib, pkgs, vars, sources, nixStateVersion, ... }:
 {
 
-  services.xserver = {
-    enable = true;
-    xkb.layout = vars.keyboardLayout;
-    xkb.model = vars.keyboardModel;
-    xkb.variant = vars.keyboardVariant;
-    # displayManager.startx.enable = true;
-    # displayManager.sessionCommands = ''
-    #   ${pkgs.xlibs.xsetroot}/bin/xsetroot -cursor_name ${pkgs.adwaita-icon-theme}/share/icons/Adwaita/cursors/left_ptr 24 &disown
-    #   if test -e $HOME/.Xresources; then
-    #     ${pkgs.xorg.xrdb}/bin/xrdb -merge $HOME/.Xresources &disown
-    #   fi    '';
-  };
-  services.displayManager.enable = false;
+  # services.xserver = {
+  #   enable = true;
+  #   xkb.layout = vars.keyboardLayout;
+  #   xkb.model = vars.keyboardModel;
+  #   xkb.variant = vars.keyboardVariant;
+  #   # displayManager.startx.enable = true;
+  #   # displayManager.sessionCommands = ''
+  #   #   ${pkgs.xlibs.xsetroot}/bin/xsetroot -cursor_name ${pkgs.adwaita-icon-theme}/share/icons/Adwaita/cursors/left_ptr 24 &disown
+  #   #   if test -e $HOME/.Xresources; then
+  #   #     ${pkgs.xorg.xrdb}/bin/xrdb -merge $HOME/.Xresources &disown
+  #   #   fi    '';
+  # };
+  # services.displayManager.enable = false;
   # thunar
   programs.xfconf.enable = true;
   programs.thunar = {
