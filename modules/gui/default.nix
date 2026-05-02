@@ -352,13 +352,12 @@
     filezilla
     speedcrunch
     font-awesome
-    lxappearance
+    
     nwg-look
     kdePackages.breeze
     kdePackages.breeze-icons
     kdePackages.breeze-gtk
     adwaita-icon-theme
-    adwaita-icon-theme-legacy
     adwaita-qt
     adwaita-fonts
 
