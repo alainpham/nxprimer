@@ -134,6 +134,10 @@
 
     (dwm.overrideAttrs (oldAttrs: rec {
       src = sources.dwmgit;
+      buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXcursor ];
+      postPatch = (oldAttrs.postPatch or "") + ''
+        sed -i '/^LIBS/s/$/ -lXcursor/' config.mk
+      '';
     }))
 
     (st.overrideAttrs (oldAttrs: rec {
