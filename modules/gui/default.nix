@@ -370,6 +370,7 @@
     fdk_aac
     yt-dlp
     google-chrome
+    firefox
     lxqt.pavucontrol-qt
     alsa-utils
     
