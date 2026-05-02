@@ -20,6 +20,7 @@
   enableGui = true;
   enableWorkstation = true;
   enableGaming = true;
-  
+  enableGamingEx = false;
+
   sunshineOnBoot = true;
 }
