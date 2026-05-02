@@ -44,6 +44,7 @@
       ++ nixpkgs.lib.optional (vars.enableGui) ./modules/gui
       ++ nixpkgs.lib.optional (vars.enableWorkstation) ./modules/workstation
       ++ nixpkgs.lib.optional (vars.enableGaming) ./modules/gaming
+      ++ nixpkgs.lib.optional (vars.enableGamingEx) ./modules/gamingex
       ;
     };
   };
