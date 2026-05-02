@@ -19,6 +19,10 @@
           force = true;
       };
 
+      "bin/localsend_app" = { 
+        source = "${sources.dotfilesgit}/home/bin/localsend_app";
+        force = true;
+      };
     };
 
   };
