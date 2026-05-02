@@ -322,7 +322,8 @@
     qpwgraph
     glib
     gsettings-desktop-schemas
-
+    gtk3
+    
     rofi
     usbutils
     SDL2
