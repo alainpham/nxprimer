@@ -6,15 +6,12 @@
     xkb.layout = vars.keyboardLayout;
     xkb.model = vars.keyboardModel;
     xkb.variant = vars.keyboardVariant;
-    displayManager.startx.enable = true;
+    # displayManager.startx.enable = true;
     # displayManager.sessionCommands = ''
     #   ${pkgs.xlibs.xsetroot}/bin/xsetroot -cursor_name ${pkgs.adwaita-icon-theme}/share/icons/Adwaita/cursors/left_ptr 24 &disown
     #   if test -e $HOME/.Xresources; then
     #     ${pkgs.xorg.xrdb}/bin/xrdb -merge $HOME/.Xresources &disown
     #   fi    '';
-  };
-  environment.variables = {
-    XCURSOR_SIZE = "24"; # default 16 I think
   };
   # thunar
   programs.xfconf.enable = true;
@@ -127,6 +124,7 @@
     xorg.xwininfo
     xorg.xdpyinfo
     xorg.xrdb
+    xorg.xinit
     wmctrl
 
     (dwm.overrideAttrs (oldAttrs: rec {
