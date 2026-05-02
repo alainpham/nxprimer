@@ -172,10 +172,10 @@
       #     force = true;
       # };
 
-      ".local/share/icons/default/index.theme" = { 
-          source = "${sources.dotfilesgit}/home/.local/share/icons/default/index.theme";
-          force = true;
-      };
+      # ".local/share/icons/default/index.theme" = { 
+      #     source = "${sources.dotfilesgit}/home/.local/share/icons/default/index.theme";
+      #     force = true;
+      # };
       ".config/mimeapps.list" = { 
         source = "${sources.dotfilesgit}/home/.config/mimeapps.list";
         force = true;
