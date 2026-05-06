@@ -105,10 +105,16 @@
           recursive = true;
           force = true;
       };
+      "themecfgs" = { 
+        source = "${sources.dotfilesgit}/home/themecfgs";
+        recursive = true;
+        force = true;
+      };
       "bin/theme" = { 
         source = "${sources.dotfilesgit}/home/bin/theme";
         force = true;
       };
+      
     };
 
   };
