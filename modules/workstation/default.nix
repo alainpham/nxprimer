@@ -19,8 +19,8 @@
           force = true;
       };
 
-      "bin/localsend_app" = { 
-        source = "${sources.dotfilesgit}/home/bin/localsend_app";
+      "bin/localsend" = { 
+        source = "${sources.dotfilesgit}/home/bin/localsend";
         force = true;
       };
     };
