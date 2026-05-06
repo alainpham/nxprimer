@@ -159,23 +159,11 @@
     home.file = {
       # files at root of home
 
-      ".gtkrc-2.0" = { 
-        source = "${sources.dotfilesgit}/home/.gtkrc-2.0"; 
-        force = true;
-      };
       ".config/user-dirs.dirs" = { 
         source = "${sources.dotfilesgit}/home/.config/user-dirs.dirs"; 
         force = true;
       };
-      ".icons/default/index.theme" = { 
-          source = "${sources.dotfilesgit}/home/.icons/default/index.theme";
-          force = true;
-      };
 
-      ".local/share/icons/default/index.theme" = { 
-          source = "${sources.dotfilesgit}/home/.local/share/icons/default/index.theme";
-          force = true;
-      };
       ".config/mimeapps.list" = { 
         source = "${sources.dotfilesgit}/home/.config/mimeapps.list";
         force = true;
@@ -183,34 +171,9 @@
 
       # config folders
       
-      ".config/gtk-3.0" = { 
-          source = "${sources.dotfilesgit}/home/.config/gtk-3.0";
-          recursive = true;
-          force = true;
-      };
       
-      ".config/gtk-4.0" = { 
-          source = "${sources.dotfilesgit}/home/.config/gtk-4.0";
-          recursive = true;
-          force = true;
-      };
-      ".config/xsettingsd" = { 
-          source = "${sources.dotfilesgit}/home/.config/xsettingsd";
-          recursive = true;
-          force = true;
-      };
-      ".local/share/nwg-look" = { 
-          source = "${sources.dotfilesgit}/home/.local/share/nwg-look";
-          recursive = true;
-          force = true;
-      };
       ".config/xdg-desktop-portal" = { 
           source = "${sources.dotfilesgit}/home/.config/xdg-desktop-portal";
-          recursive = true;
-          force = true;
-      };
-      ".config/dconf" = { 
-          source = "${sources.dotfilesgit}/home/.config/dconf";
           recursive = true;
           force = true;
       };
@@ -240,7 +203,6 @@
           recursive = true;
           force = true;
       };
-
 
       # .local
       ".local/share/applications/bluetui.desktop" = { 

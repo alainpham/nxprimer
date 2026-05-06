@@ -7,7 +7,7 @@ in
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "09a7981ec396e9ea4051a3da83ddc7304c2a7673";
+    rev = "db842198a5bdcc4df49d54908ae465e49c98eb6f";
   };
 
   # desktop related
@@ -38,7 +38,7 @@ in
   dwmblocksgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwmblocks.git";
     ref = "master";
-    rev = "f3c267b7c4e98aa70fd30a3d869bb3409b89a060";
+    rev = "9920a2d1036163010e438aa510dc58029a2fbca5";
   };
 
   gshortsgit = builtins.fetchGit {

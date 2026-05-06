@@ -67,23 +67,12 @@
         force = true;
       };
       
-      ".Xresources" = { 
-        source = "${sources.dotfilesgit}/home/.Xresources";
-        force = true;
-      };
-
       ".config/libinput-gestures.conf" = { 
         source = "${sources.dotfilesgit}/home/.config/libinput-gestures.conf";
         force = true;
       };
       # config folders
       
-      ".config/dunst" = { 
-          source = "${sources.dotfilesgit}/home/.config/dunst";
-          recursive = true;
-          force = true;
-      };
-
       ".config/jgmenu" = { 
           source = "${sources.dotfilesgit}/home/.config/jgmenu";
           recursive = true;
@@ -115,6 +104,10 @@
           source = "${sources.dotfilesgit}/home/.local/share/dwm";
           recursive = true;
           force = true;
+      };
+      "bin/theme" = { 
+        source = "${sources.dotfilesgit}/home/bin/theme";
+        force = true;
       };
     };
 
