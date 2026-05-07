@@ -177,7 +177,11 @@
           recursive = true;
           force = true;
       };
-
+      ".config/alacritty" = { 
+          source = "${sources.dotfilesgit}/home/.config/alacritty";
+          recursive = true;
+          force = true;
+      };
       ".config/pulse" = { 
           source = "${sources.dotfilesgit}/home/.config/pulse";
           recursive = true;
@@ -285,6 +289,8 @@
     glib
     gsettings-desktop-schemas
     gtk3
+    alacritty
+
     
     rofi
     usbutils
