@@ -54,8 +54,8 @@ in
   };
 
   estationurl = builtins.fetchurl {
-    url = "https://gitlab.com/es-de/emulationstation-de/-/package_files/246875981/download";
-    sha256 = "4cb66cfc923099711cfa0eddd83db64744a6294e02e3ffd19ee867f77a88ec7e";
+    url = "https://gitlab.com/es-de/emulationstation-de/-/package_files/288156961/download";
+    sha256 = "3c61a44d738d55163daa58ede70720b425a0df62460c04dc23dd3ca586723581";
     name = "estation.AppImage";
   };
   
