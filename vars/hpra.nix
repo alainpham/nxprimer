@@ -1,5 +1,5 @@
 {
-  hostname= "hpjb";
+  hostname= "hpra";
   targetUserName = "user";
   targetUserEmail = "user@localhost";
   keyboardLayout = "de";
@@ -7,7 +7,7 @@
   keyboardVariant = "";
   wildcardDomain = "houze.dns.army";
   k3sWildcardDomain = "kubes.dns.army";
-  disableTurboBoost = true;
+  disableTurboBoost = false;
   numlockOnBoot = true;
   automaticlogin = true;
 
@@ -20,7 +20,7 @@
   enableGui = true;
   enableWorkstation = true;
   enableGaming = true;
-  enableGamingEx = false;
+  enableGamingEx = true;
 
-  sunshineOnBoot = true;
+  sunshineOnBoot = false;
 }
