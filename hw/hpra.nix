@@ -9,5 +9,5 @@
       intel-vaapi-driver
     ];
   };
-  
+
 }
