@@ -268,7 +268,6 @@ buildFHSEnv {
       graphite2
       gtk2
       gtk3
-      udev
       ncurses
       wayland
       libglvnd
