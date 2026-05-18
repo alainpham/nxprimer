@@ -23,6 +23,14 @@
         source = "${sources.dotfilesgit}/home/bin/localsend";
         force = true;
       };
+      "bin/obs" = { 
+        source = "${sources.dotfilesgit}/home/bin/obs";
+        force = true;
+      };
+      "bin/reaper" = { 
+        source = "${sources.dotfilesgit}/home/bin/reaper";
+        force = true;
+      };
     };
 
   };
@@ -41,6 +49,7 @@
     godot
     easytag
     audacity
+    reaper
     
     kdePackages.kdenlive
     onlyoffice-desktopeditors
