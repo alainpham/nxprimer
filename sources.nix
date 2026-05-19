@@ -7,14 +7,14 @@ in
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "a9ba1c03dec5e949c5b60bfc5eca3fce8a64d369";
+    rev = "713239686e8f081d88a820616c09d752f868f5eb";
   };
 
   # desktop related
   dwmgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwm-flexipatch.git";
     ref = "master";
-    rev = "9616c1c9aa1e6f5df96b432dd8e64d67aab03346";
+    rev = "3798d0d04140f2c3d5d89903f35481dec84a68e8";
   };
 
   stgit = builtins.fetchGit {
