@@ -60,6 +60,8 @@
       ATTR{id}=="loop", ATTR{number}=="10",SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1"
       ATTR{id}=="C920", SUBSYSTEM=="sound", ENV{PULSE_IGNORE}="1",ENV{ACP_IGNORE}="1"
       KERNEL=="uinput", MODE="0660", GROUP="input", SYMLINK+="uinput"
+      KERNEL=="rtc0", GROUP="audio"
+      KERNEL=="hpet", GROUP="audio"
     '';
 
   security.rtkit.enable = true;
@@ -77,13 +79,7 @@
     { domain = "@audio"; item = "nofile" ; type = "soft"; value = "99999"    ; }
     { domain = "@audio"; item = "nofile" ; type = "hard"; value = "99999"    ; }
   ];
-  
-  services.udev.extraRules = lib.mkAfter 
-    ''
-      KERNEL=="rtc0", GROUP="audio"
-      KERNEL=="hpet", GROUP="audio"
-    '';
-    
+
   services.pulseaudio = {
     enable = false;
     support32Bit = true;
