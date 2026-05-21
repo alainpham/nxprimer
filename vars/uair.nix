@@ -12,14 +12,14 @@
   automaticlogin = true;
 
   enableDev = true;
-  enableContainers = true;
-  enableVirtualization = true;
+  enableContainers = false;
+  enableVirtualization = false;
   enableDwm = true;
   enableStartx = true;
   enablePicom = true;
   enableGui = true;
   enableWorkstation = true;
-  enableGaming = true;
+  enableGaming = false;
   enableGamingEx = false;
 
   sunshineOnBoot = false;
