@@ -2,9 +2,9 @@
   hostname= "hpkw";
   targetUserName = "user";
   targetUserEmail = "user@localhost";
-  keyboardLayout = "de";
+  keyboardLayout = "fr";
   keyboardModel = "pc105";
-  keyboardVariant = "";
+  keyboardVariant = "azerty";
   wildcardDomain = "houze.dns.army";
   k3sWildcardDomain = "kubes.dns.army";
   disableTurboBoost = false;
