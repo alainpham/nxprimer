@@ -149,7 +149,7 @@
       
       sunshineOnBoot = lib.hm.dag.entryAfter ["writeBoundary"] ''
         if [ ${toString vars.sunshineOnBoot} ]; then
-          touch "$HOME/.shunshineonboot"
+          touch "$HOME/.sunshineonboot"
         else
           echo sunshine on boot disabled
         fi

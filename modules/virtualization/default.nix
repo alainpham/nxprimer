@@ -7,18 +7,6 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
-  systemd.services.firstboot-virt = {
-    enable = true;
-    description = "firstboot-virt";
-    after = [ "libvirtd.service" ];
-    wantedBy = [ "multi-user.target" ];
-    path = [ "/run/current-system/sw" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.vmscripts}/bin/firstboot-virt";
-    };
-  };
-
   users.users = {
     ${vars.targetUserName} = {
       extraGroups = [ 
