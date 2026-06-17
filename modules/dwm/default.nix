@@ -132,15 +132,6 @@
       NIX_LDFLAGS = "-lXcursor";
     }))
 
-    (st.overrideAttrs (oldAttrs: rec {
-      src = sources.stgit;
-      buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXcursor ];
-      NIX_LDFLAGS = "-lXcursor";
-    }))
-
-    (dmenu.overrideAttrs (oldAttrs: rec {
-      src = sources.dmenugit;
-    }))
 
     (dwmblocks.overrideAttrs (oldAttrs: rec {
       src = sources.dwmblocksgit;
