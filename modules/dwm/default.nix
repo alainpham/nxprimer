@@ -10,8 +10,6 @@
     windowManager.dwm.enable = true;
     services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
       src = sources.dwmgit;
-      buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXcursor ];
-      NIX_LDFLAGS = "-lXcursor";
     };
   };
   # services.displayManager.enable = false;
