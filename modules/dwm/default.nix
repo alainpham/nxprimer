@@ -6,7 +6,7 @@
     xkb.layout = vars.keyboardLayout;
     xkb.model = vars.keyboardModel;
     xkb.variant = vars.keyboardVariant;
-    displayManager.startx.enable = true;
+    displayManager.lightdm.enable = true;
   };
   # services.displayManager.enable = false;
   # thunar
@@ -62,10 +62,10 @@
       # files at root of home
 
       # dwm related
-      ".xinitrc" = { 
-        source = "${sources.dotfilesgit}/home/.xinitrc";
-        force = true;
-      };
+      # ".xinitrc" = { 
+      #   source = "${sources.dotfilesgit}/home/.xinitrc";
+      #   force = true;
+      # };
       
       ".config/libinput-gestures.conf" = { 
         source = "${sources.dotfilesgit}/home/.config/libinput-gestures.conf";

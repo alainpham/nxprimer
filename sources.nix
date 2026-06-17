@@ -7,26 +7,14 @@ in
   dotfilesgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dotfiles.git";
     ref = "master";
-    rev = "cbf2aef375d37ff12eb9f8938bfe9dffb45dfe9c";
+    rev = "63963df000156c2d53a7a7b553706ee88bf30053";
   };
 
   # desktop related
   dwmgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwm-flexipatch.git";
     ref = "master";
-    rev = "9616c1c9aa1e6f5df96b432dd8e64d67aab03346";
-  };
-
-  stgit = builtins.fetchGit {
-    url = "https://github.com/alainpham/st-flexipatch.git";
-    ref = "master";
-    rev = "bd5778c3c7787d9599a59f49d0cfc7e93f8c30ab";
-  };
-
-  dmenugit = builtins.fetchGit {
-    url = "https://github.com/alainpham/dmenu-flexipatch.git";
-    ref = "master";
-    rev = "90ad650797feab1d9768e93627301fd90b12b4fe";
+    rev = "8e591f46ff91e7b618354c27501e5cb5889d35d6";
   };
 
   slockgit = builtins.fetchGit {
