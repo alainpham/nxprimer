@@ -5,14 +5,13 @@
     enable = true;
     user = vars.targetUserName;
   };
+
   services.xserver = {
     enable = true;
     xkb.layout = vars.keyboardLayout;
     xkb.model = vars.keyboardModel;
     xkb.variant = vars.keyboardVariant;
-    displayManager = {
-      lightdm.enable = true;
-    };
+    displayManager.lightdm.enable = true;
     windowManager.dwm = {
       enable = true;
       package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
