@@ -1,7 +1,7 @@
 { config, lib, pkgs, vars, sources, nixStateVersion, ... }:
 {
 
-  serivces.displayManager.autoLogin = {
+  services.displayManager.autoLogin = {
     enable = true;
     user = vars.targetUserName;
   };
