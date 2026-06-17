@@ -66,6 +66,6 @@
     avidemux
     postman
     dbeaver-bin
-flatpak install flathub com.getpostman.Postman
+
   ];
 }
