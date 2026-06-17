@@ -8,7 +8,7 @@
     xkb.variant = vars.keyboardVariant;
     displayManager.lightdm.enable = true;
     windowManager.dwm.enable = true;
-    services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
+    windowManager.dwm.package = pkgs.dwm.overrideAttrs {
       src = sources.dwmgit;
     };
   };
