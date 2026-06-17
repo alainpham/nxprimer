@@ -7,6 +7,12 @@
     xkb.model = vars.keyboardModel;
     xkb.variant = vars.keyboardVariant;
     displayManager.lightdm.enable = true;
+    windowManager.dwm.enable = true;
+    services.xserver.windowManager.dwm.package =  (dwm.overrideAttrs (oldAttrs: rec {
+      src = sources.dwmgit;
+      buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXcursor ];
+      NIX_LDFLAGS = "-lXcursor";
+    }))
   };
   # services.displayManager.enable = false;
   # thunar
@@ -126,11 +132,11 @@
     xorg.xrdb
     wmctrl
 
-    (dwm.overrideAttrs (oldAttrs: rec {
-      src = sources.dwmgit;
-      buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXcursor ];
-      NIX_LDFLAGS = "-lXcursor";
-    }))
+    # (dwm.overrideAttrs (oldAttrs: rec {
+    #   src = sources.dwmgit;
+    #   buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXcursor ];
+    #   NIX_LDFLAGS = "-lXcursor";
+    # }))
 
 
     (dwmblocks.overrideAttrs (oldAttrs: rec {
