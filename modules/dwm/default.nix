@@ -8,9 +8,11 @@
     xkb.variant = vars.keyboardVariant;
     displayManager.lightdm.enable = true;
     windowManager.dwm.enable = true;
-    windowManager.dwm.package = pkgs.dwm.overrideAttrs {
+    windowManager.dwm.package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
       src = sources.dwmgit;
-    };
+      buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXcursor ];
+      NIX_LDFLAGS = "-lXcursor";
+    });
   };
   # services.displayManager.enable = false;
   # thunar
