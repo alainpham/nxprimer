@@ -1,6 +1,10 @@
 { config, lib, pkgs, vars, sources, nixStateVersion, ... }:
 {
 
+  serivces.displayManager.autoLogin = {
+    enable = true;
+    user = vars.targetUserName;
+  };
   services.xserver = {
     enable = true;
     xkb.layout = vars.keyboardLayout;
@@ -8,8 +12,6 @@
     xkb.variant = vars.keyboardVariant;
     displayManager = {
       lightdm.enable = true;
-      autoLogin.enable = vars.automaticlogin;
-      autoLogin.user = vars.targetUserName;
     };
     windowManager.dwm = {
       enable = true;
