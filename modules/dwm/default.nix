@@ -21,6 +21,10 @@
       });
     };
   };
+  environment.etc."lightdm/lightdm.conf".text = ''
+  [Seat:*]
+  greeter-setup-script=${pkgs.numlockx}/bin/numlockx on
+  '';
   # services.displayManager.enable = false;
   # thunar
   programs.xfconf.enable = true;
