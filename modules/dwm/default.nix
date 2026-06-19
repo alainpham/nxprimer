@@ -12,6 +12,7 @@
     xkb.model = vars.keyboardModel;
     xkb.variant = vars.keyboardVariant;
     displayManager.lightdm.enable = true;
+    displayManager.setupCommands = mkIf vars.enableNumlockx ''${pkgs.numlockx}/bin/numlockx on'';
     windowManager.dwm = {
       enable = true;
       package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
@@ -21,10 +22,8 @@
       });
     };
   };
-  environment.etc."lightdm/lightdm.conf".text = ''
-  [Seat:*]
-  greeter-setup-script=${pkgs.numlockx}/bin/numlockx on
-  '';
+  
+  
   # services.displayManager.enable = false;
   # thunar
   programs.xfconf.enable = true;
