@@ -45,7 +45,7 @@
   programs.slock.enable = true;
   programs.slock.package = pkgs.slock.overrideAttrs (oldAttrs: rec {
     src = sources.slockgit;
-    buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXinerama pkgs.imlib2];
+    buildInputs = oldAttrs.buildInputs ++ [ pkgs.libxinerama pkgs.imlib2];
   });
 
 
