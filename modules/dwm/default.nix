@@ -17,7 +17,7 @@
       enable = true;
       package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
         src = sources.dwmgit;
-        buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXcursor ];
+        buildInputs = oldAttrs.buildInputs ++ [ pkgs.libxcursor ];
         NIX_LDFLAGS = "-lXcursor";
       });
     };
@@ -30,7 +30,7 @@
   programs.dconf.enable = true;
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       thunar-archive-plugin
       thunar-volman
       thunar-media-tags-plugin
@@ -137,14 +137,14 @@
 
 
   environment.systemPackages = with pkgs; [
-    xorg.xwininfo
-    xorg.xdpyinfo
-    xorg.xrdb
+    xwininfo
+    xwininfo
+    xrdb
     wmctrl
 
     # (dwm.overrideAttrs (oldAttrs: rec {
     #   src = sources.dwmgit;
-    #   buildInputs = oldAttrs.buildInputs ++ [ pkgs.xorg.libXcursor ];
+    #   buildInputs = oldAttrs.buildInputs ++ [ pkgs.libxcursor ];
     #   NIX_LDFLAGS = "-lXcursor";
     # }))
 
