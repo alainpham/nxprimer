@@ -12,7 +12,7 @@
     xkb.model = vars.keyboardModel;
     xkb.variant = vars.keyboardVariant;
     displayManager.lightdm.enable = true;
-    displayManager.setupCommands = lib.mkIf vars.enableNumlockx ''${pkgs.numlockx}/bin/numlockx on'';
+    displayManager.setupCommands = lib.mkIf vars.numlockOnBoot ''${pkgs.numlockx}/bin/numlockx on'';
     windowManager.dwm = {
       enable = true;
       package = pkgs.dwm.overrideAttrs (oldAttrs: rec {
