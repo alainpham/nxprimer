@@ -31,11 +31,6 @@
         source = "${sources.dotfilesgit}/home/bin/reaper";
         force = true;
       };
-      "templates" = { 
-        source = "${sources.dotfilesgit}/home/templates";
-        recursive = true;
-        force = true;
-      };
     };
 
   };
