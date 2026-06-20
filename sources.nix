@@ -14,7 +14,7 @@ in
   dwmgit = builtins.fetchGit {
     url = "https://github.com/alainpham/dwm-flexipatch.git";
     ref = "master";
-    rev = "a1cbca959bc7ce4edc8f2f1ad10eeee373732b9d";
+    rev = "0d5cab36f68bbfe233355b64789d06bb9f1dc26d";
   };
 
   slockgit = builtins.fetchGit {
