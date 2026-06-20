@@ -37,9 +37,9 @@
     ];
   };
 
-  environment.variables = {
-    GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-49.1/glib-2.0/schemas";
-  };
+  # environment.variables = {
+  #   GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-49.1/glib-2.0/schemas";
+  # };
 
   # slock  
   programs.slock.enable = true;
