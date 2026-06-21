@@ -32,7 +32,7 @@ in
   gshortsgit = builtins.fetchGit {
     url = "https://github.com/alainpham/gshorts.git";
     ref = "master";
-    rev = "dda21ee0407252346fd8839d12ce18952c76ac76";
+    rev = "519d7ea03bde3422133328985bde31dadf730801";
   };
 
   nvtopurl =  builtins.fetchurl {
