@@ -22,6 +22,10 @@
         source = "${sources.dotfilesgit}/home/bin/estation";
         force = true;
       };
+      "bin/ppsspp" = { 
+        source = "${sources.dotfilesgit}/home/bin/ppsspp";
+        force = true;
+      };
       "bin/winege" = { 
         source = "${sources.dotfilesgit}/home/bin/winege";
         force = true;
