@@ -203,10 +203,10 @@
         source = "${sources.dotfilesgit}/home/.gitconfig"; 
         force = true;
       };
-      ".profile" = { 
-        source = "${sources.dotfilesgit}/home/.profile"; 
-        force = true;
-      };
+      # ".profile" = { 
+      #   source = "${sources.dotfilesgit}/home/.profile"; 
+      #   force = true;
+      # };
       ".Xresources" = { 
         source = "${sources.dotfilesgit}/home/.Xresources"; 
         force = true;
