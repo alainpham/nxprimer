@@ -195,10 +195,10 @@
         source = "${sources.dotfilesgit}/home/.asoundrc"; 
         force = true;
       };
-      ".bash_profile" = { 
-        source = "${sources.dotfilesgit}/home/.bash_profile"; 
-        force = true;
-      };
+      # ".bash_profile" = { 
+      #   source = "${sources.dotfilesgit}/home/.bash_profile"; 
+      #   force = true;
+      # };
       ".gitconfig" = { 
         source = "${sources.dotfilesgit}/home/.gitconfig"; 
         force = true;
