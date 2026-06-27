@@ -14,44 +14,44 @@
 
     home.file = {
       # files
-      ".local/share/applications/estation.desktop" = {
-        source = "${sources.dotfilesgit}/home/.local/share/applications/estation.desktop";
-        force = true;
-      };
-      "bin/estation" = { 
-        source = "${sources.dotfilesgit}/home/bin/estation";
-        force = true;
-      };
-      "bin/ppsspp" = { 
-        source = "${sources.dotfilesgit}/home/bin/ppsspp";
-        force = true;
-      };
-      "bin/winege" = { 
-        source = "${sources.dotfilesgit}/home/bin/winege";
-        force = true;
-      };
-      "bin/winegecfg" = { 
-        source = "${sources.dotfilesgit}/home/bin/winegecfg";
-        force = true;
-      };
+      # ".local/share/applications/estation.desktop" = {
+      #   source = "${sources.dotfilesgit}/home/.local/share/applications/estation.desktop";
+      #   force = true;
+      # };
+      # "bin/estation" = { 
+      #   source = "${sources.dotfilesgit}/home/bin/estation";
+      #   force = true;
+      # };
+      # "bin/ppsspp" = { 
+      #   source = "${sources.dotfilesgit}/home/bin/ppsspp";
+      #   force = true;
+      # };
+      # "bin/winege" = { 
+      #   source = "${sources.dotfilesgit}/home/bin/winege";
+      #   force = true;
+      # };
+      # "bin/winegecfg" = { 
+      #   source = "${sources.dotfilesgit}/home/bin/winegecfg";
+      #   force = true;
+      # };
 
-      ".config/ppsspp/PSP/SYSTEM/controls.ini" = { 
-        source = "${sources.dotfilesgit}/home/.config/ppsspp/PSP/SYSTEM/controls.ini";
-        force = true;
-      };
+      # ".config/ppsspp/PSP/SYSTEM/controls.ini" = { 
+      #   source = "${sources.dotfilesgit}/home/.config/ppsspp/PSP/SYSTEM/controls.ini";
+      #   force = true;
+      # };
 
-      ".config/ppsspp/PSP/SYSTEM/ppsspp.ini" = { 
-        source = "${sources.dotfilesgit}/home/.config/ppsspp/PSP/SYSTEM/ppsspp.ini";
-        force = true;
-      };
+      # ".config/ppsspp/PSP/SYSTEM/ppsspp.ini" = { 
+      #   source = "${sources.dotfilesgit}/home/.config/ppsspp/PSP/SYSTEM/ppsspp.ini";
+      #   force = true;
+      # };
 
-      # folders
-      # emulation configs
-      "ES-DE" = { 
-        source = "${sources.dotfilesgit}/home/ES-DE";
-        recursive = true;
-        force = true;
-      };
+      # # folders
+      # # emulation configs
+      # "ES-DE" = { 
+      #   source = "${sources.dotfilesgit}/home/ES-DE";
+      #   recursive = true;
+      #   force = true;
+      # };
 
       # retroarch folders
       ".config/retroarch" = {

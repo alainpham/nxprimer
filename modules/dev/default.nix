@@ -2,7 +2,7 @@
 {
 
   programs.java.enable = true;
-  programs.java.package = pkgs.jdk17_headless;
+  programs.java.package = pkgs.jdk25_headless;
   
   environment.systemPackages = with pkgs; [
     ansible

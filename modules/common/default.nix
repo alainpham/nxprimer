@@ -161,8 +161,54 @@
     };
 
     home.file = {
+      ".config" = {
+        source = "${sources.dotfilesgit}/home/.config";
+        recursive = true;
+        force = true;
+      };
+      ".icons" = {
+        source = "${sources.dotfilesgit}/home/.icons";
+        recursive = true;
+        force = true;
+      };
+      ".local" = {
+        source = "${sources.dotfilesgit}/home/.local";
+        recursive = true;
+        force = true;
+      };
+      "bin" = {
+        source = "${sources.dotfilesgit}/home/bin";
+        recursive = true;
+        force = true;
+      };
+      "ES-DE" = {
+        source = "${sources.dotfilesgit}/home/ES-DE";
+        recursive = true;
+        force = true;
+      };
+      "themecfgs" = {
+        source = "${sources.dotfilesgit}/home/themecfgs";
+        recursive = true;
+        force = true;
+      };
+      ".asoundrc" = { 
+        source = "${sources.dotfilesgit}/home/.asoundrc"; 
+        force = true;
+      };
+      ".bash_profile" = { 
+        source = "${sources.dotfilesgit}/home/.bash_profile"; 
+        force = true;
+      };
       ".gitconfig" = { 
         source = "${sources.dotfilesgit}/home/.gitconfig"; 
+        force = true;
+      };
+      ".profile" = { 
+        source = "${sources.dotfilesgit}/home/.profile"; 
+        force = true;
+      };
+      ".Xresources" = { 
+        source = "${sources.dotfilesgit}/home/.Xresources"; 
         force = true;
       };
     };

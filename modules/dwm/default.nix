@@ -74,64 +74,64 @@
       
     };
 
-    home.file = {
-      # files at root of home
+    # home.file = {
+    #   # files at root of home
 
-      # dwm related
-      # ".xinitrc" = { 
-      #   source = "${sources.dotfilesgit}/home/.xinitrc";
-      #   force = true;
-      # };
+    #   # dwm related
+    #   # ".xinitrc" = { 
+    #   #   source = "${sources.dotfilesgit}/home/.xinitrc";
+    #   #   force = true;
+    #   # };
       
-      ".config/libinput-gestures.conf" = { 
-        source = "${sources.dotfilesgit}/home/.config/libinput-gestures.conf";
-        force = true;
-      };
-      # config folders
+    #   ".config/libinput-gestures.conf" = { 
+    #     source = "${sources.dotfilesgit}/home/.config/libinput-gestures.conf";
+    #     force = true;
+    #   };
+    #   # config folders
       
-      ".config/jgmenu" = { 
-          source = "${sources.dotfilesgit}/home/.config/jgmenu";
-          recursive = true;
-          force = true;
-      };
+    #   ".config/jgmenu" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/jgmenu";
+    #       recursive = true;
+    #       force = true;
+    #   };
 
-      ".config/picom" = { 
-          source = "${sources.dotfilesgit}/home/.config/picom";
-          recursive = true;
-          force = true;
-      };
+    #   ".config/picom" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/picom";
+    #       recursive = true;
+    #       force = true;
+    #   };
 
-      # dwm related
-      ".config/Thunar" = { 
-          source = "${sources.dotfilesgit}/home/.config/Thunar";
-          recursive = true;
-          force = true;
-      };
+    #   # dwm related
+    #   ".config/Thunar" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/Thunar";
+    #       recursive = true;
+    #       force = true;
+    #   };
 
-      # dwm related
-      ".config/xfce4" = { 
-          source = "${sources.dotfilesgit}/home/.config/xfce4";
-          recursive = true;
-          force = true;
-      };
+    #   # dwm related
+    #   ".config/xfce4" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/xfce4";
+    #       recursive = true;
+    #       force = true;
+    #   };
 
-      # .local
-      ".local/share/dwm" = { 
-          source = "${sources.dotfilesgit}/home/.local/share/dwm";
-          recursive = true;
-          force = true;
-      };
-      "themecfgs" = { 
-        source = "${sources.dotfilesgit}/home/themecfgs";
-        recursive = true;
-        force = true;
-      };
-      "bin/theme" = { 
-        source = "${sources.dotfilesgit}/home/bin/theme";
-        force = true;
-      };
+    #   # .local
+    #   ".local/share/dwm" = { 
+    #       source = "${sources.dotfilesgit}/home/.local/share/dwm";
+    #       recursive = true;
+    #       force = true;
+    #   };
+    #   "themecfgs" = { 
+    #     source = "${sources.dotfilesgit}/home/themecfgs";
+    #     recursive = true;
+    #     force = true;
+    #   };
+    #   "bin/theme" = { 
+    #     source = "${sources.dotfilesgit}/home/bin/theme";
+    #     force = true;
+    #   };
       
-    };
+    # };
 
   };
 
