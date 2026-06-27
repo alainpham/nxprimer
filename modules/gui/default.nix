@@ -165,96 +165,96 @@
       '';
     };
 
-    home.file = {
-      # files at root of home
+    # home.file = {
+    #   # files at root of home
 
-      ".config/user-dirs.dirs" = { 
-        source = "${sources.dotfilesgit}/home/.config/user-dirs.dirs"; 
-        force = true;
-      };
+    #   ".config/user-dirs.dirs" = { 
+    #     source = "${sources.dotfilesgit}/home/.config/user-dirs.dirs"; 
+    #     force = true;
+    #   };
 
-      ".config/mimeapps.list" = { 
-        source = "${sources.dotfilesgit}/home/.config/mimeapps.list";
-        force = true;
-      };
+    #   ".config/mimeapps.list" = { 
+    #     source = "${sources.dotfilesgit}/home/.config/mimeapps.list";
+    #     force = true;
+    #   };
 
-      # config folders
+    #   # config folders
       
       
-      ".config/xdg-desktop-portal" = { 
-          source = "${sources.dotfilesgit}/home/.config/xdg-desktop-portal";
-          recursive = true;
-          force = true;
-      };
-      ".config/alacritty" = { 
-          source = "${sources.dotfilesgit}/home/.config/alacritty";
-          recursive = true;
-          force = true;
-      };
-      ".config/pulse" = { 
-          source = "${sources.dotfilesgit}/home/.config/pulse";
-          recursive = true;
-          force = true;
-      };
-      ".config/pipewire" = { 
-          source = "${sources.dotfilesgit}/home/.config/pipewire";
-          recursive = true;
-          force = true;
-      };
-      ".config/wireplumber" = { 
-          source = "${sources.dotfilesgit}/home/.config/wireplumber";
-          recursive = true;
-          force = true;
-      };
-      ".config/rofi" = { 
-          source = "${sources.dotfilesgit}/home/.config/rofi";
-          recursive = true;
-          force = true;
-      };
-      ".config/SpeedCrunch" = { 
-          source = "${sources.dotfilesgit}/home/.config/SpeedCrunch";
-          recursive = true;
-          force = true;
-      };
+    #   ".config/xdg-desktop-portal" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/xdg-desktop-portal";
+    #       recursive = true;
+    #       force = true;
+    #   };
+    #   ".config/alacritty" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/alacritty";
+    #       recursive = true;
+    #       force = true;
+    #   };
+    #   ".config/pulse" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/pulse";
+    #       recursive = true;
+    #       force = true;
+    #   };
+    #   ".config/pipewire" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/pipewire";
+    #       recursive = true;
+    #       force = true;
+    #   };
+    #   ".config/wireplumber" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/wireplumber";
+    #       recursive = true;
+    #       force = true;
+    #   };
+    #   ".config/rofi" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/rofi";
+    #       recursive = true;
+    #       force = true;
+    #   };
+    #   ".config/SpeedCrunch" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/SpeedCrunch";
+    #       recursive = true;
+    #       force = true;
+    #   };
 
-      # .local
-      ".local/share/applications/bluetui.desktop" = { 
-          source = "${sources.dotfilesgit}/home/.local/share/applications/bluetui.desktop";
-          force = true;
-      };
-      ".local/share/applications/ctext.desktop" = { 
-          source = "${sources.dotfilesgit}/home/.local/share/applications/ctext.desktop";
-          force = true;
-      };
-      ".local/share/applications/nmtui.desktop" = { 
-          source = "${sources.dotfilesgit}/home/.local/share/applications/nmtui.desktop";
-          force = true;
-      };
-      ".local/share/applications/code.desktop" = { 
-          source = "${sources.dotfilesgit}/home/.local/share/applications/code.desktop";
-          force = true;
-      };
-      ".local/share/applications/code-url-handler.desktop" = { 
-          source = "${sources.dotfilesgit}/home/.local/share/applications/code-url-handler.desktop";
-          force = true;
-      };
-      "bin/code" = { 
-        source = "${sources.dotfilesgit}/home/bin/code";
-        force = true;
-      };
-      "bin/vdl" = { 
-        source = "${sources.dotfilesgit}/home/bin/vdl";
-        force = true;
-      };
-      "bin/adl" = { 
-        source = "${sources.dotfilesgit}/home/bin/adl";
-        force = true;
-      };
-      ".config/Code/User/settings.json" = { 
-        source = "${sources.dotfilesgit}/home/.config/Code/User/settings.json";
-        force = true;
-      };
-    };
+    #   # .local
+    #   ".local/share/applications/bluetui.desktop" = { 
+    #       source = "${sources.dotfilesgit}/home/.local/share/applications/bluetui.desktop";
+    #       force = true;
+    #   };
+    #   ".local/share/applications/ctext.desktop" = { 
+    #       source = "${sources.dotfilesgit}/home/.local/share/applications/ctext.desktop";
+    #       force = true;
+    #   };
+    #   ".local/share/applications/nmtui.desktop" = { 
+    #       source = "${sources.dotfilesgit}/home/.local/share/applications/nmtui.desktop";
+    #       force = true;
+    #   };
+    #   ".local/share/applications/code.desktop" = { 
+    #       source = "${sources.dotfilesgit}/home/.local/share/applications/code.desktop";
+    #       force = true;
+    #   };
+    #   ".local/share/applications/code-url-handler.desktop" = { 
+    #       source = "${sources.dotfilesgit}/home/.local/share/applications/code-url-handler.desktop";
+    #       force = true;
+    #   };
+    #   "bin/code" = { 
+    #     source = "${sources.dotfilesgit}/home/bin/code";
+    #     force = true;
+    #   };
+    #   "bin/vdl" = { 
+    #     source = "${sources.dotfilesgit}/home/bin/vdl";
+    #     force = true;
+    #   };
+    #   "bin/adl" = { 
+    #     source = "${sources.dotfilesgit}/home/bin/adl";
+    #     force = true;
+    #   };
+    #   ".config/Code/User/settings.json" = { 
+    #     source = "${sources.dotfilesgit}/home/.config/Code/User/settings.json";
+    #     force = true;
+    #   };
+    # };
 
   };
 

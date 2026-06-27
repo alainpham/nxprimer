@@ -9,29 +9,29 @@
 
   home-manager.users.${vars.targetUserName} = { lib, ... }: {
     
-    home.file = {
-      # files at root of home
+    # home.file = {
+    #   # files at root of home
 
-      # config folders
-      ".config/obs-studio" = { 
-          source = "${sources.dotfilesgit}/home/.config/obs-studio";
-          recursive = true;
-          force = true;
-      };
+    #   # config folders
+    #   ".config/obs-studio" = { 
+    #       source = "${sources.dotfilesgit}/home/.config/obs-studio";
+    #       recursive = true;
+    #       force = true;
+    #   };
 
-      "bin/localsend" = { 
-        source = "${sources.dotfilesgit}/home/bin/localsend";
-        force = true;
-      };
-      "bin/obs" = { 
-        source = "${sources.dotfilesgit}/home/bin/obs";
-        force = true;
-      };
-      "bin/reaper" = { 
-        source = "${sources.dotfilesgit}/home/bin/reaper";
-        force = true;
-      };
-    };
+    #   "bin/localsend" = { 
+    #     source = "${sources.dotfilesgit}/home/bin/localsend";
+    #     force = true;
+    #   };
+    #   "bin/obs" = { 
+    #     source = "${sources.dotfilesgit}/home/bin/obs";
+    #     force = true;
+    #   };
+    #   "bin/reaper" = { 
+    #     source = "${sources.dotfilesgit}/home/bin/reaper";
+    #     force = true;
+    #   };
+    # };
 
   };
 
